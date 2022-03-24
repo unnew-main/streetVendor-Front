@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-
+import { Text, SafeAreaView } from 'react-native'
+import LoginPage from './screens/LoginPage'
 const App = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>hello</Text>
-    </View>
+      <LoginPage />
+    </SafeAreaView>
   )
 }
 
