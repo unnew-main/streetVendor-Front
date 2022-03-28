@@ -5,7 +5,7 @@ import { View } from 'react-native'
 export default function LoginPage() {
   return (
     <View>
-      <Login />
+      {/* <Login /> */}
       <Login2 />
     </View>
   )

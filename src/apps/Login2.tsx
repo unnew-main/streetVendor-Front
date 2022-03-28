@@ -1,14 +1,17 @@
-import React from 'react'
-// import { SocialParameters } from '../../../types/instances';
-import { Image, Platform, Text, TouchableOpacity } from 'react-native'
-// import { classes, vw } from '../../../functions';
+import React, { useState } from 'react'
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-community/google-signin'
-// import config from '../../../config';
-// import axios from '../../../plugins/axios';
-// import { AxiosDataResponse, SNSLoginResponse } from '../../../types/responses';
 
 GoogleSignin.configure({
   webClientId:
@@ -23,13 +26,28 @@ GoogleSignin.configure({
 //   login: (token: string) => any
 //   toRegister: (social: SocialParameters) => any
 // }
-
-export class Login2 extends React.Component {
-  async signIn() {
+type userInfoType = {
+  email: string | null
+  familyName: string | null
+  givenName: string | null
+  id: string | null
+  name: string | null
+  photo: string | null
+}
+export const Login2 = () => {
+  const [isLogin, setIsLogin] = useState<boolean>(false)
+  const [userInfo, setUserInfo] = useState<userInfoType>()
+  const [token, setToken] = useState<string | null>()
+  async function signIn() {
     try {
       await GoogleSignin.hasPlayServices()
-      const user = await GoogleSignin.signIn()
+      const { idToken, user } = await GoogleSignin.signIn()
       console.log('success', user)
+      const userString = JSON.stringify(user)
+      setUserInfo(JSON.parse(userString))
+      setToken(idToken)
+      console.log('dataSave')
+      setIsLogin(true)
       // axios
       //   .post<AxiosDataResponse, AxiosDataResponse<SNSLoginResponse>>(
       //     'member/auth/sns/signin',
@@ -65,14 +83,66 @@ export class Login2 extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={this.signIn.bind(this)}
-        // style={classes('mx-15 w-80 h-80 rounded-40 flex-center bg-google')}
-      >
-        <Text>login2Button</Text>
-      </TouchableOpacity>
-    )
-  }
+  return (
+    <SafeAreaView
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <ScrollView style={{ marginBottom: 100 }}>
+        <TouchableOpacity
+          onPress={signIn}
+          style={{
+            backgroundColor: 'yellow',
+            width: 100,
+            height: 50,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Text style={{ fontWeight: 'bold' }}>Google Login</Text>
+        </TouchableOpacity>
+        {isLogin && (
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={TextStyle.txt}>idToken</Text>
+
+            <Text>{token}</Text>
+
+            <Text style={TextStyle.txt}>User Data</Text>
+            <Text style={TextStyle.txt}>email</Text>
+            <Text>{userInfo?.email}</Text>
+            <Text style={TextStyle.txt}>familyName</Text>
+            <Text>{userInfo?.familyName}</Text>
+            <Text style={TextStyle.txt}>givenName</Text>
+            <Text>{userInfo?.givenName}</Text>
+            <Text style={TextStyle.txt}>id</Text>
+            <Text>{userInfo?.id}</Text>
+            <Text style={TextStyle.txt}>name</Text>
+            <Text>{userInfo?.name}</Text>
+            <Text style={TextStyle.txt}>Image</Text>
+            <Image
+              style={{ width: 66, height: 58 }}
+              source={{ uri: userInfo?.photo }}
+            />
+          </View>
+        )}
+      </ScrollView>
+    </SafeAreaView>
+  )
 }
+
+const TextStyle = StyleSheet.create({
+  txt: {
+    color: 'blue',
+    fontSize: 15,
+  },
+})
