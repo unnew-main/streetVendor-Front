@@ -4,7 +4,7 @@ import LoginPage from './screens/LoginPage'
 const App = () => {
   return (
     <SafeAreaView>
-      <Text>hello</Text>
+      <Text>App</Text>
       <LoginPage />
     </SafeAreaView>
   )
