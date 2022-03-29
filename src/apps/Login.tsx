@@ -11,6 +11,7 @@ import {
 import {
   GoogleSignin,
   statusCodes,
+  GoogleSigninButton,
 } from '@react-native-community/google-signin'
 
 type userInfoType = {
@@ -114,7 +115,13 @@ export const Login = () => {
       }}
     >
       <ScrollView style={{ marginBottom: 100 }}>
-        <TouchableOpacity
+        <GoogleSigninButton
+          style={{ width: 192, height: 48 }}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={signIn}
+        />
+        {/* <TouchableOpacity
           onPress={signIn}
           style={{
             backgroundColor: 'yellow',
@@ -126,7 +133,7 @@ export const Login = () => {
           }}
         >
           <Text style={{ fontWeight: 'bold' }}>Google Login</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={getCurrentUser}
           style={{
