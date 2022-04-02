@@ -10,9 +10,9 @@ import {
 } from 'react-native'
 import {
   GoogleSignin,
-  statusCodes,
   GoogleSigninButton,
 } from '@react-native-community/google-signin'
+import { setIdTokenStorage, getIdTokenStorage } from '@/storage/token'
 
 type userInfoType = {
   email: string | null
@@ -24,8 +24,8 @@ type userInfoType = {
 }
 export const Login = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false)
-  const [userInfo, setUserInfo] = useState<userInfoType | null>()
-  const [token, setToken] = useState<string | null>()
+  const [userInfo, setUserInfo] = useState<userInfoType | null>(null)
+  const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
     //clientId 숨겨야함!!!
@@ -46,50 +46,19 @@ export const Login = () => {
     userInfo !== null ? setIsLogin(true) : setIsLogin(false)
   }, [userInfo])
 
+  useEffect(() => {
+    setIdTokenStorage(token)
+  }, [token])
+
   async function signIn() {
     try {
       await GoogleSignin.hasPlayServices()
       const data = await GoogleSignin.signIn()
-      console.log('datais', data)
-      console.log('success', data.user)
-      const userString = JSON.stringify(data.user)
-      setUserInfo(JSON.parse(userString))
+      setUserInfo(data.user)
       setToken(data.idToken)
       setIsLogin(true)
-      // axios
-      //   .post<AxiosDataResponse, AxiosDataResponse<SNSLoginResponse>>(
-      //     'member/auth/sns/signin',
-      //     {
-      //       id: user.id,
-      //       email: user.email,
-      //       sns_type: 'google',
-      //       device_type: Platform.OS,
-      //     },
-      //   )
-      //   .then(data => {
-      //     if (data.token) {
-      //       return this.props.login(data.token)
-      //     }
-
-      //     this.props.toRegister({
-      //       id: user.id,
-      //       name: user.familyName || '' + user.name,
-      //       email: user.email,
-      //       sns_type: 'google',
-      //     })
-      //   })
     } catch (error: any) {
       setIsLogin(false)
-
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('user cancelled the login flow')
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('operation (e.g. sign in) is in progress already')
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('play services not available or outdated')
-      } else {
-        console.log(error.message)
-      }
     }
   }
   const signOut = async () => {
@@ -104,8 +73,10 @@ export const Login = () => {
   }
   const getCurrentUser = async () => {
     const currentUser = await GoogleSignin.getCurrentUser()
-    console.log(currentUser)
+    const tokendata = await getIdTokenStorage()
+    console.log('nowIdToen get', tokendata)
   }
+
   return (
     <SafeAreaView
       style={{
@@ -121,19 +92,7 @@ export const Login = () => {
           color={GoogleSigninButton.Color.Dark}
           onPress={signIn}
         />
-        {/* <TouchableOpacity
-          onPress={signIn}
-          style={{
-            backgroundColor: 'yellow',
-            width: 100,
-            height: 50,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text style={{ fontWeight: 'bold' }}>Google Login</Text>
-        </TouchableOpacity> */}
+
         <TouchableOpacity
           onPress={getCurrentUser}
           style={{
