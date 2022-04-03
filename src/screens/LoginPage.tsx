@@ -1,11 +1,17 @@
 import React from 'react'
-import { Login } from '@/apps'
+import {
+  GoogleLoginbutton,
+  GoogleLogoutbutton,
+  CurrentUserButton,
+} from '@/apps'
 import { View } from 'react-native'
 
 export default function LoginPage() {
   return (
     <View>
-      <Login />
+      <GoogleLoginbutton />
+      <GoogleLogoutbutton />
+      <CurrentUserButton />
     </View>
   )
 }
