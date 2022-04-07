@@ -21,12 +21,12 @@ export const GoogleLoginbutton = () => {
         '328856282923-0pbrrjup6i9bm3lqbc87fe2up53hpdba.apps.googleusercontent.com',
     })
   }, [])
-
   return (
     <GoogleSigninButton
       style={{ width: 192, height: 48 }}
       size={GoogleSigninButton.Size.Wide}
       color={GoogleSigninButton.Color.Dark}
+      // onPress={signIn}
       onPress={signIn}
     />
   )

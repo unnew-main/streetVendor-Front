@@ -31,7 +31,7 @@ export const getCurrentUser = async () => {
   const currentUser = await GoogleSignin.getCurrentUser()
   const tokendata = await getIdTokenStorage()
   console.log('nowIdToen get', tokendata)
-  console.log(currentUser)
+  // console.log('currentUser', currentUser)
 }
 export const getIdToken = async () => {
   return await getIdTokenStorage()
