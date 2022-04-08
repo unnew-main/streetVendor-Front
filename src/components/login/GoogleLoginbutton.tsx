@@ -15,7 +15,7 @@ export const GoogleLoginbutton = () => {
       await signIn()
       console.log('Login...')
 
-      navigation?.navigate('Home')
+      navigation?.reset({ routes: [{ name: 'Home' }] })
     } catch (e) {
       console.log('LoginButton Error', e)
     }

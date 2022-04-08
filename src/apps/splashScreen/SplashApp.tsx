@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
 import { SplashScreen } from '@/screens'
 import { getIdToken } from '@/apis/Login'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { StackParamList } from '@/App'
 
-export function SplashApp({ navigation }) {
+type SplashAppType = {
+  navigation: StackNavigationProp<StackParamList, 'Splash'>
+}
+export function SplashApp({ navigation }: SplashAppType) {
   useEffect(() => {
     ;(async () => {
       try {

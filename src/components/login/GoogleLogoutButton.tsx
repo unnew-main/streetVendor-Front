@@ -10,7 +10,8 @@ export const GoogleLogoutbutton = () => {
       await signOut()
       console.log('Logout...')
 
-      navigation?.navigate('Splash')
+      // navigation?.navigate('Splash')
+      navigation?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('LogoutError', e)
     }

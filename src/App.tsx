@@ -6,7 +6,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SplashApp, LoginApp, HomeApp } from './apps'
 
-const Stack = createStackNavigator()
+export type StackParamList = {
+  Splash: undefined
+  Login: undefined
+  Home: undefined
+}
+
+const Stack = createStackNavigator<StackParamList>()
 const App = () => {
   return (
     <Provider store={store}>
