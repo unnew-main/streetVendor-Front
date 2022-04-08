@@ -16,6 +16,6 @@ export function SplashApp({ navigation }) {
         console.log('Splash Error: ', e)
       }
     })()
-  }, [])
+  }, [navigation])
   return <SplashScreen />
 }

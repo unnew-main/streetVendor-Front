@@ -2,7 +2,7 @@ import React from 'react'
 import { GoogleLoginbutton } from '@/components'
 import { Text, TouchableOpacity, View } from 'react-native'
 
-export function LoginScreen({ navigation, handleLogin }) {
+export function LoginScreen() {
   return (
     <View
       style={{
@@ -12,7 +12,7 @@ export function LoginScreen({ navigation, handleLogin }) {
         height: '100%',
       }}
     >
-      <GoogleLoginbutton handleLogin={handleLogin} />
+      <GoogleLoginbutton />
     </View>
   )
 }

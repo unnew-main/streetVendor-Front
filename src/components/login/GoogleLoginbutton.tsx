@@ -4,11 +4,22 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-community/google-signin'
+import { NavigationContext } from '@react-navigation/native'
+import { signIn } from '@/apis/Login'
 
-type GoogleLoginButtonType = {
-  handleLogin: () => void
-}
-export const GoogleLoginbutton = ({ handleLogin }: GoogleLoginButtonType) => {
+export const GoogleLoginbutton = () => {
+  const navigation = React.useContext(NavigationContext)
+
+  const handleLogin = async () => {
+    try {
+      await signIn()
+      console.log('Login...')
+
+      navigation?.navigate('Home')
+    } catch (e) {
+      console.log('LoginButton Error', e)
+    }
+  }
   useEffect(() => {
     //clientId 숨겨야함!!!
     GoogleSignin.configure({

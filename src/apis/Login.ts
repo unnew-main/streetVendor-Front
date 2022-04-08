@@ -10,7 +10,7 @@ export async function signIn() {
   } catch (error: any) {}
 }
 
-export const signOut = async () => {
+export async function signOut() {
   try {
     await GoogleSignin.signOut()
     setIdTokenStorage(null)
@@ -19,20 +19,6 @@ export const signOut = async () => {
   }
 }
 
-// type userInfoType = {
-//   email: string | null
-//   familyName: string | null
-//   givenName: string | null
-//   id: string | null
-//   name: string | null
-//   photo: string | null
-// }
-export const getCurrentUser = async () => {
-  const currentUser = await GoogleSignin.getCurrentUser()
-  const tokendata = await getIdTokenStorage()
-  console.log('nowIdToen get', tokendata)
-  // console.log('currentUser', currentUser)
-}
-export const getIdToken = async () => {
+export async function getIdToken() {
   return await getIdTokenStorage()
 }

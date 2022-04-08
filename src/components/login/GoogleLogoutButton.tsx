@@ -8,6 +8,8 @@ export const GoogleLogoutbutton = () => {
   const handleLogout = async () => {
     try {
       await signOut()
+      console.log('Logout...')
+
       navigation?.navigate('Splash')
     } catch (e) {
       console.log('LogoutError', e)
