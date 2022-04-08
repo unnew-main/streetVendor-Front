@@ -4,9 +4,11 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-community/google-signin'
-import { signIn } from '@/apis/Login'
 
-export const GoogleLoginbutton = () => {
+type GoogleLoginButtonType = {
+  handleLogin: () => void
+}
+export const GoogleLoginbutton = ({ handleLogin }: GoogleLoginButtonType) => {
   useEffect(() => {
     //clientId 숨겨야함!!!
     GoogleSignin.configure({
@@ -27,7 +29,7 @@ export const GoogleLoginbutton = () => {
       size={GoogleSigninButton.Size.Wide}
       color={GoogleSigninButton.Color.Dark}
       // onPress={signIn}
-      onPress={signIn}
+      onPress={handleLogin}
     />
   )
 }

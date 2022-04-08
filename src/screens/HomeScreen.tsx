@@ -1,7 +1,8 @@
+import { GoogleLogoutbutton } from '@/components'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 
-export function SplashScreen() {
+export function HomeScreen() {
   return (
     <View
       style={{
@@ -15,9 +16,8 @@ export function SplashScreen() {
         source={require('@/Assets/Images/TOM.png')}
         style={{ width: 100, height: 100 }}
       />
-      <Text>길거리 노점</Text>
-
-      <Text>Loading....</Text>
+      <Text>홈</Text>
+      <GoogleLogoutbutton />
     </View>
   )
 }
