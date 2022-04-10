@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import { setting } from '@/constants'
 export const setIdTokenStorage = async (value: any) => {
   try {
     const jsonValue = JSON.stringify(value)
@@ -18,4 +18,11 @@ export const getIdTokenStorage = async () => {
     // error reading value
     console.log('idToken get error: ', e)
   }
+}
+
+export const tokenHelper = {
+  setIdToken: async (token: string | null) =>
+    await AsyncStorage.setItem(setting.tokenKey.id, JSON.stringify(token)),
+  getIdToken: async () =>
+    (await AsyncStorage.getItem(setting.tokenKey.id)) ?? 'null',
 }

@@ -5,16 +5,17 @@ import {
   GoogleSigninButton,
 } from '@react-native-community/google-signin'
 import { NavigationContext } from '@react-navigation/native'
-import { signIn } from '@/apis/Login'
+import { tokenHelper } from '@/util/tokenHelper'
 
 export const GoogleLoginbutton = () => {
   const navigation = React.useContext(NavigationContext)
 
   const handleLogin = async () => {
     try {
-      await signIn()
+      await GoogleSignin.hasPlayServices()
+      const { idToken } = await GoogleSignin.signIn()
+      tokenHelper.setIdToken(idToken)
       console.log('Login...')
-
       navigation?.reset({ routes: [{ name: 'Home' }] })
     } catch (e) {
       console.log('LoginButton Error', e)

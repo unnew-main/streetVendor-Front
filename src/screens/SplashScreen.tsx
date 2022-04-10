@@ -1,7 +1,7 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { ActivityIndicator, Image, Text, View } from 'react-native'
 
-export function SplashScreen() {
+export function SplashScreen({ nowState }: { nowState: string }) {
   return (
     <View
       style={{
@@ -18,6 +18,8 @@ export function SplashScreen() {
       <Text>길거리 노점</Text>
 
       <Text>Loading....</Text>
+      <Text>{nowState}</Text>
+      <ActivityIndicator size="large" color="#666666" />
     </View>
   )
 }

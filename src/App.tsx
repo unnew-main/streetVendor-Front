@@ -4,11 +4,12 @@ import { persistor, store } from '@/redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SplashApp, LoginApp, HomeApp } from './apps'
+import { SplashApp, LoginApp, HomeApp, RegisterMemberApp } from './apps'
 
 export type StackParamList = {
   Splash: undefined
   Login: undefined
+  RegisterMember: undefined
   Home: undefined
 }
 
@@ -27,6 +28,11 @@ const App = () => {
             <Stack.Screen
               name="Login"
               component={LoginApp}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="RegisterMember"
+              component={RegisterMemberApp}
               options={{ headerShown: false }}
             />
             <Stack.Screen

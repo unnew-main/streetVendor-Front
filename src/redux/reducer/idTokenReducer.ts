@@ -1,4 +1,4 @@
-import { setIdTokenStorage } from '@/storage/token'
+import { setIdTokenStorage } from '@/util/tokenHelper'
 import { GoogleSignin } from '@react-native-community/google-signin'
 import { createSlice } from '@reduxjs/toolkit'
 import AsyncStorage from '@react-native-async-storage/async-storage'

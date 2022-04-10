@@ -1,16 +1,16 @@
 import React from 'react'
 
-import { signOut } from '@/apis/Login'
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
+import { GoogleSignin } from '@react-native-community/google-signin'
+import { tokenHelper } from '@/util/tokenHelper'
 export const GoogleLogoutbutton = () => {
   const navigation = React.useContext(NavigationContext)
   const handleLogout = async () => {
     try {
-      await signOut()
+      await GoogleSignin.signOut()
+      tokenHelper.setIdToken(null)
       console.log('Logout...')
-
-      // navigation?.navigate('Splash')
       navigation?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('LogoutError', e)
