@@ -7,7 +7,7 @@ export default {
     return axios.get(setting.apiUrl + url, {
       params,
       headers: {
-        Authorization: `Bearer ${JSON.parse(await tokenHelper.getIdToken())}`,
+        Authorization: `Bearer ${await tokenHelper.getIdToken()}`,
       },
     })
   },
@@ -21,7 +21,7 @@ export default {
       url: setting.apiUrl + url,
       data: params,
       headers: {
-        Authorization: `Bearer ${JSON.parse(await tokenHelper.getIdToken())}`,
+        Authorization: `Bearer ${await tokenHelper.getIdToken()}`,
       },
     })
   },

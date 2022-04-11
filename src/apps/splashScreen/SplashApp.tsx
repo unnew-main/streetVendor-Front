@@ -5,7 +5,6 @@ import { StackParamList } from '@/App'
 import { tokenHelper } from '@/util/tokenHelper'
 import { memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
-import { GoogleSignin } from '@react-native-community/google-signin'
 type SplashAppType = {
   navigation: StackNavigationProp<StackParamList, 'Splash'>
 }
@@ -15,21 +14,18 @@ export function SplashApp({ navigation }: SplashAppType) {
   useEffect(() => {
     ;(async () => {
       try {
+        setNowState('구글 로그인 확인중...')
+
         const idToken = await tokenHelper.getIdToken()
-        // navigator?.reset({ routes: [{ name: 'Login' }] })
 
         if (idToken === 'null') {
           navigator?.reset({ routes: [{ name: 'Login' }] })
         } else {
-          // const tokenken = await GoogleSignin.getTokens()
-
-          console.log('세션가져오는중')
-
           setNowState('세션 가져오는 중...')
           const {
             data: { data },
           } = await memberApi.login()
-          console.log(data.sessionId)
+          console.log('session: ', data.sessionId)
           data.sessionId
             ? navigator?.reset({ routes: [{ name: 'Home' }] })
             : navigator?.reset({ routes: [{ name: 'RegisterMember' }] })

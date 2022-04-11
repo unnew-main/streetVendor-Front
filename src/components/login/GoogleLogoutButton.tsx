@@ -8,7 +8,7 @@ export const GoogleLogoutbutton = () => {
   const navigation = React.useContext(NavigationContext)
   const handleLogout = async () => {
     try {
-      tokenHelper.setIdToken(null)
+      tokenHelper.setIdToken('null')
       console.log('Logout...')
       await GoogleSignin.signOut()
 
