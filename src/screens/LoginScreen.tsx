@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleLoginbutton } from '@/components'
+import { GoogleLoginbutton, GoogleLogoutbutton } from '@/components'
 import { Text, TouchableOpacity, View } from 'react-native'
 
 export function LoginScreen() {
@@ -13,6 +13,7 @@ export function LoginScreen() {
       }}
     >
       <GoogleLoginbutton />
+      <GoogleLogoutbutton />
     </View>
   )
 }

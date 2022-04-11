@@ -1,3 +1,4 @@
+import { GoogleLogoutbutton } from '@/components'
 import React from 'react'
 import { ActivityIndicator, Image, Text, View } from 'react-native'
 
@@ -20,6 +21,7 @@ export function SplashScreen({ nowState }: { nowState: string }) {
       <Text>Loading....</Text>
       <Text>{nowState}</Text>
       <ActivityIndicator size="large" color="#666666" />
+      <GoogleLogoutbutton />
     </View>
   )
 }

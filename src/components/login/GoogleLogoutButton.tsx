@@ -8,9 +8,10 @@ export const GoogleLogoutbutton = () => {
   const navigation = React.useContext(NavigationContext)
   const handleLogout = async () => {
     try {
-      await GoogleSignin.signOut()
       tokenHelper.setIdToken(null)
       console.log('Logout...')
+      await GoogleSignin.signOut()
+
       navigation?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('LogoutError', e)

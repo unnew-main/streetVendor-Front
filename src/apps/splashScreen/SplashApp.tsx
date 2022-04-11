@@ -5,6 +5,7 @@ import { StackParamList } from '@/App'
 import { tokenHelper } from '@/util/tokenHelper'
 import { memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
+import { GoogleSignin } from '@react-native-community/google-signin'
 type SplashAppType = {
   navigation: StackNavigationProp<StackParamList, 'Splash'>
 }
@@ -15,10 +16,13 @@ export function SplashApp({ navigation }: SplashAppType) {
     ;(async () => {
       try {
         const idToken = await tokenHelper.getIdToken()
-        console.log('idToken', idToken)
+        // navigator?.reset({ routes: [{ name: 'Login' }] })
+
         if (idToken === 'null') {
           navigator?.reset({ routes: [{ name: 'Login' }] })
         } else {
+          // const tokenken = await GoogleSignin.getTokens()
+
           console.log('세션가져오는중')
 
           setNowState('세션 가져오는 중...')
@@ -33,6 +37,7 @@ export function SplashApp({ navigation }: SplashAppType) {
       } catch (e) {
         console.log('Splash Error: ', e)
         setNowState('에러가 발생했습니다.')
+        // navigator?.reset({ routes: [{ name: 'Splash' }] })
       }
     })()
   }, [navigation, navigator])

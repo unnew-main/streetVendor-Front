@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "233714446693",
+    "project_id": "streetvendor0411",
+    "storage_bucket": "streetvendor0411.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233714446693:android:fa5f88151a2efaf781318c",
+        "android_client_info": {
+          "package_name": "com.streetvendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233714446693-hmbi2osad715sloehtmm00r760torh1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.streetvendor",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "233714446693-f5d3j4ndbtrfggv8hc9coq3nf0phk0f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnV6HjAhHz2bsV6_DsW8gmkbopx9VInfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233714446693-f5d3j4ndbtrfggv8hc9coq3nf0phk0f8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "233714446693-5mpu1a98cdjrlor8g3kke7os20klhqol.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.streetVendor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
