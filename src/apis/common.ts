@@ -1,12 +1,31 @@
 import axios from 'axios'
 import { setting } from '@/constants'
+import { tokenHelper } from '@/util/tokenHelper'
 
 export default {
+  getAuth: async (url: string, params: any) => {
+    return axios.get(setting.apiUrl + url, {
+      params,
+      headers: {
+        Authorization: `Bearer ${JSON.parse(await tokenHelper.getIdToken())}`,
+      },
+    })
+  },
+
   get: async (url: string, params: any) =>
     await axios.get(setting.apiUrl + url, { params }),
+
+  postAuth: async (url: string, params: any) => {
+    return axios({
+      method: 'post',
+      url: setting.apiUrl + url,
+      data: params,
+      headers: {
+        Authorization: `Bearer ${JSON.parse(await tokenHelper.getIdToken())}`,
+      },
+    })
+  },
+
   post: async (url: string, params: any) =>
-    await axios.post(setting.apiUrl + url, {
-      requestToken:
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxMzM4Y2EyNjgzNTg2M2Y2NzE0MDhmNDE3MzhhN2I0OWU3NDBmYzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjg4NTYyODI5MjMtMHBicnJqdXA2aTlibTNscWJjODdmZTJ1cDUzaHBkYmEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzMjg4NTYyODI5MjMtcHJrb2Yxdm5iNWhhcTdwc3F1cTlpbmtxNG9wYjhpYWguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDE0NDI3MTE5MTExNTI4NjYxNjYiLCJlbWFpbCI6InN0YXJwYWtzN0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InluUDU5MERoR1VZQlNNd25CZ3ZPQUEiLCJub25jZSI6InF4QlB4Vkp1UHBqdTQ0RHdsWmU4ZWtUcFVtdTFKM2hPTXB4amw5Tk9QRWMiLCJuYW1lIjoiTkVXIFVOIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdncWVXbF9zWDNWNmo3QkMzbThkN0hqM0cxMjhnZHczVDlmYjlDczlnPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6Ik5FVyIsImZhbWlseV9uYW1lIjoiVU4iLCJsb2NhbGUiOiJrbyIsImlhdCI6MTY0OTU3NTM4OSwiZXhwIjoxNjQ5NTc4OTg5fQ.l9_s9VeREN_W5WoaryJTEiAGygJuyM03dt6EsL8TVOYFCMVy59FSpSqGd8mEzOLCb8xD-eVuIUZKnAoJuS0wD-u1vZDw8caV7JWoIHs3KP99-evi3ciZaJzKPVcVbOuhTW2uZTv7QKu9DZU8qqeNhcL5g7NmglnbUmlQXJ5tV8gXH16-o53_B56tRQ-WYorCUWoosi3J2RpZV8f1i8AvhAn48jnjjJIkT8Ma2xJSyc4gDwCCkltyQP0OUkUWd-8hSePHEh7K-58gvWR3hhUiZ-sOMnSR_MFE7wU7XKI_aTEYbx3NkpninqNT2VtZViNDUyQf6y9U7Rte2W_8EpifDg',
-    }),
+    await axios.post(setting.apiUrl + url, params),
 }

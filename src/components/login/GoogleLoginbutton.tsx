@@ -16,7 +16,7 @@ export const GoogleLoginbutton = () => {
       const { idToken } = await GoogleSignin.signIn()
       tokenHelper.setIdToken(idToken)
       console.log('Login...')
-      navigation?.reset({ routes: [{ name: 'Home' }] })
+      navigation?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('LoginButton Error', e)
     }
