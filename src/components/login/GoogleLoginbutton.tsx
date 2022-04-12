@@ -15,7 +15,7 @@ export const GoogleLoginbutton = () => {
       await GoogleSignin.hasPlayServices()
       await GoogleSignin.signIn()
       const { accessToken } = await GoogleSignin.getTokens()
-      tokenHelper.setIdToken(accessToken)
+      await tokenHelper.setIdToken(accessToken)
       console.log('Login...')
       navigation?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {

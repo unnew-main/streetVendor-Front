@@ -1,3 +1,4 @@
+import { UserSignUpDataProps } from '@/apps/registerMemberScreen/RegisterMemberApp'
 import { tokenHelper } from '@/util/tokenHelper'
 import api from './common'
 
@@ -8,6 +9,10 @@ export const memberApi = {
     })
   },
   logout: async () => {
-    return api.post('/api/v1/log-out', {})
+    return api.postAuth('/api/v1/log-out', {})
+  },
+
+  signUp: async (props: UserSignUpDataProps) => {
+    return api.postAuth('/api/v1/sign-up', props)
   },
 }

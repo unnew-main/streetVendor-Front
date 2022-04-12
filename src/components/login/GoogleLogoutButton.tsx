@@ -1,14 +1,15 @@
 import React from 'react'
-
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
 import { tokenHelper } from '@/util/tokenHelper'
+import { sessionHelper } from '@/util/sessionHelper'
 export const GoogleLogoutbutton = () => {
   const navigation = React.useContext(NavigationContext)
   const handleLogout = async () => {
     try {
-      tokenHelper.setIdToken('null')
+      await tokenHelper.setIdToken('null')
+      await sessionHelper.setSession('null')
       console.log('Logout...')
       await GoogleSignin.signOut()
 
