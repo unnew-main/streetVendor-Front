@@ -1,2 +1,3 @@
-export { GoogleLoginbutton } from './login/GoogleLoginbutton'
-export { GoogleLogoutbutton } from './login/GoogleLogoutButton'
+export { GoogleLoginbutton } from './auth/GoogleLoginbutton'
+export { GoogleLogoutbutton } from './auth/GoogleLogoutButton'
+export { SignoutButton } from './auth/SignoutButton'

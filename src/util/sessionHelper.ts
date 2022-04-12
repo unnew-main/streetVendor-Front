@@ -5,5 +5,5 @@ export const sessionHelper = {
   setSession: async (session: string) =>
     await AsyncStorage.setItem(setting.sessionKey.id, session),
   getSession: async () =>
-    (await AsyncStorage.getItem(setting.sessionKey.id)) ?? 'null',
+    (await AsyncStorage.getItem(setting.sessionKey.id)) ?? null,
 }

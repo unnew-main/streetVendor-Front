@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleLoginbutton, GoogleLogoutbutton } from '@/components'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { View } from 'react-native'
 
 export function LoginScreen() {
   return (

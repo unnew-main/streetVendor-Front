@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { RegisterMemberScreen } from '@/screens'
 import { memberApi } from '@/apis'
+import { NavigationContext } from '@react-navigation/native'
 
 type RegisterMemberProps = {
   route: {
@@ -22,6 +23,8 @@ export type UserSignUpDataProps = {
 }
 
 export function RegisterMemberApp({ route: { params } }: RegisterMemberProps) {
+  const navigator = React.useContext(NavigationContext)
+
   const [userName, setUserName] = useState<string>('')
   const handleRegister = async () => {
     try {
@@ -32,6 +35,7 @@ export function RegisterMemberApp({ route: { params } }: RegisterMemberProps) {
         profileUrl: params.profileUrl,
       }
       await memberApi.signUp(UserSignUpData)
+      navigator?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('RegisterError: ', e)
     }

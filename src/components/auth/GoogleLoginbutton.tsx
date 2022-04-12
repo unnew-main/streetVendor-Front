@@ -8,7 +8,7 @@ import { NavigationContext } from '@react-navigation/native'
 import { tokenHelper } from '@/util/tokenHelper'
 
 export const GoogleLoginbutton = () => {
-  const navigation = React.useContext(NavigationContext)
+  const navigator = React.useContext(NavigationContext)
 
   const handleLogin = async () => {
     try {
@@ -17,7 +17,7 @@ export const GoogleLoginbutton = () => {
       const { accessToken } = await GoogleSignin.getTokens()
       await tokenHelper.setIdToken(accessToken)
       console.log('Login...')
-      navigation?.reset({ routes: [{ name: 'Splash' }] })
+      navigator?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('LoginButton Error', e)
     }

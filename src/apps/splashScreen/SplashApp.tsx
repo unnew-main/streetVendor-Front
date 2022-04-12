@@ -3,7 +3,7 @@ import { SplashScreen } from '@/screens'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { StackParamList } from '@/App'
 import { tokenHelper } from '@/util/tokenHelper'
-import { memberApi } from '@/apis'
+import { authApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/util/sessionHelper'
 type SplashAppType = {
@@ -18,7 +18,7 @@ export function SplashApp({ navigation }: SplashAppType) {
         setNowState('구글 로그인 확인중...')
 
         const idToken = await tokenHelper.getIdToken()
-        // console.log('idToken: ', idToken)
+        console.log('idToken: ', idToken)
 
         if (idToken === 'null') {
           navigator?.reset({ routes: [{ name: 'Login' }] })
@@ -26,8 +26,8 @@ export function SplashApp({ navigation }: SplashAppType) {
           setNowState('세션 가져오는 중...')
           const {
             data: { data },
-          } = await memberApi.login()
-          // console.log('session: ', data)
+          } = await authApi.login()
+          console.log('session: ', data)
           if (data.sessionId) {
             await sessionHelper.setSession(data.sessionId)
             // console.log(await sessionHelper.getSession())

@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { setting } from '@/constants'
-import { tokenHelper } from '@/util/tokenHelper'
+import { sessionHelper } from '@/util/sessionHelper'
 
 export default {
   getAuth: async (url: string, params: any) => {
     return axios.get(setting.apiUrl + url, {
       params,
       headers: {
-        Authorization: `Bearer ${await tokenHelper.getIdToken()}`,
+        Authorization: `Bearer ${await sessionHelper.getSession()}`,
       },
     })
   },
@@ -21,11 +21,22 @@ export default {
       url: setting.apiUrl + url,
       data: params,
       headers: {
-        Authorization: `Bearer ${await tokenHelper.getIdToken()}`,
+        Authorization: `Bearer ${await sessionHelper.getSession()}`,
       },
     })
   },
 
   post: async (url: string, params: any) =>
     await axios.post(setting.apiUrl + url, params),
+
+  putAuth: async (url: string, params: any) => {
+    return axios({
+      method: 'put',
+      url: setting.apiUrl + url,
+      data: params,
+      headers: {
+        Authorization: `Bearer ${await sessionHelper.getSession()}`,
+      },
+    })
+  },
 }

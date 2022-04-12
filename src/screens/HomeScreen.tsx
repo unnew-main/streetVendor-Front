@@ -1,4 +1,4 @@
-import { GoogleLogoutbutton } from '@/components'
+import { GoogleLogoutbutton, SignoutButton } from '@/components'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 
@@ -18,6 +18,7 @@ export function HomeScreen() {
       />
       <Text>홈</Text>
       <GoogleLogoutbutton />
+      <SignoutButton />
     </View>
   )
 }
