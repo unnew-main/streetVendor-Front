@@ -31,16 +31,18 @@ export function RegisterMemberApp({
   },
 }: RegisterMemberProps) {
   const navigator = React.useContext(NavigationContext)
+
   const [userName, setUserName] = useState<string>('')
-  const UserSignUpData: UserSignUpDataProps = {
+  const userSignUpData: UserSignUpDataProps = {
     email: data.email,
     name: data.name,
     nickName: userName,
     profileUrl: data.profileUrl,
   }
+
   const handleRegister = async () => {
     try {
-      await memberApi.signUp(UserSignUpData)
+      await memberApi.signUp(userSignUpData)
       const { data: session } = await authApi.login(accessToken)
       await sessionHelper.setSession(session.data.sessionId)
 

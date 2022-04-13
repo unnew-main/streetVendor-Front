@@ -11,7 +11,6 @@ export const GoogleLogoutbutton = () => {
       await authApi.logout()
       await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
-      console.log('Logout...')
 
       navigator?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {

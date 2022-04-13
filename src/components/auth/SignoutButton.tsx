@@ -13,7 +13,6 @@ export const SignoutButton = () => {
       await memberApi.signOut()
       await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
-      console.log('signOut...')
 
       navigator?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
