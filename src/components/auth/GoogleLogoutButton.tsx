@@ -10,8 +10,8 @@ export const GoogleLogoutbutton = () => {
   const handleLogout = async () => {
     try {
       await authApi.logout()
-      await tokenHelper.setIdToken('null')
-      await sessionHelper.setSession('null')
+      await tokenHelper.setIdToken(null)
+      await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
       console.log('Logout...')
 

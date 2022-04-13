@@ -14,8 +14,8 @@ export const SignoutButton = () => {
       console.log('sessionlllll', await sessionHelper.getSession())
       await memberApi.signOut()
 
-      await tokenHelper.setIdToken('null')
-      await sessionHelper.setSession('null')
+      await tokenHelper.setIdToken(null)
+      await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
       console.log('signOut...')
 

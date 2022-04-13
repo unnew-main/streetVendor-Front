@@ -15,19 +15,54 @@ export function SplashApp({ navigation }: SplashAppType) {
   useEffect(() => {
     ;(async () => {
       try {
+        setNowState('세션 가져오는 중...')
+
+        console.log('splash 세션 확인중... ', await sessionHelper.getSession())
+        if (await sessionHelper.getSession()) {
+          console.log('스토리지에 세션 정보확인완료')
+
+          //member id 체크
+        } else {
+          setNowState('구글 로그인 확인중...')
+
+          console.log('스토리지에 세션 정보 없음')
+          //토큰을 스토리지에 저장할 필요가 없다
+          const idToken = await tokenHelper.getIdToken()
+          // console.log('idToken: ', idToken)
+
+          if (!idToken) {
+            navigator?.reset({ routes: [{ name: 'Login' }] })
+          } else {
+            const {
+              data: { data },
+            } = await authApi.login()
+            // console.log('session: ', data)
+            if (data.sessionId) {
+              await sessionHelper.setSession(data.sessionId)
+              // console.log(await sessionHelper.getSession())
+              navigator?.reset({ routes: [{ name: 'Home' }] })
+            } else {
+              navigator?.reset({
+                routes: [{ name: 'RegisterMember', params: data }],
+              })
+            }
+          }
+        }
+
         setNowState('구글 로그인 확인중...')
 
+        console.log('스토리지에 세션 정보 없음')
+        //토큰을 스토리지에 저장할 필요가 없다
         const idToken = await tokenHelper.getIdToken()
-        console.log('idToken: ', idToken)
+        // console.log('idToken: ', idToken)
 
-        if (idToken === 'null') {
+        if (!idToken) {
           navigator?.reset({ routes: [{ name: 'Login' }] })
         } else {
-          setNowState('세션 가져오는 중...')
           const {
             data: { data },
           } = await authApi.login()
-          console.log('session: ', data)
+          // console.log('session: ', data)
           if (data.sessionId) {
             await sessionHelper.setSession(data.sessionId)
             // console.log(await sessionHelper.getSession())
