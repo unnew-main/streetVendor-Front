@@ -5,7 +5,8 @@ import {
   GoogleSigninButton,
 } from '@react-native-community/google-signin'
 import { NavigationContext } from '@react-navigation/native'
-import { tokenHelper } from '@/util/tokenHelper'
+import { authApi } from '@/apis'
+import { sessionHelper } from '@/util/sessionHelper'
 
 export const GoogleLoginbutton = () => {
   const navigator = React.useContext(NavigationContext)
@@ -15,9 +16,20 @@ export const GoogleLoginbutton = () => {
       await GoogleSignin.hasPlayServices()
       await GoogleSignin.signIn()
       const { accessToken } = await GoogleSignin.getTokens()
-      await tokenHelper.setIdToken(accessToken)
+
+      const {
+        data: { data },
+      } = await authApi.login(accessToken)
+      if (data.sessionId) {
+        await sessionHelper.setSession(data.sessionId)
+        navigator?.reset({ routes: [{ name: 'Home' }] })
+      } else {
+        navigator?.reset({
+          routes: [{ name: 'RegisterMember', params: { data, accessToken } }],
+        })
+      }
+
       console.log('Login...')
-      navigator?.reset({ routes: [{ name: 'Splash' }] })
     } catch (e) {
       console.log('LoginButton Error', e)
     }

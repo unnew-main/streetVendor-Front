@@ -2,7 +2,6 @@ import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
-import { tokenHelper } from '@/util/tokenHelper'
 import { sessionHelper } from '@/util/sessionHelper'
 import { memberApi } from '@/apis'
 
@@ -11,10 +10,7 @@ export const SignoutButton = () => {
 
   const handleSignout = async () => {
     try {
-      console.log('sessionlllll', await sessionHelper.getSession())
       await memberApi.signOut()
-
-      await tokenHelper.setIdToken(null)
       await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
       console.log('signOut...')

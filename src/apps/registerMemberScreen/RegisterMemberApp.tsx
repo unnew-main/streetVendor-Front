@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { RegisterMemberScreen } from '@/screens'
-import { memberApi } from '@/apis'
+import { authApi, memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
+import { sessionHelper } from '@/util/sessionHelper'
 
 type RegisterMemberProps = {
   route: {
     params: {
-      email: string
-      name: string
-      profileUrl: string
-      sessionId: string
-      type: string
+      data: {
+        email: string
+        name: string
+        nickName: string
+        profileUrl: string
+      }
+      accessToken: string
     }
   }
 }
@@ -22,20 +25,26 @@ export type UserSignUpDataProps = {
   profileUrl: string
 }
 
-export function RegisterMemberApp({ route: { params } }: RegisterMemberProps) {
+export function RegisterMemberApp({
+  route: {
+    params: { data, accessToken },
+  },
+}: RegisterMemberProps) {
   const navigator = React.useContext(NavigationContext)
-
   const [userName, setUserName] = useState<string>('')
+  const UserSignUpData: UserSignUpDataProps = {
+    email: data.email,
+    name: data.name,
+    nickName: userName,
+    profileUrl: data.profileUrl,
+  }
   const handleRegister = async () => {
     try {
-      const UserSignUpData: UserSignUpDataProps = {
-        email: params.email,
-        name: params.name,
-        nickName: userName,
-        profileUrl: params.profileUrl,
-      }
       await memberApi.signUp(UserSignUpData)
-      navigator?.reset({ routes: [{ name: 'Splash' }] })
+      const { data: session } = await authApi.login(accessToken)
+      await sessionHelper.setSession(session.data.sessionId)
+
+      navigator?.reset({ routes: [{ name: 'Home' }] })
     } catch (e) {
       console.log('RegisterError: ', e)
     }

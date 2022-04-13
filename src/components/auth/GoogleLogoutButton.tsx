@@ -2,7 +2,6 @@ import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
-import { tokenHelper } from '@/util/tokenHelper'
 import { sessionHelper } from '@/util/sessionHelper'
 import { authApi } from '@/apis'
 export const GoogleLogoutbutton = () => {
@@ -10,7 +9,6 @@ export const GoogleLogoutbutton = () => {
   const handleLogout = async () => {
     try {
       await authApi.logout()
-      await tokenHelper.setIdToken(null)
       await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
       console.log('Logout...')

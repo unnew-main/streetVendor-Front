@@ -8,4 +8,7 @@ export const memberApi = {
   signOut: async () => {
     return api.putAuth('/api/v1/sign-out', {})
   },
+  getInfo: async () => {
+    return api.getAuth('/api/v1/my-page', {})
+  },
 }
