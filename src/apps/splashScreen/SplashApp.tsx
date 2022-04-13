@@ -16,13 +16,16 @@ export function SplashApp({ navigation }: SplashAppType) {
       try {
         setNowState('세션 가져오는 중...')
 
-        // console.log('splash 세션 확인중... ', await sessionHelper.getSession())
         const session = await sessionHelper.getSession()
         if (session) {
           console.log('스토리지에 세션 정보확인완료')
+          setNowState('유저정보 가져오는 중...')
+          const {
+            data: { data: data },
+          } = await memberApi.getInfo()
 
-          const userInfo = await memberApi.getInfo()
-          if (userInfo) {
+          console.log(data)
+          if (data) {
             navigator?.reset({ routes: [{ name: 'Home' }] })
           } else {
             navigator?.reset({ routes: [{ name: 'Login' }] })
