@@ -1,4 +1,4 @@
-import { UserSignUpDataProps } from '@/apps/registerMemberScreen/RegisterMemberApp'
+import { UserSignUpDataProps } from '@/apps/RegisterMemberApp'
 import api from './common'
 
 export const memberApi = {
