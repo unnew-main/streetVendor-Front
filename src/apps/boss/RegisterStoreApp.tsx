@@ -5,6 +5,12 @@ import { RegisterStoreScreen } from '@/screens/boss'
 export const RegisterStoreApp = () => {
   return <RegisterStoreScreen />
 }
+// 판매 카테고리 지정
+// 가게이름, 가게설명작성
+// 장소 지정
+// 영업시간 및 날짜 지정
+// 메뉴 지정
+// 가게 사진을 등록(나중에 지정 가능?)
 
 // {
 //   "businessHours": [
