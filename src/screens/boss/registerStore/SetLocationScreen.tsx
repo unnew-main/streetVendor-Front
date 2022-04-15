@@ -2,7 +2,11 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 
-export const SetLocationScreen = ({ handleRouter }) => {
+type Props = {
+  handleRouter: () => void
+}
+
+export const SetLocationScreen = ({ handleRouter }: Props) => {
   return (
     <RegisterStoreLayout title="장소" handleRouter={handleRouter}>
       <View>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { SplashScreen } from '@/screens'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { StackParamList } from '@/App'
+import { StackAppList } from '@/App'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/util/sessionHelper'
 import { memberApi } from '@/apis'
 type SplashAppType = {
-  navigation: StackNavigationProp<StackParamList, 'Splash'>
+  navigation: StackNavigationProp<StackAppList, 'Splash'>
 }
 export function SplashApp({ navigation }: SplashAppType) {
   const navigator = React.useContext(NavigationContext)

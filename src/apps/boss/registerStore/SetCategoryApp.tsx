@@ -1,7 +1,13 @@
 import { SetCategoryScreen } from '@/screens/boss/registerStore'
+import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen'
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 
-export const SetCategoryApp = ({ navigation: { navigate } }) => {
+type Props = {
+  navigation: StackNavigationProp<StackRegisterStoreList, 'SetCategory'>
+}
+
+export const SetCategoryApp = ({ navigation: { navigate } }: Props) => {
   const handleRouter = () => {
     navigate('SetStoreName')
   }

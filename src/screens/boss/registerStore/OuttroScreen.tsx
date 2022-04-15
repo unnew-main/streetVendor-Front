@@ -4,7 +4,8 @@ import { Text, TouchableOpacity, View } from 'react-native'
 type Props = {
   handleRouter: () => void
 }
-export const IntroScreen = ({ handleRouter }: Props) => {
+
+export const OuttroScrreen = ({ handleRouter }: Props) => {
   return (
     <View
       style={{
@@ -14,9 +15,9 @@ export const IntroScreen = ({ handleRouter }: Props) => {
         height: '100%',
       }}
     >
-      <Text>Intro</Text>
+      <Text>Outtro</Text>
       <TouchableOpacity onPress={handleRouter}>
-        <Text>가게 생성 시작</Text>
+        <Text>운영하러 가기</Text>
       </TouchableOpacity>
     </View>
   )

@@ -2,7 +2,10 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 
-export const SetCategoryScreen = ({ handleRouter }) => {
+type Props = {
+  handleRouter: () => void
+}
+export const SetCategoryScreen = ({ handleRouter }: Props) => {
   return (
     <RegisterStoreLayout title="카테고리" handleRouter={handleRouter}>
       <View>

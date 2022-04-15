@@ -3,14 +3,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SplashApp, LoginApp, HomeApp, RegisterMemberApp } from './apps'
 
-export type StackParamList = {
+export type StackAppList = {
   Splash: undefined
   Login: undefined
   RegisterMember: undefined
   Home: undefined
 }
 
-const Stack = createStackNavigator<StackParamList>()
+const Stack = createStackNavigator<StackAppList>()
 const App = () => {
   return (
     <NavigationContainer>

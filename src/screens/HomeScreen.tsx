@@ -9,7 +9,7 @@ import {
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
-export type StackParamList = {
+export type StackHomeList = {
   SelectJob: undefined
   UserMain: undefined
   BossSplash: undefined
@@ -17,7 +17,7 @@ export type StackParamList = {
   BossMain: undefined
 }
 
-const Stack = createStackNavigator<StackParamList>()
+const Stack = createStackNavigator<StackHomeList>()
 
 export function HomeScreen() {
   return (

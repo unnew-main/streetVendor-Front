@@ -1,5 +1,6 @@
 import {
   IntroApp,
+  OuttroApp,
   SetCategoryApp,
   SetLocationApp,
   SetMenuApp,
@@ -10,7 +11,7 @@ import {
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
-export type StackParamList = {
+export type StackRegisterStoreList = {
   Intro: undefined
   SetCategory: undefined
   SetStoreName: undefined
@@ -18,9 +19,10 @@ export type StackParamList = {
   SetOpenTime: undefined
   SetMenu: undefined
   SetPicture: undefined
+  Outtro: undefined
 }
 
-const Stack = createStackNavigator<StackParamList>()
+const Stack = createStackNavigator<StackRegisterStoreList>()
 
 export const RegisterStoreScreen = () => {
   return (
@@ -58,6 +60,11 @@ export const RegisterStoreScreen = () => {
       <Stack.Screen
         name="SetPicture"
         component={SetPictureApp}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Outtro"
+        component={OuttroApp}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

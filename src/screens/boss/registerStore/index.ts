@@ -1,3 +1,5 @@
+export { OuttroScrreen } from './OuttroScreen'
+
 export { IntroScreen } from './IntroScreen'
 
 export { SetCategoryScreen } from './SetCategoryScreen'

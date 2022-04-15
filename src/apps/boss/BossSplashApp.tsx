@@ -13,15 +13,17 @@ export const BossSplashApp = () => {
       const {
         data: { data },
       } = await storeApi.getStore()
-
       console.log('storedata', data, data.length)
 
       if (!data.length) {
         console.log('가게가 없습니다.')
+        setNowState('가게 생성 준비중')
 
         navigator?.reset({ routes: [{ name: 'RegisterStore' }] })
       } else {
         console.log('가게가 있습니다.')
+        setNowState('가게 영업 준비중')
+
         navigator?.reset({ routes: [{ name: 'BossMain' }] })
       }
     })()
