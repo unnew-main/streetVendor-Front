@@ -34,21 +34,25 @@ export const RegisterStoreApp = () => {
   const [pictureUrl, setPictureUrl] = useState<string>('')
 
   const storeProps = {
-    category: category,
-    handleSetCategory: (data: string) => setCategory(data),
-    name: name,
-    handleSetName: (data: string) => setName(data),
-    desc: desc,
-    handleSetDesc: (data: string) => setDesc(data),
-    loaction: loaction,
-    handleSetLocation: (data: string) => setLocation(data),
-    businessHours: businessHours,
-    handleSetBusinessHours: (data: BusinessHoursType[]) =>
-      setBusinessHours(data),
-    menu: menu,
-    handleSetMenu: (data: MenuType[]) => setMenu(data),
-    pictureUrl: pictureUrl,
-    handleSetPictureUrl: (data: string) => setPictureUrl(data),
+    data: {
+      name: name,
+      desc: desc,
+      category: category,
+      loaction: loaction,
+      businessHours: businessHours,
+      menu: menu,
+      pictureUrl: pictureUrl,
+    },
+    handle: {
+      handleCategory: (data: string) => setCategory(data),
+      handleName: (data: string) => setName(data),
+      handleDesc: (data: string) => setDesc(data),
+      handleLocation: (data: string) => setLocation(data),
+      handleBusinessHours: (data: BusinessHoursType) =>
+        setBusinessHours(businessHours.concat(data)),
+      handleMenu: (data: MenuType) => setMenu(menu.concat(data)),
+      handlePictureUrl: (data: string) => setPictureUrl(data),
+    },
   }
 
   return <RegisterStoreScreen storeProps={storeProps} />

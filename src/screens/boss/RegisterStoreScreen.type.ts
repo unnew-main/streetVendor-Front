@@ -5,26 +5,31 @@ export type StackRegisterStoreList = {
   SetCND: undefined
   SetStoreName: undefined
   SetLocation: undefined
-  SetOpenTime: undefined
+  SetBusinessHours: undefined
   SetMenu: undefined
   SetPicture: undefined
   Outtro: undefined
 }
+export type RegisterStorePropsType = {
+  category: string
+  name: string
+  desc: string
+  loaction: string
+  businessHours: BusinessHoursType[]
+  menu: MenuType[]
+  pictureUrl: string
+}
 export type RegisterStoreScreenProps = {
   storeProps: {
-    category: string
-    handleSetCategory: (data: string) => void
-    name: string
-    handleSetName: (data: string) => void
-    desc: string
-    handleSetDesc: (data: string) => void
-    loaction: string
-    handleSetLocation: (data: string) => void
-    businessHours: BusinessHoursType[]
-    handleSetBusinessHours: (data: BusinessHoursType[]) => void
-    menu: MenuType[]
-    handleSetMenu: (data: MenuType[]) => void
-    pictureUrl: string
-    handleSetPictureUrl: (data: string) => void
+    data: RegisterStorePropsType
+    handle: {
+      handleCategory: (data: string) => void
+      handleName: (data: string) => void
+      handleDesc: (data: string) => void
+      handleLocation: (data: string) => void
+      handleBusinessHours: (data: BusinessHoursType) => void
+      handleMenu: (data: MenuType) => void
+      handlePictureUrl: (data: string) => void
+    }
   }
 }

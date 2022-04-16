@@ -5,6 +5,8 @@ import React from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetPicture'>
+  pictureUrl: string
+  handlePictureUrl: (data: string) => void
 }
 
 export const SetPictureApp = ({ navigation: { navigate } }: Props) => {

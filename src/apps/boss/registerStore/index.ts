@@ -1,7 +1,7 @@
 export { SetCNDApp } from './SetCNDApp'
 export { SetLocationApp } from './SetLocationApp'
 export { SetMenuApp } from './SetMenuApp'
-export { SetOpenTimeApp } from './SetOpenTimeApp'
+export { SetBusinessHoursApp } from './SetBusinessHoursApp'
 export { SetPictureApp } from './SetPictureApp'
 export { IntroApp } from './IntroApp'
 export { OuttroApp } from './OuttroApp'

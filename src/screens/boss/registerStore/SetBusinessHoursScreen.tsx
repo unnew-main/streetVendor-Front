@@ -6,11 +6,11 @@ type Props = {
   handleNextRouter: () => void
 }
 
-export const SetOpenTimeScreen = ({ handleNextRouter }: Props) => {
+export const SetBusinessHoursScreen = ({ handleNextRouter }: Props) => {
   return (
     <RegisterStoreLayout title="오픈일" handleNextRouter={handleNextRouter}>
       <View>
-        <Text>SetOpenTimeScreen</Text>
+        <Text>SetBusinessHoursScreen</Text>
       </View>
     </RegisterStoreLayout>
   )

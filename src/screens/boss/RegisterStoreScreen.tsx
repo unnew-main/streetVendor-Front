@@ -4,7 +4,7 @@ import {
   SetCNDApp,
   SetLocationApp,
   SetMenuApp,
-  SetOpenTimeApp,
+  SetBusinessHoursApp,
   SetPictureApp,
 } from '@/apps/boss/registerStore'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -19,7 +19,7 @@ const Stack = createStackNavigator<StackRegisterStoreList>()
 export const RegisterStoreScreen = ({
   storeProps,
 }: RegisterStoreScreenProps) => {
-  console.log(storeProps)
+  console.log('RegisterStoreScreen: ', storeProps.data)
   return (
     <Stack.Navigator initialRouteName="Intro">
       <Stack.Screen
@@ -27,37 +27,67 @@ export const RegisterStoreScreen = ({
         component={IntroApp}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="SetCND"
-        component={SetCNDApp}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="SetCND" options={{ headerShown: false }}>
+        {props => (
+          <SetCNDApp
+            data={{
+              name: storeProps.data.name,
+              category: storeProps.data.category,
+              desc: storeProps.data.desc,
+            }}
+            handle={{
+              handleCategory: storeProps.handle.handleCategory,
+              handleDesc: storeProps.handle.handleDesc,
+              handleName: storeProps.handle.handleName,
+            }}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
 
-      <Stack.Screen
-        name="SetLocation"
-        component={SetLocationApp}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SetOpenTime"
-        component={SetOpenTimeApp}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SetMenu"
-        component={SetMenuApp}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SetPicture"
-        component={SetPictureApp}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Outtro"
-        component={OuttroApp}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="SetLocation" options={{ headerShown: false }}>
+        {props => (
+          <SetLocationApp
+            location={storeProps.data.loaction}
+            handleLocation={storeProps.handle.handleLocation}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
+
+      <Stack.Screen name="SetBusinessHours" options={{ headerShown: false }}>
+        {props => (
+          <SetBusinessHoursApp
+            businessHours={storeProps.data.businessHours}
+            handleBusinessHours={storeProps.handle.handleBusinessHours}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
+
+      <Stack.Screen name="SetMenu" options={{ headerShown: false }}>
+        {props => (
+          <SetMenuApp
+            menu={storeProps.data.menu}
+            handleMenu={storeProps.handle.handleMenu}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
+
+      <Stack.Screen name="SetPicture" options={{ headerShown: false }}>
+        {props => (
+          <SetPictureApp
+            pictureUrl={storeProps.data.pictureUrl}
+            handlePictureUrl={storeProps.handle.handlePictureUrl}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
+
+      <Stack.Screen name="Outtro" options={{ headerShown: false }}>
+        {props => <OuttroApp data={storeProps.data} {...props} />}
+      </Stack.Screen>
     </Stack.Navigator>
   )
 }
@@ -86,7 +116,7 @@ export const RegisterStoreScreen = ({
 //       }
 //     }
 //   ],
-//   "CND": "BUNG_EO_PPANG",
+//   "category": "BUNG_EO_PPANG",
 //   "description": "string",
 //   "location": "string",
 //   "menus": [

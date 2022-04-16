@@ -5,11 +5,13 @@ import React from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
+  location: string
+  handleLocation: (data: string) => void
 }
 
 export const SetLocationApp = ({ navigation: { navigate } }: Props) => {
   const handleNextRouter = () => {
-    navigate('SetOpenTime')
+    navigate('SetBusinessHours')
   }
 
   return <SetLocationScreen handleNextRouter={handleNextRouter} />
