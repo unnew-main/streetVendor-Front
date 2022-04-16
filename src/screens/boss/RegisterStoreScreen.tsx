@@ -9,21 +9,17 @@ import {
 } from '@/apps/boss/registerStore'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-
-export type StackRegisterStoreList = {
-  Intro: undefined
-  SetCND: undefined
-  SetStoreName: undefined
-  SetLocation: undefined
-  SetOpenTime: undefined
-  SetMenu: undefined
-  SetPicture: undefined
-  Outtro: undefined
-}
+import {
+  RegisterStoreScreenProps,
+  StackRegisterStoreList,
+} from './RegisterStoreScreen.type'
 
 const Stack = createStackNavigator<StackRegisterStoreList>()
 
-export const RegisterStoreScreen = () => {
+export const RegisterStoreScreen = ({
+  storeProps,
+}: RegisterStoreScreenProps) => {
+  console.log(storeProps)
   return (
     <Stack.Navigator initialRouteName="Intro">
       <Stack.Screen

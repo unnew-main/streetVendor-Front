@@ -1,5 +1,5 @@
 import { SetLocationScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen'
+import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 
