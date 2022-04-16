@@ -8,8 +8,9 @@ type Props = {
 }
 
 export const SetPictureApp = ({ navigation: { navigate } }: Props) => {
-  const handleRouter = () => {
+  const handleNextRouter = () => {
     navigate('Outtro')
   }
-  return <SetPictureScreen handleRouter={handleRouter} />
+
+  return <SetPictureScreen handleNextRouter={handleNextRouter} />
 }

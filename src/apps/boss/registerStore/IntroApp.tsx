@@ -1,15 +1,21 @@
 import { IntroScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
 
-type Props = {
-  navigation: StackNavigationProp<StackRegisterStoreList, 'Intro'>
-}
+export const IntroApp = () => {
+  const navigator = React.useContext(NavigationContext)
 
-export const IntroApp = ({ navigation: { navigate } }: Props) => {
-  const handleRouter = () => {
-    navigate('SetStoreName')
+  const handleNextRouter = () => {
+    navigator?.navigate('SetCND')
   }
-  return <IntroScreen handleRouter={handleRouter} />
+
+  const handlePrevRouter = () => {
+    navigator?.reset({ routes: [{ name: 'Home' }] })
+  }
+  return (
+    <IntroScreen
+      handleNextRouter={handleNextRouter}
+      handlePrevRouter={handlePrevRouter}
+    />
+  )
 }

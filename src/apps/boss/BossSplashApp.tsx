@@ -10,21 +10,26 @@ export const BossSplashApp = () => {
 
   useEffect(() => {
     ;(async () => {
-      const {
-        data: { data },
-      } = await storeApi.getStore()
-      console.log('storedata', data, data.length)
+      try {
+        const {
+          data: { data },
+        } = await storeApi.getStore()
+        console.log('storedata', data, data.length)
 
-      if (!data.length) {
-        console.log('가게가 없습니다.')
-        setNowState('가게 생성 준비중')
+        if (!data.length) {
+          console.log('가게가 없습니다.')
+          setNowState('가게 생성 준비중')
 
-        navigator?.reset({ routes: [{ name: 'RegisterStore' }] })
-      } else {
-        console.log('가게가 있습니다.')
-        setNowState('가게 영업 준비중')
+          navigator?.reset({ routes: [{ name: 'RegisterStore' }] })
+        } else {
+          console.log('가게가 있습니다.')
+          setNowState('가게 영업 준비중')
 
-        navigator?.reset({ routes: [{ name: 'BossMain' }] })
+          navigator?.reset({ routes: [{ name: 'BossMain' }] })
+        }
+      } catch (e) {
+        console.log(e)
+        setNowState('에러가 발생했습니다.')
       }
     })()
   }, [navigator])

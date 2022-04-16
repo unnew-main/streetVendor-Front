@@ -3,12 +3,12 @@ import { Text, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 
 type Props = {
-  handleRouter: () => void
+  handleNextRouter: () => void
 }
 
-export const SetOpenTimeScreen = ({ handleRouter }: Props) => {
+export const SetOpenTimeScreen = ({ handleNextRouter }: Props) => {
   return (
-    <RegisterStoreLayout title="오픈일" handleRouter={handleRouter}>
+    <RegisterStoreLayout title="오픈일" handleNextRouter={handleNextRouter}>
       <View>
         <Text>SetOpenTimeScreen</Text>
       </View>

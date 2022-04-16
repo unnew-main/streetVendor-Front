@@ -8,8 +8,9 @@ type Props = {
 }
 
 export const SetOpenTimeApp = ({ navigation: { navigate } }: Props) => {
-  const handleRouter = () => {
+  const handleNextRouter = () => {
     navigate('SetMenu')
   }
-  return <SetOpenTimeScreen handleRouter={handleRouter} />
+
+  return <SetOpenTimeScreen handleNextRouter={handleNextRouter} />
 }

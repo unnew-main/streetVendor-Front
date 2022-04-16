@@ -1,4 +1,4 @@
-import { SetLocationScreen } from '@/screens/boss/registerStore'
+import { SetCNDScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
@@ -7,10 +7,10 @@ type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
 }
 
-export const SetLocationApp = ({ navigation: { navigate } }: Props) => {
+export const SetCNDApp = ({ navigation: { navigate } }: Props) => {
   const handleNextRouter = () => {
-    navigate('SetOpenTime')
+    navigate('SetLocation')
   }
 
-  return <SetLocationScreen handleNextRouter={handleNextRouter} />
+  return <SetCNDScreen handleNextRouter={handleNextRouter} />
 }

@@ -1,19 +1,18 @@
 import {
   IntroApp,
   OuttroApp,
-  SetCategoryApp,
+  SetCNDApp,
   SetLocationApp,
   SetMenuApp,
   SetOpenTimeApp,
   SetPictureApp,
-  SetStoreNameApp,
 } from '@/apps/boss/registerStore'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 
 export type StackRegisterStoreList = {
   Intro: undefined
-  SetCategory: undefined
+  SetCND: undefined
   SetStoreName: undefined
   SetLocation: undefined
   SetOpenTime: undefined
@@ -33,15 +32,11 @@ export const RegisterStoreScreen = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SetCategory"
-        component={SetCategoryApp}
+        name="SetCND"
+        component={SetCNDApp}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="SetStoreName"
-        component={SetStoreNameApp}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="SetLocation"
         component={SetLocationApp}
@@ -95,7 +90,7 @@ export const RegisterStoreScreen = () => {
 //       }
 //     }
 //   ],
-//   "category": "BUNG_EO_PPANG",
+//   "CND": "BUNG_EO_PPANG",
 //   "description": "string",
 //   "location": "string",
 //   "menus": [

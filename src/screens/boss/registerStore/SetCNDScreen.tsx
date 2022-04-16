@@ -3,13 +3,13 @@ import { Text, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 
 type Props = {
-  handleRouter: () => void
+  handleNextRouter: () => void
 }
-export const SetCategoryScreen = ({ handleRouter }: Props) => {
+export const SetCNDScreen = ({ handleNextRouter }: Props) => {
   return (
-    <RegisterStoreLayout title="카테고리" handleRouter={handleRouter}>
+    <RegisterStoreLayout title="카테고리" handleNextRouter={handleNextRouter}>
       <View>
-        <Text>SetCategoryScreen</Text>
+        <Text>SetCNDScreen</Text>
       </View>
     </RegisterStoreLayout>
   )

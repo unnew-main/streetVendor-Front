@@ -5,8 +5,16 @@ import React from 'react'
 export const OuttroApp = () => {
   const navigator = React.useContext(NavigationContext)
 
-  const handleRouter = () => {
+  const handleNextRouter = () => {
     navigator?.reset({ routes: [{ name: 'BossSplash' }] })
   }
-  return <OuttroScrreen handleRouter={handleRouter} />
+  const handlePrevRouter = () => {
+    navigator?.goBack()
+  }
+  return (
+    <OuttroScrreen
+      handleNextRouter={handleNextRouter}
+      handlePrevRouter={handlePrevRouter}
+    />
+  )
 }

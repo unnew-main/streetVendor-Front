@@ -3,12 +3,12 @@ import { Text, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 
 type Props = {
-  handleRouter: () => void
+  handleNextRouter: () => void
 }
 
-export const SetPictureScreen = ({ handleRouter }: Props) => {
+export const SetPictureScreen = ({ handleNextRouter }: Props) => {
   return (
-    <RegisterStoreLayout title="가게사진" handleRouter={handleRouter}>
+    <RegisterStoreLayout title="가게사진" handleNextRouter={handleNextRouter}>
       <View>
         <Text>SetPictureScreen</Text>
       </View>
