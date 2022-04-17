@@ -16,6 +16,7 @@ export type RegisterStorePropsType = {
   businessHours: BusinessHoursType[]
   menu: MenuType[]
   pictureUrl: string
+  paymentMethods: string[]
 }
 export type BusinessHoursType = {
   day: string
@@ -85,6 +86,7 @@ export type RegisterStoreScreenProps = {
       handleBusinessHours: (data: BusinessHoursType) => void
       handleMenu: (data: MenuType) => void
       handlePictureUrl: (data: string) => void
+      handlePaymentMethods: (data: string[]) => void
     }
   }
 }

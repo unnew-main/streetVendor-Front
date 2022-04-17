@@ -14,7 +14,7 @@ export const RegisterStoreApp = () => {
   const [businessHours, setBusinessHours] = useState<BusinessHoursType[]>([])
   const [menu, setMenu] = useState<MenuType[]>([])
   const [pictureUrl, setPictureUrl] = useState<string>('')
-
+  const [paymentMethods, setPaymentMethods] = useState<string[]>([])
   const storeProps = {
     data: {
       name: name,
@@ -24,6 +24,7 @@ export const RegisterStoreApp = () => {
       businessHours: businessHours,
       menu: menu,
       pictureUrl: pictureUrl,
+      paymentMethods: paymentMethods,
     },
     handle: {
       handleCategory: (data: string) => setCategory(data),
@@ -34,6 +35,7 @@ export const RegisterStoreApp = () => {
         setBusinessHours(businessHours.concat(data)),
       handleMenu: (data: MenuType) => setMenu(menu.concat(data)),
       handlePictureUrl: (data: string) => setPictureUrl(data),
+      handlePaymentMethods: (data: string[]) => setPaymentMethods(data),
     },
   }
 
