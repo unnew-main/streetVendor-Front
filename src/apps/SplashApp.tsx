@@ -24,7 +24,7 @@ export function SplashApp({ navigation }: SplashAppType) {
             data: { data: data },
           } = await memberApi.getInfo()
 
-          console.log(data)
+          console.log('memberApi', data)
           if (data) {
             navigator?.reset({ routes: [{ name: 'Home' }] })
           } else {

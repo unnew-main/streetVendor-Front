@@ -1,34 +1,16 @@
 import React, { useState } from 'react'
 
 import { RegisterStoreScreen } from '@/screens/boss'
+import {
+  BusinessHoursType,
+  MenuType,
+} from '@/screens/boss/RegisterStoreScreen.type'
 
-export type BusinessHoursType = {
-  day: string
-  endTime: {
-    hour: string
-    minute: string
-    nano: number
-    second: string
-  }
-  startTime: {
-    hour: string
-    minute: string
-    nano: number
-    second: string
-  }
-}
-
-export type MenuType = {
-  amount: number
-  name: string
-  pictureUrl: string
-  price: number
-}
 export const RegisterStoreApp = () => {
   const [category, setCategory] = useState<string>('')
   const [name, setName] = useState<string>('')
-  const [desc, setDesc] = useState<string>('')
-  const [loaction, setLocation] = useState<string>('')
+  const [description, setdescription] = useState<string>('')
+  const [location, setLocation] = useState<string>('')
   const [businessHours, setBusinessHours] = useState<BusinessHoursType[]>([])
   const [menu, setMenu] = useState<MenuType[]>([])
   const [pictureUrl, setPictureUrl] = useState<string>('')
@@ -36,9 +18,9 @@ export const RegisterStoreApp = () => {
   const storeProps = {
     data: {
       name: name,
-      desc: desc,
+      description: description,
       category: category,
-      loaction: loaction,
+      location: location,
       businessHours: businessHours,
       menu: menu,
       pictureUrl: pictureUrl,
@@ -46,7 +28,7 @@ export const RegisterStoreApp = () => {
     handle: {
       handleCategory: (data: string) => setCategory(data),
       handleName: (data: string) => setName(data),
-      handleDesc: (data: string) => setDesc(data),
+      handleDescription: (data: string) => setdescription(data),
       handleLocation: (data: string) => setLocation(data),
       handleBusinessHours: (data: BusinessHoursType) =>
         setBusinessHours(businessHours.concat(data)),

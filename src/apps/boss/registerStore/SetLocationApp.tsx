@@ -9,10 +9,20 @@ type Props = {
   handleLocation: (data: string) => void
 }
 
-export const SetLocationApp = ({ navigation: { navigate } }: Props) => {
+export const SetLocationApp = ({
+  navigation: { navigate },
+  location,
+  handleLocation,
+}: Props) => {
   const handleNextRouter = () => {
     navigate('SetBusinessHours')
   }
 
-  return <SetLocationScreen handleNextRouter={handleNextRouter} />
+  return (
+    <SetLocationScreen
+      handleNextRouter={handleNextRouter}
+      location={location}
+      handleLocation={handleLocation}
+    />
+  )
 }

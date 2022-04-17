@@ -9,10 +9,20 @@ type Props = {
   handlePictureUrl: (data: string) => void
 }
 
-export const SetPictureApp = ({ navigation: { navigate } }: Props) => {
+export const SetPictureApp = ({
+  navigation: { navigate },
+  pictureUrl,
+  handlePictureUrl,
+}: Props) => {
   const handleNextRouter = () => {
     navigate('Outtro')
   }
 
-  return <SetPictureScreen handleNextRouter={handleNextRouter} />
+  return (
+    <SetPictureScreen
+      handleNextRouter={handleNextRouter}
+      pictureUrl={pictureUrl}
+      handlePictureUrl={handlePictureUrl}
+    />
+  )
 }

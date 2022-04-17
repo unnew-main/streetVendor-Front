@@ -4,6 +4,8 @@ import { RegisterStoreLayout } from './RegisterStoreLayout'
 
 type Props = {
   handleNextRouter: () => void
+  pictureUrl: string
+  handlePictureUrl: (data: string) => void
 }
 
 export const SetPictureScreen = ({ handleNextRouter }: Props) => {

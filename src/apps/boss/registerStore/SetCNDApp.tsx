@@ -5,11 +5,11 @@ import React from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
-  data: { category: string; name: string; desc: string }
+  data: { category: string; name: string; description: string }
   handle: {
     handleCategory: (data: string) => void
     handleName: (data: string) => void
-    handleDesc: (data: string) => void
+    handleDescription: (data: string) => void
   }
 }
 
@@ -23,5 +23,11 @@ export const SetCNDApp = ({
     navigate('SetLocation')
   }
 
-  return <SetCNDScreen handleNextRouter={handleNextRouter} />
+  return (
+    <SetCNDScreen
+      handleNextRouter={handleNextRouter}
+      data={data}
+      handle={handle}
+    />
+  )
 }

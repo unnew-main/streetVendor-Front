@@ -33,11 +33,11 @@ export const RegisterStoreScreen = ({
             data={{
               name: storeProps.data.name,
               category: storeProps.data.category,
-              desc: storeProps.data.desc,
+              description: storeProps.data.description,
             }}
             handle={{
               handleCategory: storeProps.handle.handleCategory,
-              handleDesc: storeProps.handle.handleDesc,
+              handleDescription: storeProps.handle.handleDescription,
               handleName: storeProps.handle.handleName,
             }}
             {...props}
@@ -48,7 +48,7 @@ export const RegisterStoreScreen = ({
       <Stack.Screen name="SetLocation" options={{ headerShown: false }}>
         {props => (
           <SetLocationApp
-            location={storeProps.data.loaction}
+            location={storeProps.data.location}
             handleLocation={storeProps.handle.handleLocation}
             {...props}
           />

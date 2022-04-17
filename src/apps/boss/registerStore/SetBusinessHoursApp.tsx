@@ -1,8 +1,10 @@
 import { SetBusinessHoursScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
+import {
+  BusinessHoursType,
+  StackRegisterStoreList,
+} from '@/screens/boss/RegisterStoreScreen.type'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from 'react'
-import { BusinessHoursType } from '../RegisterStoreApp'
+import React, { useState } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetBusinessHours'>
@@ -10,10 +12,24 @@ type Props = {
   handleBusinessHours: (data: BusinessHoursType) => void
 }
 
-export const SetBusinessHoursApp = ({ navigation: { navigate } }: Props) => {
+export const SetBusinessHoursApp = ({
+  navigation: { navigate },
+  businessHours,
+  handleBusinessHours,
+}: Props) => {
+  const [day, setDay] = useState()
+  const [endTime, setEndTime] = useState()
+  const [startTime, setStartTime] = useState()
+
   const handleNextRouter = () => {
     navigate('SetMenu')
   }
 
-  return <SetBusinessHoursScreen handleNextRouter={handleNextRouter} />
+  return (
+    <SetBusinessHoursScreen
+      handleNextRouter={handleNextRouter}
+      businessHours={businessHours}
+      handleBusinessHours={handleBusinessHours}
+    />
+  )
 }
