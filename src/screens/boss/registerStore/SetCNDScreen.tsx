@@ -71,7 +71,7 @@ export const SetCNDScreen = ({
           value={isCheck.isCheckCASH}
           onValueChange={newValue => isCheckHandle.handleCheckCASH(newValue)}
         />
-        <Text>카드결제</Text>
+        <Text>계좌이체</Text>
 
         <CheckBox
           disabled={false}

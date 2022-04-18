@@ -8,11 +8,7 @@ type Props = {
   handleLocation: (data: string) => void
 }
 
-export const SetLocationScreen = ({
-  handleNextRouter,
-  location,
-  handleLocation,
-}: Props) => {
+export const SetLocationScreen = ({ handleNextRouter }: Props) => {
   return (
     <RegisterStoreLayout title="장소" handleNextRouter={handleNextRouter}>
       <View>

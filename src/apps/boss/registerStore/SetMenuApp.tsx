@@ -9,7 +9,7 @@ import React from 'react'
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetMenu'>
   menu: MenuType[]
-  handleMenu: (data: MenuType) => void
+  handleMenu: (data: MenuType[]) => void
 }
 
 export const SetMenuApp = ({ navigation: { navigate } }: Props) => {

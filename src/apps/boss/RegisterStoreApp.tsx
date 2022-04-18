@@ -31,9 +31,9 @@ export const RegisterStoreApp = () => {
       handleName: (data: string) => setName(data),
       handleDescription: (data: string) => setdescription(data),
       handleLocation: (data: string) => setLocation(data),
-      handleBusinessHours: (data: BusinessHoursType) =>
-        setBusinessHours(businessHours.concat(data)),
-      handleMenu: (data: MenuType) => setMenu(menu.concat(data)),
+      handleBusinessHours: (data: BusinessHoursType[]) =>
+        setBusinessHours(data),
+      handleMenu: (data: MenuType[]) => setMenu(data),
       handlePictureUrl: (data: string) => setPictureUrl(data),
       handlePaymentMethods: (data: string[]) => setPaymentMethods(data),
     },

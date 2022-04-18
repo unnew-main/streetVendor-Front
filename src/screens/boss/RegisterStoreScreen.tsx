@@ -60,7 +60,6 @@ export const RegisterStoreScreen = ({
       <Stack.Screen name="SetBusinessHours" options={{ headerShown: false }}>
         {props => (
           <SetBusinessHoursApp
-            businessHours={storeProps.data.businessHours}
             handleBusinessHours={storeProps.handle.handleBusinessHours}
             {...props}
           />

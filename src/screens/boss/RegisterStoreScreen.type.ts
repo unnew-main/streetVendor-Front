@@ -83,8 +83,8 @@ export type RegisterStoreScreenProps = {
       handleName: (data: string) => void
       handleDescription: (data: string) => void
       handleLocation: (data: string) => void
-      handleBusinessHours: (data: BusinessHoursType) => void
-      handleMenu: (data: MenuType) => void
+      handleBusinessHours: (data: BusinessHoursType[]) => void
+      handleMenu: (data: MenuType[]) => void
       handlePictureUrl: (data: string) => void
       handlePaymentMethods: (data: string[]) => void
     }
