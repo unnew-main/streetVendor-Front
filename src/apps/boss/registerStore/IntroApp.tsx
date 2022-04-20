@@ -4,7 +4,6 @@ import React, { useCallback } from 'react'
 
 export const IntroApp = () => {
   const navigator = React.useContext(NavigationContext)
-
   const handleNextRouter = useCallback(() => {
     navigator?.navigate('SetCND')
   }, [navigator])
