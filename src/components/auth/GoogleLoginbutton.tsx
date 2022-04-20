@@ -19,7 +19,6 @@ export const GoogleLoginbutton = () => {
       await GoogleSignin.hasPlayServices()
       await GoogleSignin.signIn()
       const { accessToken } = await GoogleSignin.getTokens()
-      // !! 로딩기능 추가
 
       const {
         data: { data },
@@ -37,10 +36,9 @@ export const GoogleLoginbutton = () => {
     } catch (e) {
       console.log('LoginButton Error', e)
     }
-  }, [navigator])
+  }, [navigator, offLoading, onLoading])
 
   useEffect(() => {
-    // !! clientId 숨겨야함!!!
     GoogleSignin.configure({
       webClientId:
         '233714446693-f5d3j4ndbtrfggv8hc9coq3nf0phk0f8.apps.googleusercontent.com',

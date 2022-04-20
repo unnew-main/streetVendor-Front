@@ -10,11 +10,10 @@ type LoadingContextProps = React.PropsWithChildren<{}>
 
 export const LoadingContext = ({ children }: LoadingContextProps) => {
   const [isLoading, setIsLoading] = useState(false)
-  console.log(isLoading)
+
   const onLoading = useCallback(() => {
     console.log('loading strat')
     setIsLoading(true)
-    // setTimeout(() => setIsLoading(false), 3000)
   }, [])
 
   const offLoading = useCallback(() => {

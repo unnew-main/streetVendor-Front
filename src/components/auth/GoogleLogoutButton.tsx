@@ -4,19 +4,24 @@ import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
 import { sessionHelper } from '@/util/sessionHelper'
 import { authApi } from '@/apis'
+import { useLoading } from '@/hooks/useLoading.hook'
 export const GoogleLogoutbutton = () => {
   const navigator = React.useContext(NavigationContext)
+  const { onLoading, offLoading } = useLoading()
+
   const handleLogout = useCallback(async () => {
     try {
+      onLoading()
       await authApi.logout()
       await sessionHelper.setSession(null)
       await GoogleSignin.signOut()
 
       navigator?.reset({ routes: [{ name: 'Splash' }] })
+      offLoading()
     } catch (e) {
       console.log('LogoutError', e)
     }
-  }, [navigator])
+  }, [navigator, offLoading, onLoading])
   return (
     <TouchableOpacity
       onPress={handleLogout}
