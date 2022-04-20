@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { RegisterMemberScreen } from '@/screens'
 import { authApi, memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
@@ -33,15 +33,15 @@ export function RegisterMemberApp({
   const navigator = React.useContext(NavigationContext)
 
   const [userName, setUserName] = useState<string>('')
-  const userSignUpData: UserSignUpDataProps = {
-    email: data.email,
-    name: data.name,
-    nickName: userName,
-    profileUrl: data.profileUrl,
-  }
 
-  const handleRegister = async () => {
+  const handleRegister = useCallback(async () => {
     try {
+      const userSignUpData: UserSignUpDataProps = {
+        email: data.email,
+        name: data.name,
+        nickName: userName,
+        profileUrl: data.profileUrl,
+      }
       await memberApi.signUp(userSignUpData)
       const { data: session } = await authApi.login(accessToken)
       await sessionHelper.setSession(session.data.sessionId)
@@ -50,7 +50,7 @@ export function RegisterMemberApp({
     } catch (e) {
       console.log('RegisterError: ', e)
     }
-  }
+  }, [accessToken, data.email, data.name, data.profileUrl, navigator, userName])
 
   return (
     <RegisterMemberScreen

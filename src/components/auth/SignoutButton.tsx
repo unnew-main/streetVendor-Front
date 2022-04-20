@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
@@ -8,7 +8,7 @@ import { memberApi } from '@/apis'
 export const SignoutButton = () => {
   const navigator = React.useContext(NavigationContext)
 
-  const handleSignout = async () => {
+  const handleSignout = useCallback(async () => {
     try {
       await memberApi.signOut()
       await sessionHelper.setSession(null)
@@ -18,7 +18,7 @@ export const SignoutButton = () => {
     } catch (e) {
       console.log('signOutError', e)
     }
-  }
+  }, [navigator])
   return (
     <TouchableOpacity
       onPress={handleSignout}

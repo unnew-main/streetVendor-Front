@@ -1,9 +1,5 @@
 import { Alert } from 'react-native'
 
-type goAlertProps = {
-  title: string
-  subTitle?: string
-}
 export const goAlert = (title: string, subTitle?: string) =>
   Alert.alert(
     // 말그대로 Alert를 띄운다

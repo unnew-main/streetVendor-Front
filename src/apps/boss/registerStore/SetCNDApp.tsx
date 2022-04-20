@@ -2,7 +2,7 @@ import { SetCNDScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
 import { goAlert } from '@/util/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -31,11 +31,16 @@ export const SetCNDApp = ({
     setIsCheckACCOUNT_TRANSFER,
   ] = useState<boolean>(false)
 
-  const handleCheckCASH = (props: boolean) => setIsCheckCASH(props)
-  const handleCheckACCOUNT_TRANSFER = (props: boolean) =>
-    setIsCheckACCOUNT_TRANSFER(props)
+  const handleCheckCASH = useCallback(
+    (props: boolean) => setIsCheckCASH(props),
+    [],
+  )
+  const handleCheckACCOUNT_TRANSFER = useCallback(
+    (props: boolean) => setIsCheckACCOUNT_TRANSFER(props),
+    [],
+  )
 
-  const handleNextRouter = () => {
+  const handleNextRouter = useCallback(() => {
     if (isCheckCASH && isCheckACCOUNT_TRANSFER) {
       handle.handlePaymentMethods(['CASH', 'ACCOUNT_TRANSFER'])
     } else if (isCheckCASH || isCheckACCOUNT_TRANSFER) {
@@ -54,7 +59,15 @@ export const SetCNDApp = ({
     } else {
       navigate('SetLocation')
     }
-  }
+  }, [
+    data.category,
+    data.description,
+    data.name,
+    handle,
+    isCheckACCOUNT_TRANSFER,
+    isCheckCASH,
+    navigate,
+  ])
 
   return (
     <SetCNDScreen

@@ -1,7 +1,7 @@
 import { SetLocationScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from 'react'
+import React, { useCallback } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -14,9 +14,9 @@ export const SetLocationApp = ({
   location,
   handleLocation,
 }: Props) => {
-  const handleNextRouter = () => {
+  const handleNextRouter = useCallback(() => {
     navigate('SetBusinessHours')
-  }
+  }, [navigate])
 
   return (
     <SetLocationScreen

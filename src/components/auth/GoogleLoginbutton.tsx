@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import {
   GoogleSignin,
@@ -11,7 +11,7 @@ import { sessionHelper } from '@/util/sessionHelper'
 export const GoogleLoginbutton = () => {
   const navigator = React.useContext(NavigationContext)
 
-  const handleLogin = async () => {
+  const handleLogin = useCallback(async () => {
     try {
       await GoogleSignin.hasPlayServices()
       await GoogleSignin.signIn()
@@ -31,7 +31,8 @@ export const GoogleLoginbutton = () => {
     } catch (e) {
       console.log('LoginButton Error', e)
     }
-  }
+  }, [navigator])
+
   useEffect(() => {
     //clientId 숨겨야함!!!
     GoogleSignin.configure({

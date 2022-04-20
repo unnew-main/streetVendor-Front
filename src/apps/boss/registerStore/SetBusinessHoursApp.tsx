@@ -5,7 +5,7 @@ import {
 } from '@/screens/boss/RegisterStoreScreen.type'
 import { goAlert } from '@/util/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetBusinessHours'>
@@ -25,7 +25,7 @@ export const SetBusinessHoursApp = ({
 
   const listId = useRef(0)
 
-  const onAddList = () => {
+  const onAddList = useCallback(() => {
     listId.current += 1
     setList(prev =>
       prev.concat({
@@ -47,51 +47,55 @@ export const SetBusinessHoursApp = ({
         },
       }),
     )
-  }
+  }, [])
 
-  const onRemoveList = (id: number) => {
+  const onRemoveList = useCallback((id: number) => {
     setList(prev => prev.filter(data => data.id !== id))
-  }
+  }, [])
 
-  const handleUpdateList = (
-    id: number,
-    newDay?: any,
-    startTime?: { hour: string; minute: string },
-    endTime?: { hour: string; minute: string },
-  ) => {
-    setList(prevList =>
-      prevList.map(prevItem => {
-        if (prevItem.id === id) {
-          return {
-            id,
-            listData: {
-              day: newDay ? newDay : prevItem.listData.day,
-              startTime: {
-                hour: startTime
-                  ? startTime.hour
-                  : prevItem.listData.startTime.hour,
-                minute: startTime
-                  ? startTime.minute
-                  : prevItem.listData.startTime.minute,
-                nano: 0,
-                second: '0',
+  const handleUpdateList = useCallback(
+    (
+      id: number,
+      newDay?: any,
+      startTime?: { hour: string; minute: string },
+      endTime?: { hour: string; minute: string },
+    ) => {
+      setList(prevList =>
+        prevList.map(prevItem => {
+          if (prevItem.id === id) {
+            return {
+              id,
+              listData: {
+                day: newDay ? newDay : prevItem.listData.day,
+                startTime: {
+                  hour: startTime
+                    ? startTime.hour
+                    : prevItem.listData.startTime.hour,
+                  minute: startTime
+                    ? startTime.minute
+                    : prevItem.listData.startTime.minute,
+                  nano: 0,
+                  second: '0',
+                },
+                endTime: {
+                  hour: endTime ? endTime.hour : prevItem.listData.endTime.hour,
+                  minute: endTime
+                    ? endTime.minute
+                    : prevItem.listData.endTime.minute,
+                  nano: 0,
+                  second: '0',
+                },
               },
-              endTime: {
-                hour: endTime ? endTime.hour : prevItem.listData.endTime.hour,
-                minute: endTime
-                  ? endTime.minute
-                  : prevItem.listData.endTime.minute,
-                nano: 0,
-                second: '0',
-              },
-            },
+            }
           }
-        }
-        return prevItem
-      }),
-    )
-  }
-  const handleNextRouter = () => {
+          return prevItem
+        }),
+      )
+    },
+    [],
+  )
+
+  const handleNextRouter = useCallback(() => {
     try {
       list.map(data => {
         if (data.listData.day === '') {
@@ -103,7 +107,7 @@ export const SetBusinessHoursApp = ({
       handleBusinessHours(list.map(data => data.listData))
       navigate('SetMenu')
     } catch (e) {}
-  }
+  }, [handleBusinessHours, list, navigate])
   return (
     <SetBusinessHoursScreen
       handleNextRouter={handleNextRouter}

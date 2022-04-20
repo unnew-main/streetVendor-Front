@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
@@ -20,28 +20,33 @@ export const TimePicker = ({
   type,
 }: TimePicker) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
-  const showDatePicker = () => {
+
+  const showDatePicker = useCallback(() => {
     setDatePickerVisibility(true)
-  }
+  }, [])
 
-  const hideDatePicker = () => {
+  const hideDatePicker = useCallback(() => {
     setDatePickerVisibility(false)
-  }
+  }, [])
 
-  const handleConfirm = (date: Date) => {
-    if (type === 'start') {
-      handleUpdateTime(id, null, {
-        hour: JSON.stringify(date.getHours()),
-        minute: JSON.stringify(date.getMinutes()),
-      })
-    } else if (type === 'end') {
-      handleUpdateTime(id, null, undefined, {
-        hour: JSON.stringify(date.getHours()),
-        minute: JSON.stringify(date.getMinutes()),
-      })
-    }
-    hideDatePicker()
-  }
+  const handleConfirm = useCallback(
+    (date: Date) => {
+      if (type === 'start') {
+        handleUpdateTime(id, null, {
+          hour: JSON.stringify(date.getHours()),
+          minute: JSON.stringify(date.getMinutes()),
+        })
+      } else if (type === 'end') {
+        handleUpdateTime(id, null, undefined, {
+          hour: JSON.stringify(date.getHours()),
+          minute: JSON.stringify(date.getMinutes()),
+        })
+      }
+      hideDatePicker()
+    },
+    [handleUpdateTime, hideDatePicker, id, type],
+  )
+
   return (
     <View>
       <TouchableOpacity onPress={showDatePicker}>

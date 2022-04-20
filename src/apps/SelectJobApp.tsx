@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import { SelectJobScreen } from '@/screens'
 import { NavigationContext } from '@react-navigation/native'
@@ -6,12 +6,12 @@ import { NavigationContext } from '@react-navigation/native'
 export const SelectJobApp = () => {
   const navigator = React.useContext(NavigationContext)
 
-  const handlePressUser = () => {
+  const handlePressUser = useCallback(() => {
     navigator?.reset({ routes: [{ name: 'UserMain' }] })
-  }
-  const handlePressBoss = () => {
+  }, [navigator])
+  const handlePressBoss = useCallback(() => {
     navigator?.reset({ routes: [{ name: 'BossSplash' }] })
-  }
+  }, [navigator])
   return (
     <SelectJobScreen
       handlePressUser={handlePressUser}

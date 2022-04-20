@@ -1,7 +1,7 @@
 import { SetPictureScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from 'react'
+import React, { useCallback } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetPicture'>
@@ -14,9 +14,9 @@ export const SetPictureApp = ({
   pictureUrl,
   handlePictureUrl,
 }: Props) => {
-  const handleNextRouter = () => {
+  const handleNextRouter = useCallback(() => {
     navigate('Outtro')
-  }
+  }, [navigate])
 
   return (
     <SetPictureScreen

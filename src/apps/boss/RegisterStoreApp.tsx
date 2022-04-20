@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { RegisterStoreScreen } from '@/screens/boss'
 import {
@@ -27,15 +27,23 @@ export const RegisterStoreApp = () => {
       paymentMethods: paymentMethods,
     },
     handle: {
-      handleCategory: (data: string) => setCategory(data),
-      handleName: (data: string) => setName(data),
-      handleDescription: (data: string) => setdescription(data),
-      handleLocation: (data: string) => setLocation(data),
-      handleBusinessHours: (data: BusinessHoursType[]) =>
-        setBusinessHours(data),
-      handleMenu: (data: MenuType[]) => setMenu(data),
-      handlePictureUrl: (data: string) => setPictureUrl(data),
-      handlePaymentMethods: (data: string[]) => setPaymentMethods(data),
+      handleCategory: useCallback((data: string) => setCategory(data), []),
+      handleName: useCallback((data: string) => setName(data), []),
+      handleDescription: useCallback(
+        (data: string) => setdescription(data),
+        [],
+      ),
+      handleLocation: useCallback((data: string) => setLocation(data), []),
+      handleBusinessHours: useCallback(
+        (data: BusinessHoursType[]) => setBusinessHours(data),
+        [],
+      ),
+      handleMenu: useCallback((data: MenuType[]) => setMenu(data), []),
+      handlePictureUrl: useCallback((data: string) => setPictureUrl(data), []),
+      handlePaymentMethods: useCallback(
+        (data: string[]) => setPaymentMethods(data),
+        [],
+      ),
     },
   }
 

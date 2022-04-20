@@ -4,7 +4,7 @@ import {
   StackRegisterStoreList,
 } from '@/screens/boss/RegisterStoreScreen.type'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from 'react'
+import React, { useCallback } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetMenu'>
@@ -13,9 +13,9 @@ type Props = {
 }
 
 export const SetMenuApp = ({ navigation: { navigate } }: Props) => {
-  const handleNextRouter = () => {
+  const handleNextRouter = useCallback(() => {
     navigate('SetPicture')
-  }
+  }, [navigate])
 
   return <SetMenuScreen handleNextRouter={handleNextRouter} />
 }
