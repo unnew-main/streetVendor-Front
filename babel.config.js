@@ -11,6 +11,7 @@ plugins.push([
     },
   },
   'react-native-reanimated/plugin',
+  'babel-plugin-styled-components',
 ])
 
 module.exports = {
