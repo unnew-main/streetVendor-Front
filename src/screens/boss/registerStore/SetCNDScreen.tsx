@@ -50,6 +50,7 @@ export const SetCNDScreen = ({
         <RNPickerSelect
           onValueChange={(value: string) => handle.handleCategory(value)}
           items={categoryData}
+          value={data.category}
         />
         <Text>가게 이름: </Text>
         <TextInput

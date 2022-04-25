@@ -60,6 +60,7 @@ export const RegisterStoreScreen = ({
       <Stack.Screen name="SetBusinessHours" options={{ headerShown: false }}>
         {props => (
           <SetBusinessHoursApp
+            busniessHours={storeProps.data.businessHours}
             handleBusinessHours={storeProps.handle.handleBusinessHours}
             {...props}
           />
@@ -68,7 +69,11 @@ export const RegisterStoreScreen = ({
 
       <Stack.Screen name="SetMenu" options={{ headerShown: false }}>
         {props => (
-          <SetMenuApp handleMenu={storeProps.handle.handleMenu} {...props} />
+          <SetMenuApp
+            handleMenu={storeProps.handle.handleMenu}
+            menu={storeProps.data.menu}
+            {...props}
+          />
         )}
       </Stack.Screen>
 

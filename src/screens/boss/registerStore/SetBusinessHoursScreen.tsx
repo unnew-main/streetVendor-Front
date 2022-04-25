@@ -11,6 +11,7 @@ type Props = {
   onRemoveList: (id: number) => void
   list: ListType[]
   handleUpdateList: (id: number, newDay?: string) => void
+  beforeBackSave: () => void
 }
 
 const days = [
@@ -29,9 +30,14 @@ export const SetBusinessHoursScreen = ({
   onAddList,
   onRemoveList,
   handleUpdateList,
+  beforeBackSave,
 }: Props) => {
   return (
-    <RegisterStoreLayout title="오픈일" handleNextRouter={handleNextRouter}>
+    <RegisterStoreLayout
+      title="오픈일"
+      handleNextRouter={handleNextRouter}
+      beforeBackSave={beforeBackSave}
+    >
       <View>
         <Text>SetBusinessHoursScreen</Text>
       </View>
@@ -49,6 +55,7 @@ export const SetBusinessHoursScreen = ({
                   handleUpdateList(props.id, value)
                 }
                 items={days}
+                value={props.listData.day}
               />
             </View>
             <Text>{props.listData.day}</Text>

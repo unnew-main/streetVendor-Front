@@ -5,11 +5,12 @@ import {
 } from '@/screens/boss/RegisterStoreScreen.type'
 import { goAlert } from '@/util/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetBusinessHours'>
   handleBusinessHours: (data: BusinessHoursType[]) => void
+  busniessHours: BusinessHoursType[]
 }
 
 export type ListType = {
@@ -20,11 +21,38 @@ export type ListType = {
 export const SetBusinessHoursApp = ({
   navigation: { navigate },
   handleBusinessHours,
+  busniessHours,
 }: Props) => {
   const [list, setList] = useState<ListType[]>([])
 
   const listId = useRef(0)
 
+  useEffect(() => {
+    busniessHours.forEach(data => {
+      listId.current += 1
+      setList(prev =>
+        prev.concat({
+          id: listId.current,
+          listData: {
+            day: data.day,
+            endTime: {
+              hour: data.endTime.hour,
+              minute: data.endTime.minute,
+              nano: 0,
+              second: data.endTime.second,
+            },
+            startTime: {
+              hour: data.startTime.hour,
+              minute: data.startTime.minute,
+              nano: 0,
+              second: data.startTime.second,
+            },
+          },
+        }),
+      )
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const onAddList = useCallback(() => {
     listId.current += 1
     setList(prev =>
@@ -95,6 +123,16 @@ export const SetBusinessHoursApp = ({
     [],
   )
 
+  const beforeBackSave = useCallback(() => {
+    list.map(data => {
+      if (data.listData.day === '') {
+        goAlert('날짜를 선택해주세요')
+        throw Error
+      }
+    })
+    handleBusinessHours(list.map(data => data.listData))
+  }, [handleBusinessHours, list])
+
   const handleNextRouter = useCallback(() => {
     try {
       list.map(data => {
@@ -103,7 +141,6 @@ export const SetBusinessHoursApp = ({
           throw Error
         }
       })
-
       handleBusinessHours(list.map(data => data.listData))
       navigate('SetMenu')
     } catch (e) {}
@@ -116,6 +153,7 @@ export const SetBusinessHoursApp = ({
       onAddList={onAddList}
       onRemoveList={onRemoveList}
       handleUpdateList={handleUpdateList}
+      beforeBackSave={beforeBackSave}
     />
   )
 }

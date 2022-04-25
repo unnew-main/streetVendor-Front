@@ -25,11 +25,15 @@ export const SetCNDApp = ({
   data,
   handle,
 }: Props) => {
-  const [isCheckCASH, setIsCheckCASH] = useState<boolean>(false)
+  const [isCheckCASH, setIsCheckCASH] = useState<boolean>(
+    data.paymentMethods.indexOf('CASH') === -1 ? false : true,
+  )
   const [
     isCheckACCOUNT_TRANSFER,
     setIsCheckACCOUNT_TRANSFER,
-  ] = useState<boolean>(false)
+  ] = useState<boolean>(
+    data.paymentMethods.indexOf('ACCOUNT_TRANSFER') === -1 ? false : true,
+  )
 
   const handleCheckCASH = useCallback(
     (props: boolean) => setIsCheckCASH(props),

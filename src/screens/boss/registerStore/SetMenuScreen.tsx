@@ -16,6 +16,7 @@ type Props = {
     price?: number,
     pictureUrl?: string,
   ) => void
+  beforeBackSave: () => void
 }
 
 export const SetMenuScreen = ({
@@ -24,10 +25,15 @@ export const SetMenuScreen = ({
   onAddList,
   onRemoveList,
   handleUpdateList,
+  beforeBackSave,
 }: Props) => {
   console.log(list)
   return (
-    <RegisterStoreLayout title="메뉴" handleNextRouter={handleNextRouter}>
+    <RegisterStoreLayout
+      title="메뉴"
+      handleNextRouter={handleNextRouter}
+      beforeBackSave={beforeBackSave}
+    >
       <View>
         <Text>SetMenuScreen</Text>
       </View>
@@ -46,7 +52,7 @@ export const SetMenuScreen = ({
             placeholder="메뉴이름을 입력해주세요."
           />
           <View>
-            <Title>개수</Title>
+            <Title>개수를 </Title>
           </View>
           <TextInput
             onChangeText={text =>
@@ -56,6 +62,26 @@ export const SetMenuScreen = ({
             placeholder="음식 개수를 입력해주세요."
             keyboardType="number-pad"
           />
+          <View>
+            <Title>가격</Title>
+          </View>
+          <TextInput
+            onChangeText={text =>
+              handleUpdateList(
+                props.id,
+                props.listData.name,
+                props.listData.amount,
+                Number(text),
+              )
+            }
+            value={String(props.listData.price)}
+            placeholder="음식 가격을 입력해주세요."
+            keyboardType="number-pad"
+          />
+          <View>
+            <Title>음식 사진</Title>
+          </View>
+          <Text>음식 사진을 등록하라</Text>
           <TouchableOpacity onPress={() => onRemoveList(props.id)}>
             <Text style={{ color: 'red' }}>삭제</Text>
           </TouchableOpacity>

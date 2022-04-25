@@ -40,6 +40,7 @@ export function SplashApp({ navigation }: SplashAppType) {
       } catch (e) {
         console.log('Splash Error: ', e)
         setNowState('에러가 발생했습니다.')
+        navigator?.reset({ routes: [{ name: 'Login' }] })
       }
     })()
   }, [navigation, navigator])
