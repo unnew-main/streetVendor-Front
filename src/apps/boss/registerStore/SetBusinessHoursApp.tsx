@@ -108,10 +108,10 @@ export const SetBusinessHoursApp = ({
       navigate('SetMenu')
     } catch (e) {}
   }, [handleBusinessHours, list, navigate])
+
   return (
     <SetBusinessHoursScreen
       handleNextRouter={handleNextRouter}
-      handleBusinessHours={handleBusinessHours}
       list={list}
       onAddList={onAddList}
       onRemoveList={onRemoveList}

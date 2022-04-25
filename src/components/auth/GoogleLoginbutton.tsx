@@ -34,6 +34,7 @@ export const GoogleLoginbutton = () => {
         offLoading()
       }
     } catch (e) {
+      offLoading()
       console.log('LoginButton Error', e)
     }
   }, [navigator, offLoading, onLoading])

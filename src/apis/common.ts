@@ -4,7 +4,9 @@ import { sessionHelper } from '@/util/sessionHelper'
 
 export default {
   getAuth: async (url: string, params: any) => {
-    return await axios.get(setting.apiUrl + url, {
+    return await axios({
+      method: 'get',
+      url: setting.apiUrl + url,
       params,
       headers: {
         Authorization: `Bearer ${await sessionHelper.getSession()}`,

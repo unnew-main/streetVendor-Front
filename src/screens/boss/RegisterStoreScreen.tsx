@@ -68,11 +68,7 @@ export const RegisterStoreScreen = ({
 
       <Stack.Screen name="SetMenu" options={{ headerShown: false }}>
         {props => (
-          <SetMenuApp
-            menu={storeProps.data.menu}
-            handleMenu={storeProps.handle.handleMenu}
-            {...props}
-          />
+          <SetMenuApp handleMenu={storeProps.handle.handleMenu} {...props} />
         )}
       </Stack.Screen>
 

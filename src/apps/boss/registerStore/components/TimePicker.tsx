@@ -33,13 +33,13 @@ export const TimePicker = ({
     (date: Date) => {
       if (type === 'start') {
         handleUpdateTime(id, null, {
-          hour: JSON.stringify(date.getHours()),
-          minute: JSON.stringify(date.getMinutes()),
+          hour: String(date.getHours()),
+          minute: String(date.getMinutes()),
         })
       } else if (type === 'end') {
         handleUpdateTime(id, null, undefined, {
-          hour: JSON.stringify(date.getHours()),
-          minute: JSON.stringify(date.getMinutes()),
+          hour: String(date.getHours()),
+          minute: String(date.getMinutes()),
         })
       }
       hideDatePicker()

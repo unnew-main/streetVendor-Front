@@ -19,6 +19,7 @@ export const SignoutButton = () => {
       navigator?.reset({ routes: [{ name: 'Splash' }] })
       offLoading()
     } catch (e) {
+      offLoading()
       console.log('signOutError', e)
     }
   }, [navigator, offLoading, onLoading])

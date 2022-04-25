@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import { BusinessHoursType } from '../RegisterStoreScreen.type'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import RNPickerSelect from 'react-native-picker-select'
 import { ListType } from '@/apps/boss/registerStore/SetBusinessHoursApp'
@@ -8,7 +7,6 @@ import { TimePicker } from '@/apps/boss/registerStore/components/TimePicker'
 
 type Props = {
   handleNextRouter: () => void
-  handleBusinessHours: (data: BusinessHoursType[]) => void
   onAddList: () => void
   onRemoveList: (id: number) => void
   list: ListType[]

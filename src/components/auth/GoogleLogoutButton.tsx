@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
@@ -8,6 +8,8 @@ import { useLoading } from '@/hooks/useLoading.hook'
 export const GoogleLogoutbutton = () => {
   const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
+
+  useEffect(() => GoogleSignin.configure({}), [])
 
   const handleLogout = useCallback(async () => {
     try {
@@ -19,6 +21,7 @@ export const GoogleLogoutbutton = () => {
       navigator?.reset({ routes: [{ name: 'Splash' }] })
       offLoading()
     } catch (e) {
+      offLoading()
       console.log('LogoutError', e)
     }
   }, [navigator, offLoading, onLoading])
