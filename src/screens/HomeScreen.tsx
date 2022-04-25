@@ -1,7 +1,6 @@
 import {
   SelectJobApp,
   UserMainApp,
-  BossSplashApp,
   RegisterStoreApp,
   BossMainApp,
 } from '@/apps'
@@ -12,7 +11,6 @@ import React from 'react'
 export type StackHomeList = {
   SelectJob: undefined
   UserMain: undefined
-  BossSplash: undefined
   RegisterStore: undefined
   BossMain: undefined
 }
@@ -30,11 +28,6 @@ export function HomeScreen() {
       <Stack.Screen
         name="UserMain"
         component={UserMainApp}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="BossSplash"
-        component={BossSplashApp}
         options={{ headerShown: false }}
       />
       <Stack.Screen

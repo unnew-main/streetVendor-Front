@@ -10,7 +10,7 @@ export const SelectJobApp = () => {
     navigator?.reset({ routes: [{ name: 'UserMain' }] })
   }, [navigator])
   const handlePressBoss = useCallback(() => {
-    navigator?.reset({ routes: [{ name: 'BossSplash' }] })
+    navigator?.reset({ routes: [{ name: 'BossMain' }] })
   }, [navigator])
   return (
     <SelectJobScreen

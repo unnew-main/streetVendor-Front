@@ -13,7 +13,7 @@ export const OuttroApp = ({ data }: OuttroAppProps) => {
   const handleNextRouter = useCallback(async () => {
     try {
       //여기에 가게정보 저장하는 APi 호출
-      navigator?.reset({ routes: [{ name: 'BossSplash' }] })
+      navigator?.reset({ routes: [{ name: 'BossMain' }] })
     } catch (e) {
       console.log('OuttroApp Error: ', e)
     }
