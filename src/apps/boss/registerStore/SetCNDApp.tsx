@@ -52,7 +52,7 @@ export const SetCNDApp = ({
       isCheckACCOUNT_TRANSFER &&
         handle.handlePaymentMethods(['ACCOUNT_TRANSFER'])
     }
-    if (data.category === null) {
+    if (data.category === '' || data.category === null) {
       goAlert('카테고리를 선택해주세요')
     } else if (data.name === '') {
       goAlert('가게 이름을 입력해주세요')
