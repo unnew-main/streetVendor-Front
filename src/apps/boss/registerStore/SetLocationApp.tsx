@@ -1,11 +1,14 @@
 import { SetLocationScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
+import {
+  LocationType,
+  StackRegisterStoreList,
+} from '@/screens/boss/RegisterStoreScreen.type'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
-  location: string
-  handleLocation: (data: string) => void
+  location: LocationType
+  handleLocation: (data: LocationType) => void
 }
 
 export const SetLocationApp = ({
@@ -13,6 +16,13 @@ export const SetLocationApp = ({
   location,
   handleLocation,
 }: Props) => {
+  const handleMapClick = (e: any) => {
+    console.log('handleMapClick', e)
+    handleLocation({ longitude: e.longitude, latitude: e.latitude })
+  }
+  const handleMapClickCancel = () => {
+    handleLocation({ longitude: 0, latitude: 0 })
+  }
   const handleNextRouter = useCallback(() => {
     navigate('SetBusinessHours')
   }, [navigate])
@@ -21,7 +31,8 @@ export const SetLocationApp = ({
     <SetLocationScreen
       handleNextRouter={handleNextRouter}
       location={location}
-      handleLocation={handleLocation}
+      handleMapClick={handleMapClick}
+      handleMapClickCancel={handleMapClickCancel}
     />
   )
 }

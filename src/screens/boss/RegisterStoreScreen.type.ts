@@ -12,7 +12,7 @@ export type RegisterStorePropsType = {
   category: string
   name: string
   description: string
-  location: string
+  location: LocationType
   businessHours: BusinessHoursType[]
   menu: MenuType[]
   pictureUrl: string
@@ -33,7 +33,10 @@ export type BusinessHoursType = {
     second: string
   }
 }
-
+export type LocationType = {
+  latitude: number
+  longitude: number
+}
 export type MenuType = {
   amount: number
   name: string
@@ -47,7 +50,7 @@ export type RegisterStoreScreenProps = {
       handleCategory: (data: string) => void
       handleName: (data: string) => void
       handleDescription: (data: string) => void
-      handleLocation: (data: string) => void
+      handleLocation: (data: LocationType) => void
       handleBusinessHours: (data: BusinessHoursType[]) => void
       handleMenu: (data: MenuType[]) => void
       handlePictureUrl: (data: string) => void
