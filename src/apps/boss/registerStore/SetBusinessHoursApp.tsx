@@ -3,7 +3,7 @@ import {
   BusinessHoursType,
   StackRegisterStoreList,
 } from '@/screens/boss/RegisterStoreScreen.type'
-import { goAlert } from '@/util/goAlert'
+import { goAlert } from '@/utils/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 

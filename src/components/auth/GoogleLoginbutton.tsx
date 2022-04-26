@@ -6,7 +6,7 @@ import {
 } from '@react-native-community/google-signin'
 import { NavigationContext } from '@react-navigation/native'
 import { authApi } from '@/apis'
-import { sessionHelper } from '@/util/sessionHelper'
+import { sessionHelper } from '@/utils/sessionHelper'
 import { useLoading } from '@/hooks/useLoading.hook'
 
 export const GoogleLoginbutton = () => {

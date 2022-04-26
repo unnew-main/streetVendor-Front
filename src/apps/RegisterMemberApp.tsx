@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { RegisterMemberScreen } from '@/screens'
 import { authApi, memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
-import { sessionHelper } from '@/util/sessionHelper'
+import { sessionHelper } from '@/utils/sessionHelper'
 
 type RegisterMemberProps = {
   route: {

@@ -3,7 +3,7 @@ import { SplashScreen } from '@/screens'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { StackAppList } from '@/App'
 import { NavigationContext } from '@react-navigation/native'
-import { sessionHelper } from '@/util/sessionHelper'
+import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
 type SplashAppType = {
   navigation: StackNavigationProp<StackAppList, 'Splash'>

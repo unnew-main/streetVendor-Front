@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
-import { sessionHelper } from '@/util/sessionHelper'
+import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 

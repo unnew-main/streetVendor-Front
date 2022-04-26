@@ -1,6 +1,6 @@
 import { SetCNDScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
-import { goAlert } from '@/util/goAlert'
+import { goAlert } from '@/utils/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useState } from 'react'
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { setting } from '@/constants'
-import { sessionHelper } from '@/util/sessionHelper'
+import { sessionHelper } from '@/utils/sessionHelper'
 
 export default {
   getAuth: async (url: string, params: any) => {
