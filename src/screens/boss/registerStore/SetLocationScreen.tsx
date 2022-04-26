@@ -10,6 +10,7 @@ type Props = {
   location: LocationType
   handleMapClick: (e: any) => void
   handleMapClickCancel: () => void
+  userLocation: LocationType
 }
 
 export const SetLocationScreen = ({
@@ -17,9 +18,9 @@ export const SetLocationScreen = ({
   handleMapClick,
   location,
   handleMapClickCancel,
+  userLocation,
 }: Props) => {
-  const P0 = { latitude: 37.564362, longitude: 126.977011 }
-
+  console.log('userLocation', userLocation)
   return (
     <RegisterStoreLayout title="장소" handleNextRouter={handleNextRouter}>
       <ContentHeader>
@@ -32,7 +33,7 @@ export const SetLocationScreen = ({
           center={
             location.latitude !== 0
               ? { ...location, zoom: 16 }
-              : { ...P0, zoom: 16 }
+              : { ...userLocation, zoom: 16 }
           }
           // onTouch={e => console.warn('onTouch', JSON.stringify(e.nativeEvent))}
           // onCameraChange={e => console.log('CameraChange', e)}
