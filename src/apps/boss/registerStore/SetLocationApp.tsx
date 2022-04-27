@@ -6,6 +6,7 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useState } from 'react'
 import Geolocation from '@react-native-community/geolocation'
+import { goAlert } from '@/utils/goAlert'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -22,50 +23,70 @@ export const SetLocationApp = ({
     latitude: 0,
     longitude: 0,
   })
+  const [isPin, setIsPin] = useState(false)
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
-        // const latitude = String(position.coords.latitude)
-        // const longitude = String(position.coords.longitude)
+        if (location.latitude === 0 && location.longitude === 0) {
+          setIsPin(false)
+          setUserLocation({
+            latitude: Number(position.coords.latitude),
+            longitude: Number(position.coords.longitude),
+          })
+        } else {
+          setIsPin(true)
 
-        setUserLocation({
-          latitude: Number(position.coords.latitude),
-          longitude: Number(position.coords.longitude),
-        })
+          setUserLocation({
+            latitude: location.latitude,
+            longitude: location.longitude,
+          })
+        }
       },
       error => {
-        console.log(error.code, error.message)
+        console.log('Location Geolocation Error', error.code, error.message)
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     )
+  }, [location.latitude, location.longitude])
+
+  const handleMapClick = useCallback(
+    (e: any) => {
+      console.log('handleMapClick', e)
+      setIsPin(true)
+      handleLocation({ longitude: e.longitude, latitude: e.latitude })
+    },
+    [handleLocation],
+  )
+
+  const handleMapClickCancel = useCallback(() => {
+    setIsPin(false)
   }, [])
-  // const geoLocation = () => {
-  //   Geolocation.getCurrentPosition(
-  //     position => {
-  //       // const latitude = String(position.coords.latitude)
-  //       // const longitude = String(position.coords.longitude)
 
-  //       setLatitude(String(position.coords.latitude))
-  //       setLogitude(String(position.coords.longitude))
-  //     },
-  //     error => {
-  //       console.log(error.code, error.message)
-  //     },
-  //     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
-  //   )
-  // }
+  const beforeBackSave = useCallback(() => {
+    if (isPin === false) {
+      goAlert('위치를 설정해주세요')
+      throw Error
+    }
+    handleLocation({
+      latitude: location.latitude,
+      longitude: location.longitude,
+    })
+  }, [handleLocation, isPin, location.latitude, location.longitude])
 
-  const handleMapClick = (e: any) => {
-    console.log('handleMapClick', e)
-    handleLocation({ longitude: e.longitude, latitude: e.latitude })
-  }
-  const handleMapClickCancel = () => {
-    handleLocation({ longitude: 0, latitude: 0 })
-  }
   const handleNextRouter = useCallback(() => {
-    navigate('SetBusinessHours')
-  }, [navigate])
+    try {
+      if (isPin === false) {
+        goAlert('위치를 설정해주세요')
+        throw Error
+      }
+      handleLocation({
+        latitude: location.latitude,
+        longitude: location.longitude,
+      })
+      navigate('SetBusinessHours')
+    } catch (e) {}
+  }, [handleLocation, isPin, location.latitude, location.longitude, navigate])
 
   return (
     <SetLocationScreen
@@ -74,6 +95,8 @@ export const SetLocationApp = ({
       handleMapClick={handleMapClick}
       handleMapClickCancel={handleMapClickCancel}
       userLocation={userLocation}
+      isPin={isPin}
+      beforeBackSave={beforeBackSave}
     />
   )
 }

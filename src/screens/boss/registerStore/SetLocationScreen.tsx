@@ -11,6 +11,8 @@ type Props = {
   handleMapClick: (e: any) => void
   handleMapClickCancel: () => void
   userLocation: LocationType
+  isPin: boolean
+  beforeBackSave: () => void
 }
 
 export const SetLocationScreen = ({
@@ -19,10 +21,16 @@ export const SetLocationScreen = ({
   location,
   handleMapClickCancel,
   userLocation,
+  isPin,
+  beforeBackSave,
 }: Props) => {
   console.log('userLocation', userLocation)
   return (
-    <RegisterStoreLayout title="장소" handleNextRouter={handleNextRouter}>
+    <RegisterStoreLayout
+      title="장소"
+      handleNextRouter={handleNextRouter}
+      beforeBackSave={beforeBackSave}
+    >
       <ContentHeader>
         <Text>가게위치를 선택해주세요</Text>
       </ContentHeader>
@@ -30,16 +38,15 @@ export const SetLocationScreen = ({
         <NaverMapView
           style={{ width: '100%', height: '100%' }}
           showsMyLocationButton={true}
-          center={
-            location.latitude !== 0
-              ? { ...location, zoom: 16 }
-              : { ...userLocation, zoom: 16 }
-          }
+          // center={isPin !== false ? { ...location, zoom: 16 } : {}}
+          center={{ ...userLocation, zoom: 16 }}
           // onTouch={e => console.warn('onTouch', JSON.stringify(e.nativeEvent))}
           // onCameraChange={e => console.log('CameraChange', e)}
+          compass={true}
+          scaleBar={true}
           onMapClick={e => handleMapClick(e)}
         >
-          {location.latitude !== 0 && (
+          {isPin !== false && (
             <Marker
               coordinate={location}
               onClick={() => handleMapClickCancel()}
