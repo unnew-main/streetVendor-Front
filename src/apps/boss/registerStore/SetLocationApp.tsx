@@ -24,7 +24,6 @@ export const SetLocationApp = ({
     longitude: 0,
   })
   const [isPin, setIsPin] = useState(false)
-
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
@@ -68,11 +67,7 @@ export const SetLocationApp = ({
       goAlert('위치를 설정해주세요')
       throw Error
     }
-    handleLocation({
-      latitude: location.latitude,
-      longitude: location.longitude,
-    })
-  }, [handleLocation, isPin, location.latitude, location.longitude])
+  }, [isPin])
 
   const handleNextRouter = useCallback(() => {
     try {
@@ -80,13 +75,10 @@ export const SetLocationApp = ({
         goAlert('위치를 설정해주세요')
         throw Error
       }
-      handleLocation({
-        latitude: location.latitude,
-        longitude: location.longitude,
-      })
+
       navigate('SetBusinessHours')
     } catch (e) {}
-  }, [handleLocation, isPin, location.latitude, location.longitude, navigate])
+  }, [isPin, navigate])
 
   return (
     <SetLocationScreen

@@ -6476,6 +6476,11 @@
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
 
+"react-native-image-picker@^4.8.0":
+  "integrity" "sha512-yihQ2jC9UQxNO0Rv15gSNZJ+vDvmn06b2x2ippWruT5yEL62fhbkXvBt5oUUsGY9hi7+L+9d8geJbBWuDzGIHg=="
+  "resolved" "https://registry.npmjs.org/react-native-image-picker/-/react-native-image-picker-4.8.0.tgz"
+  "version" "4.8.0"
+
 "react-native-inappbrowser-reborn@^3.6.3":
   "integrity" "sha512-fqF708GVZ/7zja0/GyJQfjDfKREOe1fxYq8RAKZo8/KK6SkFO9hBlYqC3PwLFPw29zzwBzR+6EpL3qo95igkLw=="
   "resolved" "https://registry.npmjs.org/react-native-inappbrowser-reborn/-/react-native-inappbrowser-reborn-3.6.3.tgz"

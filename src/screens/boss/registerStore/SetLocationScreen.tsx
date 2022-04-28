@@ -24,7 +24,6 @@ export const SetLocationScreen = ({
   isPin,
   beforeBackSave,
 }: Props) => {
-  console.log('userLocation', userLocation)
   return (
     <RegisterStoreLayout
       title="장소"
@@ -38,13 +37,11 @@ export const SetLocationScreen = ({
         <NaverMapView
           style={{ width: '100%', height: '100%' }}
           showsMyLocationButton={true}
-          // center={isPin !== false ? { ...location, zoom: 16 } : {}}
           center={{ ...userLocation, zoom: 16 }}
-          // onTouch={e => console.warn('onTouch', JSON.stringify(e.nativeEvent))}
-          // onCameraChange={e => console.log('CameraChange', e)}
           compass={true}
           scaleBar={true}
           onMapClick={e => handleMapClick(e)}
+          onCameraChange={e => console.log('cameraChange', e)}
         >
           {isPin !== false && (
             <Marker
