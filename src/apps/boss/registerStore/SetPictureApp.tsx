@@ -1,8 +1,10 @@
 import { SetPictureScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
+import { goAlert } from '@/utils/goAlert'
+import { openCamera } from '@/utils/openCamera'
+import { openImage } from '@/utils/openImage'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback } from 'react'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetPicture'>
@@ -15,48 +17,32 @@ export const SetPictureApp = ({
   pictureUrl,
   handlePictureUrl,
 }: Props) => {
-  const handleOpenImage = async () => {
+  const handleOpenImage = useCallback(async () => {
     try {
-      await launchImageLibrary(
-        {
-          mediaType: 'photo',
-        },
-        response => {
-          if (response.didCancel) {
-          } else if (response.errorCode && response.errorMessage) {
-            throw Error
-          } else {
-            handlePictureUrl(response.assets?.[0].uri)
-          }
-        },
-      )
+      const imageUrl = await openImage()
+      imageUrl && handlePictureUrl(imageUrl)
     } catch (e) {
       console.log('Error Open Image', e)
     }
-  }
-  const handleOpenCamera = async () => {
+  }, [handlePictureUrl])
+
+  const handleOpenCamera = useCallback(async () => {
+    console.log('Camera Click!')
     try {
-      await launchCamera(
-        {
-          mediaType: 'photo',
-        },
-        response => {
-          if (response.didCancel) {
-          } else if (response.errorCode && response.errorMessage) {
-            throw Error
-          } else {
-            handlePictureUrl(response.assets?.[0].uri)
-          }
-        },
-      )
+      const imageUrl = await openCamera()
+      imageUrl && handlePictureUrl(imageUrl)
     } catch (e) {
       console.log('Error Open Image', e)
     }
-  }
+  }, [handlePictureUrl])
 
   const handleNextRouter = useCallback(() => {
-    navigate('Outtro')
-  }, [navigate])
+    if (pictureUrl === '') {
+      goAlert('가게 사진을 선택해주세요')
+    } else {
+      navigate('Outtro')
+    }
+  }, [navigate, pictureUrl])
 
   return (
     <SetPictureScreen

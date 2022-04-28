@@ -4,6 +4,7 @@ import {
   StackRegisterStoreList,
 } from '@/screens/boss/RegisterStoreScreen.type'
 import { goAlert } from '@/utils/goAlert'
+import { openImage } from '@/utils/openImage'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -71,6 +72,18 @@ export const SetMenuApp = ({
     setList(prev => prev.filter(data => data.id !== id))
   }, [])
 
+  const handleOpenImage = useCallback(
+    async (id: number, name?: string, amount?: number, price?: number) => {
+      try {
+        const imageUrl = await openImage()
+        imageUrl && handleUpdateList(id, name, amount, price, imageUrl)
+      } catch (e) {
+        console.log('Error Open Image', e)
+      }
+    },
+    [],
+  )
+
   const handleUpdateList = useCallback(
     (
       id: number,
@@ -130,6 +143,10 @@ export const SetMenuApp = ({
 
   const handleNextRouter = useCallback(() => {
     try {
+      if (list.length === 0) {
+        goAlert('메뉴를 추가해주세요')
+        throw Error
+      }
       list.map(data => {
         if (!data.listData.name) {
           goAlert('메뉴 이름을 선택해주세요')
@@ -156,6 +173,7 @@ export const SetMenuApp = ({
       onRemoveList={onRemoveList}
       handleUpdateList={handleUpdateList}
       beforeBackSave={beforeBackSave}
+      handleOpenImage={handleOpenImage}
     />
   )
 }

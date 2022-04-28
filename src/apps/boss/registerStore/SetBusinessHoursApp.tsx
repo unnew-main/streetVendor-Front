@@ -135,6 +135,10 @@ export const SetBusinessHoursApp = ({
 
   const handleNextRouter = useCallback(() => {
     try {
+      if (list.length === 0) {
+        goAlert('운영시간를 선택해주세요')
+        throw Error
+      }
       list.map(data => {
         if (data.listData.day === '') {
           goAlert('날짜를 선택해주세요')

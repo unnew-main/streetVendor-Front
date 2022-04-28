@@ -21,7 +21,7 @@ export default {
     return await axios({
       method: 'post',
       url: setting.apiUrl + url,
-      data: params,
+      params,
       headers: {
         Authorization: `Bearer ${await sessionHelper.getSession()}`,
       },

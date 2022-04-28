@@ -1,6 +1,6 @@
 import React from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
-import styled from 'styled-components'
+import { Text, TouchableOpacity, View } from 'react-native'
+import styled from 'styled-components/native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 
 type Props = {
@@ -43,7 +43,7 @@ export const SetPictureScreen = ({
   )
 }
 
-const ImageWrapper = styled(Image)`
+const ImageWrapper = styled.Image`
   width: 100px;
   height: 100px;
 `

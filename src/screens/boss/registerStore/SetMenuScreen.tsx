@@ -17,6 +17,12 @@ type Props = {
     pictureUrl?: string,
   ) => void
   beforeBackSave: () => void
+  handleOpenImage: (
+    id: number,
+    name?: string,
+    amount?: number,
+    price?: number,
+  ) => void
 }
 
 export const SetMenuScreen = ({
@@ -26,6 +32,7 @@ export const SetMenuScreen = ({
   onRemoveList,
   handleUpdateList,
   beforeBackSave,
+  handleOpenImage,
 }: Props) => {
   console.log(list)
   return (
@@ -81,7 +88,29 @@ export const SetMenuScreen = ({
           <View>
             <Title>음식 사진</Title>
           </View>
-          <Text>음식 사진을 등록하라</Text>
+          <TouchableOpacity
+            onPress={() =>
+              handleOpenImage(
+                props.id,
+                props.listData.name,
+                props.listData.amount,
+                props.listData.price,
+              )
+            }
+          >
+            <Text style={{ color: 'blue' }}>사진가져오기</Text>
+          </TouchableOpacity>
+          {props.listData.pictureUrl ? (
+            <ImageWrapper
+              source={{
+                uri: props.listData.pictureUrl,
+              }}
+            />
+          ) : (
+            <View>
+              <Text>비어있음</Text>
+            </View>
+          )}
           <TouchableOpacity onPress={() => onRemoveList(props.id)}>
             <Text style={{ color: 'red' }}>삭제</Text>
           </TouchableOpacity>
@@ -93,4 +122,9 @@ export const SetMenuScreen = ({
 
 const Title = styled.Text`
   color: #586784;
+`
+
+const ImageWrapper = styled.Image`
+  width: 100px;
+  height: 100px;
 `

@@ -48,7 +48,6 @@ export const SetLocationApp = ({
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     )
   }, [location.latitude, location.longitude])
-
   const handleMapClick = useCallback(
     (e: any) => {
       console.log('handleMapClick', e)
