@@ -81,6 +81,7 @@ export const SetMenuApp = ({
         console.log('Error Open Image', e)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
 
