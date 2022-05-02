@@ -8,6 +8,7 @@ import { NavigationContext } from '@react-navigation/native'
 import { authApi } from '@/apis'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { useLoading } from '@/hooks/useLoading.hook'
+import { goAlert } from '@/utils/goAlert'
 
 export const GoogleLoginbutton = () => {
   const navigator = React.useContext(NavigationContext)
@@ -35,6 +36,7 @@ export const GoogleLoginbutton = () => {
       }
     } catch (e) {
       offLoading()
+      goAlert(String(e))
       console.log('LoginButton Error', e)
     }
   }, [navigator, offLoading, onLoading])

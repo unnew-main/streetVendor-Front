@@ -20,6 +20,7 @@ export const RegisterBossApp = () => {
       await memberApi.setBossInfo({ bossName: name, bossPhoneNumber: phone })
     } catch (e) {
       console.log('handleSetBoss Error: ', e)
+      goAlert(String(e))
     }
   }, [name, phone])
 

@@ -3,6 +3,7 @@ import { RegisterMemberScreen } from '@/screens'
 import { authApi, memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
+import { goAlert } from '@/utils/goAlert'
 
 type RegisterMemberProps = {
   route: {
@@ -49,6 +50,7 @@ export function RegisterMemberApp({
       navigator?.reset({ routes: [{ name: 'Home' }] })
     } catch (e) {
       console.log('RegisterError: ', e)
+      goAlert(String(e))
     }
   }, [accessToken, data.email, data.name, data.profileUrl, navigator, userName])
 

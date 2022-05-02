@@ -5,6 +5,7 @@ import { StackAppList } from '@/App'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
+import { goAlert } from '@/utils/goAlert'
 type SplashAppType = {
   navigation: StackNavigationProp<StackAppList, 'Splash'>
 }
@@ -40,6 +41,8 @@ export function SplashApp({ navigation }: SplashAppType) {
       } catch (e) {
         console.log('Splash Error: ', e)
         setNowState('에러가 발생했습니다.')
+        goAlert(String(e))
+
         navigator?.reset({ routes: [{ name: 'Login' }] })
       }
     })()
