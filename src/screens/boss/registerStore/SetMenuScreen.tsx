@@ -12,16 +12,16 @@ type Props = {
   handleUpdateList: (
     id: number,
     name?: string,
-    amount?: number,
-    price?: number,
+    menuCount?: number,
+    price?: string,
     pictureUrl?: string,
   ) => void
   beforeBackSave: () => void
   handleOpenImage: (
     id: number,
     name?: string,
-    amount?: number,
-    price?: number,
+    menuCount?: number,
+    price?: string,
   ) => void
 }
 
@@ -78,7 +78,7 @@ export const SetMenuScreen = ({
                 props.id,
                 props.listData.name,
                 props.listData.amount,
-                Number(text),
+                text,
               )
             }
             value={String(props.listData.price)}

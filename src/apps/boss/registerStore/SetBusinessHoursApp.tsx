@@ -1,8 +1,7 @@
 import { SetBusinessHoursScreen } from '@/screens/boss/registerStore'
-import {
-  BusinessHoursType,
-  StackRegisterStoreList,
-} from '@/screens/boss/RegisterStoreScreen.type'
+import { StackRegisterStoreList } from '@/types/routeType'
+import { BusinessHoursType } from '@/types/storeType'
+
 import { goAlert } from '@/utils/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
@@ -34,19 +33,9 @@ export const SetBusinessHoursApp = ({
         prev.concat({
           id: listId.current,
           listData: {
-            day: data.day,
-            endTime: {
-              hour: data.endTime.hour,
-              minute: data.endTime.minute,
-              nano: 0,
-              second: data.endTime.second,
-            },
-            startTime: {
-              hour: data.startTime.hour,
-              minute: data.startTime.minute,
-              nano: 0,
-              second: data.startTime.second,
-            },
+            days: data.days,
+            endTime: data.endTime,
+            startTime: data.startTime,
           },
         }),
       )
@@ -59,19 +48,9 @@ export const SetBusinessHoursApp = ({
       prev.concat({
         id: listId.current,
         listData: {
-          day: '',
-          endTime: {
-            hour: '12',
-            minute: '00',
-            nano: 0,
-            second: '0',
-          },
-          startTime: {
-            hour: '12',
-            minute: '00',
-            nano: 0,
-            second: '0',
-          },
+          days: '',
+          endTime: '12:00',
+          startTime: '12:00',
         },
       }),
     )
@@ -82,37 +61,16 @@ export const SetBusinessHoursApp = ({
   }, [])
 
   const handleUpdateList = useCallback(
-    (
-      id: number,
-      newDay?: any,
-      startTime?: { hour: string; minute: string },
-      endTime?: { hour: string; minute: string },
-    ) => {
+    (id: number, newDay?: any, startTime?: string, endTime?: string) => {
       setList(prevList =>
         prevList.map(prevItem => {
           if (prevItem.id === id) {
             return {
               id,
               listData: {
-                day: newDay ? newDay : prevItem.listData.day,
-                startTime: {
-                  hour: startTime
-                    ? startTime.hour
-                    : prevItem.listData.startTime.hour,
-                  minute: startTime
-                    ? startTime.minute
-                    : prevItem.listData.startTime.minute,
-                  nano: 0,
-                  second: '0',
-                },
-                endTime: {
-                  hour: endTime ? endTime.hour : prevItem.listData.endTime.hour,
-                  minute: endTime
-                    ? endTime.minute
-                    : prevItem.listData.endTime.minute,
-                  nano: 0,
-                  second: '0',
-                },
+                days: newDay ? newDay : prevItem.listData.days,
+                startTime: startTime ? startTime : prevItem.listData.startTime,
+                endTime: endTime ? endTime : prevItem.listData.endTime,
               },
             }
           }
@@ -125,7 +83,7 @@ export const SetBusinessHoursApp = ({
 
   const beforeBackSave = useCallback(() => {
     list.map(data => {
-      if (data.listData.day === '') {
+      if (data.listData.days === '') {
         goAlert('날짜를 선택해주세요')
         throw Error
       }
@@ -140,7 +98,7 @@ export const SetBusinessHoursApp = ({
         throw Error
       }
       list.map(data => {
-        if (data.listData.day === '') {
+        if (data.listData.days === '') {
           goAlert('날짜를 선택해주세요')
           throw Error
         }

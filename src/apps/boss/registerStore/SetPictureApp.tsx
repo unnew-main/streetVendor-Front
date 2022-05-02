@@ -1,5 +1,5 @@
 import { SetPictureScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/screens/boss/RegisterStoreScreen.type'
+import { StackRegisterStoreList } from '@/types/routeType'
 import { goAlert } from '@/utils/goAlert'
 import { openCamera } from '@/utils/openCamera'
 import { openImage } from '@/utils/openImage'

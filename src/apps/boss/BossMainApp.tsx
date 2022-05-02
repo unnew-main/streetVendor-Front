@@ -4,11 +4,12 @@ import { BossMainScreen } from '@/screens/boss'
 // import { NavigationContext } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
+import { StoreType } from '@/types/storeType'
 
 export const BossMainApp = () => {
   // const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
-  const [list, setList] = useState([])
+  const [list, setList] = useState<StoreType[]>([])
 
   useEffect(() => {
     ;(async () => {
@@ -17,11 +18,10 @@ export const BossMainApp = () => {
         const {
           data: { data },
         } = await storeApi.getStore()
-        console.log('storedata', data, data.length)
         setList(data)
         offLoading()
       } catch (e) {
-        console.log(e)
+        console.log('BossMainApp Error: ', e)
         offLoading()
       }
     })()

@@ -1,8 +1,8 @@
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 type RegisterStoreLayoutType = React.PropsWithChildren<{
   title: string
@@ -49,7 +49,7 @@ const Container = styled(SafeAreaView)`
   width: 100%;
   height: 100%;
 `
-const Header = styled(View)`
+const Header = styled.View`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -57,7 +57,7 @@ const Header = styled(View)`
   justify-content: space-around;
   align-items: center;
 `
-const ContentWrapper = styled(View)`
+const ContentWrapper = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;

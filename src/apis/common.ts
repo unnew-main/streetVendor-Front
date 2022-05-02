@@ -7,7 +7,7 @@ export default {
     return await axios({
       method: 'get',
       url: setting.apiUrl + url,
-      params,
+      data: params,
       headers: {
         Authorization: `Bearer ${await sessionHelper.getSession()}`,
       },
@@ -17,11 +17,11 @@ export default {
   get: async (url: string, params: any) =>
     await axios.get(setting.apiUrl + url, { params }),
 
-  postAuth: async (url: string, params: any) => {
+  postAuth: async (url: string, params: object) => {
     return await axios({
       method: 'post',
       url: setting.apiUrl + url,
-      params,
+      data: params,
       headers: {
         Authorization: `Bearer ${await sessionHelper.getSession()}`,
       },

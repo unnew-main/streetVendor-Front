@@ -8,8 +8,8 @@ type TimePicker = {
   handleUpdateTime: (
     id: number,
     newDay?: any,
-    startTime?: { hour: string; minute: string },
-    endTime?: { hour: string; minute: string },
+    startTime?: string,
+    endTime?: string,
   ) => void
   type: 'start' | 'end'
 }
@@ -32,15 +32,22 @@ export const TimePicker = ({
   const handleConfirm = useCallback(
     (date: Date) => {
       if (type === 'start') {
-        handleUpdateTime(id, null, {
-          hour: String(date.getHours()),
-          minute: String(date.getMinutes()),
-        })
+        handleUpdateTime(
+          id,
+          null,
+          `${String(date.getHours()).padStart(2, '0')}:${String(
+            date.getMinutes(),
+          ).padStart(2, '0')}`,
+        )
       } else if (type === 'end') {
-        handleUpdateTime(id, null, undefined, {
-          hour: String(date.getHours()),
-          minute: String(date.getMinutes()),
-        })
+        handleUpdateTime(
+          id,
+          null,
+          undefined,
+          `${String(date.getHours()).padStart(2, '0')}:${String(
+            date.getMinutes(),
+          ).padStart(2, '0')}`,
+        )
       }
       hideDatePicker()
     },

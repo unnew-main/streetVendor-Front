@@ -1,12 +1,11 @@
 import { SetLocationScreen } from '@/screens/boss/registerStore'
-import {
-  LocationType,
-  StackRegisterStoreList,
-} from '@/screens/boss/RegisterStoreScreen.type'
+
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useState } from 'react'
 import Geolocation from '@react-native-community/geolocation'
 import { goAlert } from '@/utils/goAlert'
+import { StackRegisterStoreList } from '@/types/routeType'
+import { LocationType } from '@/types/storeType'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>

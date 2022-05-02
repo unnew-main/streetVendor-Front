@@ -55,10 +55,10 @@ export const SetBusinessHoursScreen = ({
                   handleUpdateList(props.id, value)
                 }
                 items={days}
-                value={props.listData.day}
+                value={props.listData.days}
               />
             </View>
-            <Text>{props.listData.day}</Text>
+            <Text>{props.listData.days}</Text>
 
             <TimePicker
               id={props.id}
@@ -66,9 +66,7 @@ export const SetBusinessHoursScreen = ({
               handleUpdateTime={handleUpdateList}
               type="start"
             />
-            <Text>
-              {props.listData.startTime.hour}:{props.listData.startTime.minute}
-            </Text>
+            <Text>{props.listData.startTime}</Text>
 
             <TimePicker
               id={props.id}
@@ -76,9 +74,7 @@ export const SetBusinessHoursScreen = ({
               handleUpdateTime={handleUpdateList}
               type="end"
             />
-            <Text>
-              {props.listData.endTime.hour}:{props.listData.endTime.minute}
-            </Text>
+            <Text>{props.listData.endTime}</Text>
             <TouchableOpacity onPress={() => onRemoveList(props.id)}>
               <Text style={{ color: 'red' }}>삭제</Text>
             </TouchableOpacity>

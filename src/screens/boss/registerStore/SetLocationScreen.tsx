@@ -1,9 +1,9 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import NaverMapView, { Marker } from 'react-native-nmap'
-import styled from 'styled-components'
-import { LocationType } from '../RegisterStoreScreen.type'
+import { LocationType } from '@/types/storeType'
+import styled from 'styled-components/native'
 
 type Props = {
   handleNextRouter: () => void
@@ -55,14 +55,14 @@ export const SetLocationScreen = ({
   )
 }
 
-const ContentHeader = styled(View)`
+const ContentHeader = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 10%;
 `
-const NaverMapWrapper = styled(View)`
+const NaverMapWrapper = styled.View`
   width: 100%;
   height: 90%;
 `

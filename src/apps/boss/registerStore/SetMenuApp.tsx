@@ -1,8 +1,7 @@
 import { SetMenuScreen } from '@/screens/boss/registerStore'
-import {
-  MenuType,
-  StackRegisterStoreList,
-} from '@/screens/boss/RegisterStoreScreen.type'
+import { StackRegisterStoreList } from '@/types/routeType'
+import { RegisterMenuType } from '@/types/storeType'
+
 import { goAlert } from '@/utils/goAlert'
 import { openImage } from '@/utils/openImage'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -10,20 +9,20 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetMenu'>
-  handleMenu: (data: MenuType[]) => void
-  menu: MenuType[]
+  handleMenu: (data: RegisterMenuType[]) => void
+  menu: RegisterMenuType[]
 }
 
 export type ListType = {
   id: number
-  listData: MenuType
+  listData: RegisterMenuType
 }
 
 //     {
-//       "amount": 0,
+//       "menuCount": 0,
 //       "name": "string",
 //       "pictureUrl": "string",
-//       "price": 0
+//       "price": string
 //     }
 
 export const SetMenuApp = ({
@@ -61,7 +60,7 @@ export const SetMenuApp = ({
         listData: {
           name: '',
           amount: 0,
-          price: 0,
+          price: '',
           pictureUrl: '',
         },
       }),
@@ -73,10 +72,10 @@ export const SetMenuApp = ({
   }, [])
 
   const handleOpenImage = useCallback(
-    async (id: number, name?: string, amount?: number, price?: number) => {
+    async (id: number, name?: string, menuCount?: number, price?: string) => {
       try {
         const imageUrl = await openImage()
-        imageUrl && handleUpdateList(id, name, amount, price, imageUrl)
+        imageUrl && handleUpdateList(id, name, menuCount, price, imageUrl)
       } catch (e) {
         console.log('Error Open Image', e)
       }
@@ -90,7 +89,7 @@ export const SetMenuApp = ({
       id: number,
       name?: string,
       amount?: number,
-      price?: number,
+      price?: string,
       pictureUrl?: string,
     ) => {
       setList(prevList =>
@@ -112,8 +111,8 @@ export const SetMenuApp = ({
                   : prevItem.listData.pictureUrl,
                 price: price
                   ? price
-                  : price === 0
-                  ? 0
+                  : price === ''
+                  ? ''
                   : prevItem.listData.price,
               },
             }
@@ -132,7 +131,7 @@ export const SetMenuApp = ({
       } else if (data.listData.amount === 0) {
         goAlert('음식 개수를 정해주세요')
         throw Error
-      } else if (data.listData.price === 0) {
+      } else if (data.listData.price === '') {
         goAlert('가격을 정해주세요')
         throw Error
       }
@@ -155,7 +154,7 @@ export const SetMenuApp = ({
         } else if (data.listData.amount === 0) {
           goAlert('음식 개수를 정해주세요')
           throw Error
-        } else if (data.listData.price === 0) {
+        } else if (data.listData.price === '') {
           goAlert('가격을 정해주세요')
           throw Error
         }
