@@ -8,7 +8,7 @@ import styled from 'styled-components/native'
 type BossMainScreenProps = {
   list: StoreType[]
 }
-export const BossMainScreen = ({ list }: BossMainScreenProps) => {
+export const BossStoreListScreen = ({ list }: BossMainScreenProps) => {
   return (
     <Container>
       <ScrollView
@@ -21,31 +21,9 @@ export const BossMainScreen = ({ list }: BossMainScreenProps) => {
           list.map((param, i) => (
             <ItemContainer key={i}>
               <Item>-----------------------</Item>
-
-              <Item>{param.bossId}</Item>
-              <Item>{param.name}</Item>
-              <ItemContainer>
-                {param.businessHours.map((param, i) => (
-                  <View key={i}>
-                    <Item>{param.days}</Item>
-                    <Item>{param.startTime}</Item>
-                    <Item>{param.endTime}</Item>
-                  </View>
-                ))}
-              </ItemContainer>
-              <Item>{param.category}</Item>
-              <Item>{param.description}</Item>
-              <ItemContainer>
-                {param.menus.map((param, i) => (
-                  <View key={i}>
-                    <Item>{param.menuCount}</Item>
-                    <Item>{param.price}</Item>
-                    <Item>{param.name}</Item>
-                  </View>
-                ))}
-              </ItemContainer>
-              <Item>{param.paymentMethods}</Item>
               <Item>{param.storeId}</Item>
+              <Item>{param.storeName}</Item>
+              <Item>{param.locationDescription}</Item>
             </ItemContainer>
           ))
         ) : (

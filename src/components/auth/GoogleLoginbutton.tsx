@@ -26,7 +26,7 @@ export const GoogleLoginbutton = () => {
       } = await authApi.login(accessToken)
       if (data.sessionId) {
         await sessionHelper.setSession(data.sessionId)
-        navigator?.reset({ routes: [{ name: 'Home' }] })
+        navigator?.reset({ routes: [{ name: 'HomeStack' }] })
         offLoading()
       } else {
         navigator?.reset({
@@ -42,9 +42,12 @@ export const GoogleLoginbutton = () => {
   }, [navigator, offLoading, onLoading])
 
   useEffect(() => {
+    const FIREBASE_WEB_CLIENT_ID = __DEV__
+      ? '233714446693-f5d3j4ndbtrfggv8hc9coq3nf0phk0f8.apps.googleusercontent.com'
+      : '233714446693-vk2612khdagnk5vgv00oc1208ki89sm8.apps.googleusercontent.com'
+
     GoogleSignin.configure({
-      webClientId:
-        '233714446693-f5d3j4ndbtrfggv8hc9coq3nf0phk0f8.apps.googleusercontent.com',
+      webClientId: FIREBASE_WEB_CLIENT_ID,
       offlineAccess: true,
       forceCodeForRefreshToken: true,
       accountName: '',

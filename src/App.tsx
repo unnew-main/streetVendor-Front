@@ -1,14 +1,14 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SplashApp, LoginApp, HomeApp, RegisterMemberApp } from './apps'
+import { SplashApp, LoginApp, HomeStackApp, RegisterMemberApp } from './apps'
 import { LoadingContext } from './contexts/LoadingContext'
 
 export type StackAppList = {
   Splash: undefined
   Login: undefined
   RegisterMember: undefined
-  Home: undefined
+  HomeStack: undefined
 }
 
 const Stack = createStackNavigator<StackAppList>()
@@ -33,8 +33,8 @@ const App = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Home"
-            component={HomeApp}
+            name="HomeStack"
+            component={HomeStackApp}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

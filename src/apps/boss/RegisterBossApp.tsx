@@ -2,12 +2,15 @@ import { memberApi } from '@/apis'
 import { RegisterBossScreen } from '@/screens/boss'
 import { goAlert } from '@/utils/goAlert'
 import React, { useCallback, useState } from 'react'
+import { NavigationContext } from '@react-navigation/native'
 
 export type RegisterBossType = {
   bossName: string
   bossPhoneNumber: string
 }
 export const RegisterBossApp = () => {
+  const navigator = React.useContext(NavigationContext)
+
   const [name, setName] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
 
@@ -18,11 +21,14 @@ export const RegisterBossApp = () => {
         throw Error
       }
       await memberApi.setBossInfo({ bossName: name, bossPhoneNumber: phone })
+      goAlert('사장님 등록이 완료되었습니다.')
+
+      navigator?.navigate('BossStoreList')
     } catch (e) {
       console.log('handleSetBoss Error: ', e)
       goAlert(String(e))
     }
-  }, [name, phone])
+  }, [name, navigator, phone])
 
   return (
     <RegisterBossScreen

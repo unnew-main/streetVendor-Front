@@ -16,7 +16,7 @@ export const OuttroApp = ({ data }: OuttroAppProps) => {
       //여기에 가게정보 저장하는 APi 호출
       console.log('lastData', data)
       await storeApi.createStore(data)
-      navigator?.reset({ routes: [{ name: 'BossMain' }] })
+      navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (e) {
       console.log('OuttroApp Error: ', e)
     }

@@ -15,4 +15,7 @@ export const memberApi = {
   setBossInfo: async (props: RegisterBossType) => {
     return api.postAuth('/api/v1/bossInfo', props)
   },
+  getBossInfo: async () => {
+    return api.getAuth('/api/v1/boss/check', {})
+  },
 }

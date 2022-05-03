@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { SplashScreen } from '@/screens'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { StackAppList } from '@/App'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
 import { goAlert } from '@/utils/goAlert'
-type SplashAppType = {
-  navigation: StackNavigationProp<StackAppList, 'Splash'>
-}
-export function SplashApp({ navigation }: SplashAppType) {
+
+export function SplashApp() {
   const navigator = React.useContext(NavigationContext)
   const [nowState, setNowState] = useState<string>('구글 로그인 확인중...')
   useEffect(() => {
@@ -28,7 +24,7 @@ export function SplashApp({ navigation }: SplashAppType) {
 
           console.log('memberApi', data)
           if (data) {
-            navigator?.reset({ routes: [{ name: 'Home' }] })
+            navigator?.reset({ routes: [{ name: 'HomeStack' }] })
           } else {
             navigator?.reset({ routes: [{ name: 'Login' }] })
           }
@@ -46,6 +42,6 @@ export function SplashApp({ navigation }: SplashAppType) {
         navigator?.reset({ routes: [{ name: 'Login' }] })
       }
     })()
-  }, [navigation, navigator])
+  }, [navigator])
   return <SplashScreen nowState={nowState} />
 }

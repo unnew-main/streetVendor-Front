@@ -53,15 +53,8 @@ export type RegisterStoreScreenProps = {
 //     "storeId": 1}
 
 export type StoreType = {
-  bossId: number
-  businessHours: BusinessHoursType[]
-  category: string
-  name: string
-  description: string
-  location: LocationType
-  menus: StoreMenuType[]
-  paymentMethods: string[]
-  pictureUrl: string
+  storeName: string
+  locationDescription: string
   storeId: number
 }
 

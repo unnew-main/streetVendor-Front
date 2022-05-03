@@ -9,7 +9,7 @@ export const IntroApp = () => {
   }, [navigator])
 
   const handlePrevRouter = useCallback(() => {
-    navigator?.reset({ routes: [{ name: 'BossMain' }] })
+    navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
   }, [navigator])
   return (
     <IntroScreen

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-import { BossMainScreen } from '@/screens/boss'
+import { BossStoreListScreen } from '@/screens/boss'
 // import { NavigationContext } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { StoreType } from '@/types/storeType'
 import { goAlert } from '@/utils/goAlert'
 
-export const BossMainApp = () => {
-  // const navigator = React.useContext(NavigationContext)
+export const BossStoreListApp = () => {
   const { onLoading, offLoading } = useLoading()
   const [list, setList] = useState<StoreType[]>([])
 
@@ -19,6 +18,7 @@ export const BossMainApp = () => {
         const {
           data: { data },
         } = await storeApi.getStore()
+        console.log('store data', data)
         setList(data)
         offLoading()
       } catch (e) {
@@ -30,5 +30,5 @@ export const BossMainApp = () => {
     })()
   }, [offLoading, onLoading])
 
-  return <BossMainScreen list={list} />
+  return <BossStoreListScreen list={list} />
 }

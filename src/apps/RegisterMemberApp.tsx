@@ -47,7 +47,7 @@ export function RegisterMemberApp({
       const { data: session } = await authApi.login(accessToken)
       await sessionHelper.setSession(session.data.sessionId)
 
-      navigator?.reset({ routes: [{ name: 'Home' }] })
+      navigator?.reset({ routes: [{ name: 'HomeStack' }] })
     } catch (e) {
       console.log('RegisterError: ', e)
       goAlert(String(e))

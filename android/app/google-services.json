@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "233714446693-vk2612khdagnk5vgv00oc1208ki89sm8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.streetvendor",
+            "certificate_hash": "d6d7f7278c4871e0c153882c479a4508d847e9b2"
+          }
+        },
+        {
           "client_id": "233714446693-f5d3j4ndbtrfggv8hc9coq3nf0phk0f8.apps.googleusercontent.com",
           "client_type": 3
         }
