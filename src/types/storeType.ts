@@ -7,6 +7,7 @@ export type RegisterStorePropsType = {
   menus: RegisterMenuType[]
   pictureUrl: string
   paymentMethods: string[]
+  locationDescription: string
 }
 export type BusinessHoursType = {
   days: string
@@ -35,6 +36,7 @@ export type RegisterStoreScreenProps = {
       handleMenu: (data: RegisterMenuType[]) => void
       handlePictureUrl: (data: string) => void
       handlePaymentMethods: (data: string[]) => void
+      handleLocationDescription: (data: string) => void
     }
   }
 }

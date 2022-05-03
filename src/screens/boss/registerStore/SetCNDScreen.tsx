@@ -11,12 +11,14 @@ type Props = {
     name: string
     description: string
     paymentMethods: string[]
+    locationDescription: string
   }
   handle: {
     handleCategory: (data: string) => void
     handleName: (data: string) => void
     handleDescription: (data: string) => void
     handlePaymentMethods: (data: string[]) => void
+    handleLocationDescription: (data: string) => void
   }
   isCheck: { isCheckCASH: boolean; isCheckACCOUNT_TRANSFER: boolean }
   isCheckHandle: {
@@ -63,6 +65,12 @@ export const SetCNDScreen = ({
           onChangeText={handle.handleDescription}
           value={data.description}
           placeholder="가게설명을 입력해주세요."
+        />
+        <Text>가게 위치 설명: </Text>
+        <TextInput
+          onChangeText={handle.handleLocationDescription}
+          value={data.locationDescription}
+          placeholder="Ex) oo역 1번출구 앞"
         />
         <Text>결제방식: </Text>
         <Text>현금결제 </Text>

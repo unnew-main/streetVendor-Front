@@ -19,6 +19,7 @@ export const RegisterStoreApp = () => {
   const [menu, setMenu] = useState<RegisterMenuType[]>([])
   const [pictureUrl, setPictureUrl] = useState<string>('')
   const [paymentMethods, setPaymentMethods] = useState<string[]>([])
+  const [locationDescription, setLocationDescription] = useState<string>('')
   const storeProps = {
     data: {
       name: name,
@@ -29,6 +30,7 @@ export const RegisterStoreApp = () => {
       menus: menu,
       pictureUrl: pictureUrl,
       paymentMethods: paymentMethods,
+      locationDescription: locationDescription,
     },
     handle: {
       handleCategory: useCallback((data: string) => setCategory(data), []),
@@ -49,6 +51,10 @@ export const RegisterStoreApp = () => {
       handlePictureUrl: useCallback((data: string) => setPictureUrl(data), []),
       handlePaymentMethods: useCallback(
         (data: string[]) => setPaymentMethods(data),
+        [],
+      ),
+      handleLocationDescription: useCallback(
+        (data: string) => setLocationDescription(data),
         [],
       ),
     },

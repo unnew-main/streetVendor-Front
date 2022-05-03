@@ -11,12 +11,14 @@ type Props = {
     name: string
     description: string
     paymentMethods: string[]
+    locationDescription: string
   }
   handle: {
     handleCategory: (data: string) => void
     handleName: (data: string) => void
     handleDescription: (data: string) => void
     handlePaymentMethods: (data: string[]) => void
+    handleLocationDescription: (data: string) => void
   }
 }
 
@@ -58,6 +60,8 @@ export const SetCNDApp = ({
       goAlert('가게 이름을 입력해주세요')
     } else if (data.description === '') {
       goAlert('가게 설명을 입력해주세요')
+    } else if (data.locationDescription === '') {
+      goAlert('가게 위치 설명을 입력해주세요')
     } else if (!(isCheckCASH || isCheckACCOUNT_TRANSFER)) {
       goAlert('결제 방식을 선택해주세요')
     } else {
@@ -66,6 +70,7 @@ export const SetCNDApp = ({
   }, [
     data.category,
     data.description,
+    data.locationDescription,
     data.name,
     handle,
     isCheckACCOUNT_TRANSFER,

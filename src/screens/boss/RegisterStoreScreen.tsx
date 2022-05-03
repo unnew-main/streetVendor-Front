@@ -33,12 +33,15 @@ export const RegisterStoreScreen = ({
               category: storeProps.data.category,
               description: storeProps.data.description,
               paymentMethods: storeProps.data.paymentMethods,
+              locationDescription: storeProps.data.locationDescription,
             }}
             handle={{
               handleCategory: storeProps.handle.handleCategory,
               handleDescription: storeProps.handle.handleDescription,
               handleName: storeProps.handle.handleName,
               handlePaymentMethods: storeProps.handle.handlePaymentMethods,
+              handleLocationDescription:
+                storeProps.handle.handleLocationDescription,
             }}
             {...props}
           />
