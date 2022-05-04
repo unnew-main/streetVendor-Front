@@ -2,7 +2,7 @@ import { RegisterStoreButton } from '@/apps/boss/components/RegisterStoreButton'
 import { GoogleLogoutbutton, SignoutButton } from '@/components'
 import { StoreType } from '@/types/storeType'
 import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import styled from 'styled-components/native'
 
 type BossMainScreenProps = {
@@ -11,31 +11,28 @@ type BossMainScreenProps = {
 export const BossStoreListScreen = ({ list }: BossMainScreenProps) => {
   return (
     <Container>
-      <ScrollView
-        style={{
-          height: '100%',
-        }}
-      >
-        <Text>보스 메인스크린</Text>
-        {list.length ? (
-          list.map((param, i) => (
-            <ItemContainer key={i}>
-              <Item>-----------------------</Item>
-              <Item>{param.storeId}</Item>
-              <Item>{param.storeName}</Item>
-              <Item>{param.locationDescription}</Item>
-            </ItemContainer>
-          ))
-        ) : (
-          <View>
-            <Text>가게가 없습니다!</Text>
-          </View>
-        )}
-        <RegisterStoreButton />
+      <Scroll>
+        <ScrollWrapper>
+          <Text>가게 리스트</Text>
+          {list.length ? (
+            list.map((param, i) => (
+              <ItemContainer key={i}>
+                <Item>{param.storeId}</Item>
+                <Item>{param.storeName}</Item>
+                <Item>{param.locationDescription}</Item>
+              </ItemContainer>
+            ))
+          ) : (
+            <View>
+              <Text>가게가 없습니다!</Text>
+            </View>
+          )}
+          <RegisterStoreButton />
 
-        <GoogleLogoutbutton />
-        <SignoutButton />
-      </ScrollView>
+          <GoogleLogoutbutton />
+          <SignoutButton />
+        </ScrollWrapper>
+      </Scroll>
     </Container>
   )
 }
@@ -43,12 +40,32 @@ const Container = styled.SafeAreaView`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+
+  height: 100%;
+`
+const Scroll = styled.ScrollView`
+  width: 90%;
+  height: 100%;
+  padding-top: 100px;
+`
+const ScrollWrapper = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100%;
 `
 const ItemContainer = styled.View`
   display: flex;
+  justify-content: center;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
 `
 
 const Item = styled.Text`
-  margin-right: 10px;
+  margin-bottom: 10px;
 `
