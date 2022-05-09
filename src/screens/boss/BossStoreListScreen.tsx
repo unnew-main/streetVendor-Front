@@ -1,12 +1,12 @@
 import { RegisterStoreButton } from '@/apps/boss/components/RegisterStoreButton'
 import { GoogleLogoutbutton, SignoutButton } from '@/components'
-import { StoreType } from '@/types/storeType'
+import { StoreListType } from '@/types/storeType'
 import React from 'react'
 import { Text, View } from 'react-native'
 import styled from 'styled-components/native'
 
 type BossMainScreenProps = {
-  list: StoreType[]
+  list: StoreListType[]
   handleClickStore: (id: number) => void
 }
 export const BossStoreListScreen = ({
@@ -23,6 +23,7 @@ export const BossStoreListScreen = ({
               <ItemContainer
                 key={i}
                 onPress={() => handleClickStore(param.storeId)}
+                isOpen={param.salesStatus === 'CLOSED' ? false : true}
               >
                 <Item>{param.storeId}</Item>
                 <Item>{param.storeName}</Item>
@@ -63,10 +64,11 @@ const ScrollWrapper = styled.View`
   width: 100%;
   height: 100%;
 `
-const ItemContainer = styled.TouchableOpacity`
+const ItemContainer = styled.TouchableOpacity<{ isOpen: boolean }>`
   display: flex;
   justify-content: center;
-  border: 1px solid #000000;
+  border: ${({ isOpen }) =>
+    !isOpen ? '2px solid #000000' : '2px solid green'};
   border-radius: 10px;
   padding: 10px;
   width: 100%;

@@ -1,8 +1,7 @@
-import { GoogleLogoutbutton, SignoutButton } from '@/components'
 import { LocationType } from '@/types/storeType'
 import React from 'react'
 import { Text, View } from 'react-native'
-import NaverMapView, { Marker } from 'react-native-nmap'
+import NaverMapView from 'react-native-nmap'
 import styled from 'styled-components/native'
 
 type Props = {

@@ -41,23 +41,11 @@ export type RegisterStoreScreenProps = {
   }
 }
 
-// {"bossId": 1,
-//  "businessHours": [{"days": "MON", "endTime": "08:01:00", "startTime": "08:00:00"},
-//                    {"days": "TUE", "endTime": "15:00:00", "startTime": "10:00:00"}],
-//  "category": "BUNG_EO_PPANG",
-//   "description": "가게 설명",
-//   "location": {"latitude": 14.23232, "longitude": 30.2323},
-//    "menus": [{"menuCount": 2, "menuId": 1, "name": "팥 붕어빵", "pictureUrl": "https://menu.com/", "price": 2000, "salesStatus": "ON_SALE"},
-//             {"menuCount": 5, "menuId": 2, "name": "슈크림", "pictureUrl": "https://menu.com/", "price": 2000, "salesStatus": "ON_SALE"}],
-//    "name": "황금잉어",
-//    "paymentMethods": ["CASH", "ACCOUNT_TRANSFER"],
-//    "pictureUrl": "https://store.com/",
-//     "storeId": 1}
-
-export type StoreType = {
+export type StoreListType = {
   storeName: string
   locationDescription: string
   storeId: number
+  salesStatus: 'CLOSED' | 'OPEN'
 }
 
 export type StoreMenuType = {
@@ -69,55 +57,26 @@ export type StoreMenuType = {
   salesStatus: 'SOLD_OUT' | 'ON_SALE'
 }
 
-// {
-//   "code": "",
-//   "message": "",
-//   "data": [
-//       {
-//           "storeId": 1,
-//           "bossId": 1,
-//           "name": "황금잉어",
-//           "pictureUrl": "https://store.com/",
-//           "location": {
-//               "latitude": 14.23232,
-//               "longitude": 30.2323
-//           },
-//           "description": "가게 설명",
-//           "businessHours": [
-//               {
-//                   "days": "MON",
-//                   "startTime": "08:00:00",
-//                   "endTime": "08:01:00"
-//               },
-//               {
-//                   "days": "TUE",
-//                   "startTime": "10:00:00",
-//                   "endTime": "15:00:00"
-//               }
-//           ],
-//           "category": "BUNG_EO_PPANG",
-//           "paymentMethods": [
-//               "CASH",
-//               "ACCOUNT_TRANSFER"
-//           ],
-//           "menus": [
-//               {
-//                   "menuId": 1,
-//                   "name": "팥 붕어빵",
-//                   "menumenuCount": 0,
-//                   "price": 2000,
-//                   "pictureUrl": "https://menu.com/",
-//                   "salesStatus": "ON_SALE"
-//               },
-//               {
-//                   "menuId": 2,
-//                   "name": "슈크림",
-//                   "menumenuCount": 0,
-//                   "price": 2000,
-//                   "pictureUrl": "https://menu.com/",
-//                   "salesStatus": "ON_SALE"
-//               }
-//           ]
-//       }
-//   ]
-// }
+export type StoreDetailType = {
+  bossNumber: string
+  category: string
+  description: string
+  menuList: [
+    {
+      menuCount: number
+      menuName: string
+      menuPrice: number
+      pictureUrl: string
+    },
+  ]
+  openingTime: [
+    {
+      days: string
+      endTime: string
+      startTime: string
+      storeId: string
+    },
+  ]
+  storeId: number
+  storeName: string
+}

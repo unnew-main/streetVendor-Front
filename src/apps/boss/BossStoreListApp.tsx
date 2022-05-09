@@ -4,14 +4,14 @@ import { BossStoreListScreen } from '@/screens/boss'
 // import { NavigationContext } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
-import { StoreType } from '@/types/storeType'
+import { StoreListType } from '@/types/storeType'
 import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
 
 export const BossStoreListApp = () => {
   const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
-  const [list, setList] = useState<StoreType[]>([])
+  const [list, setList] = useState<StoreListType[]>([])
 
   useEffect(() => {
     ;(async () => {
