@@ -7,8 +7,12 @@ import styled from 'styled-components/native'
 
 type BossMainScreenProps = {
   list: StoreType[]
+  handleClickStore: (id: number) => void
 }
-export const BossStoreListScreen = ({ list }: BossMainScreenProps) => {
+export const BossStoreListScreen = ({
+  list,
+  handleClickStore,
+}: BossMainScreenProps) => {
   return (
     <Container>
       <Scroll>
@@ -16,7 +20,10 @@ export const BossStoreListScreen = ({ list }: BossMainScreenProps) => {
           <Text>가게 리스트</Text>
           {list.length ? (
             list.map((param, i) => (
-              <ItemContainer key={i}>
+              <ItemContainer
+                key={i}
+                onPress={() => handleClickStore(param.storeId)}
+              >
                 <Item>{param.storeId}</Item>
                 <Item>{param.storeName}</Item>
                 <Item>{param.locationDescription}</Item>
@@ -56,7 +63,7 @@ const ScrollWrapper = styled.View`
   width: 100%;
   height: 100%;
 `
-const ItemContainer = styled.View`
+const ItemContainer = styled.TouchableOpacity`
   display: flex;
   justify-content: center;
   border: 1px solid #000000;

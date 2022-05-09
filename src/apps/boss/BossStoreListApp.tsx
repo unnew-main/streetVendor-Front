@@ -6,8 +6,10 @@ import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { StoreType } from '@/types/storeType'
 import { goAlert } from '@/utils/goAlert'
+import { NavigationContext } from '@react-navigation/native'
 
 export const BossStoreListApp = () => {
+  const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
   const [list, setList] = useState<StoreType[]>([])
 
@@ -30,5 +32,9 @@ export const BossStoreListApp = () => {
     })()
   }, [offLoading, onLoading])
 
-  return <BossStoreListScreen list={list} />
+  const handleClickStore = (id: number) => {
+    console.log(id)
+    navigator?.navigate('BossStoreTab', { storeId: id })
+  }
+  return <BossStoreListScreen list={list} handleClickStore={handleClickStore} />
 }
