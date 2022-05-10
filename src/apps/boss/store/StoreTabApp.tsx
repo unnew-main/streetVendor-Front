@@ -8,37 +8,36 @@ type Props = {
 }
 export const StoreTabApp = ({ route }: Props) => {
   const { storeId } = route.params
-  // const [storeData, setStoreData] = useState<StoreDetailType>({
-  //   bossNumber: '',
-  //   category: '',
-  //   description: 'string',
-  //   menuList: [
-  //     {
-  //       menuCount: 0,
-  //       menuName: '',
-  //       menuPrice: 0,
-  //       pictureUrl: '',
-  //     },
-  //   ],
-  //   openingTime: [
-  //     {
-  //       days: '',
-  //       endTime: '',
-  //       startTime: '',
-  //       storeId: '',
-  //     },
-  //   ],
-  //   storeId: 0,
-  //   storeName: '',
-  // })
-  const [storeData, setStoreData] = useState<StoreDetailType>()
+
+  const [storeData, setStoreData] = useState<StoreDetailType>({
+    bossNumber: '01012341234',
+    businessHours: [
+      { days: 'MON', endTime: '12:00:00', startTime: '12:00:00' },
+    ],
+    category: 'BUNG_EO_PPANG',
+    location: { latitude: 37.787255643629464, longitude: 126.40588055822184 },
+    locationDescription: '',
+    menuList: [
+      {
+        menuCount: 0,
+        menuName: '',
+        menuPrice: 0,
+        pictureUrl: '',
+      },
+    ],
+    payments: ['CASH'],
+    pictureUrl: '',
+    status: 'OPEN',
+    storeDescription: '',
+    storeId: 0,
+    storeName: '',
+  })
   useEffect(() => {
     ;(async () => {
       try {
         const {
           data: { data },
         } = await storeApi.getDetailStore(storeId)
-        //TODO: 데이터 정리 및 넘기기
         console.log('detail storedata', data)
         setStoreData(data)
       } catch (e) {
@@ -46,5 +45,5 @@ export const StoreTabApp = ({ route }: Props) => {
       }
     })()
   }, [storeId])
-  return <StoreTabScreen /*  storeData={storeData} */ />
+  return <StoreTabScreen storeData={storeData} />
 }

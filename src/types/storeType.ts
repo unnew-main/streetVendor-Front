@@ -81,7 +81,7 @@ export type StoreMenuType = {
 export type StoreDetailType = {
   bossNumber: string
   category: string
-  description: string
+  storeDescription: string
   menuList: [
     {
       menuCount: number
@@ -90,13 +90,19 @@ export type StoreDetailType = {
       pictureUrl: string
     },
   ]
-  openingTime: [
+  businessHours: [
     {
       days: string
       endTime: string
       startTime: string
     },
   ]
+  location: LocationType
+  locationDescription: string
+
   storeId: number
   storeName: string
+  payments: string[]
+  pictureUrl: string
+  status: 'CLOSED' | 'OPEN'
 }

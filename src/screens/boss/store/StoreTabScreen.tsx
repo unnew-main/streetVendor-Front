@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ReservationListApp, StoreInfoApp } from '@/apps/boss/store'
 import { StoreDetailType } from '@/types/storeType'
 
-type Props = { storeData: any }
+type Props = { storeData: StoreDetailType }
 const Tab = createBottomTabNavigator()
 
 export function StoreTabScreen({ storeData }: Props) {

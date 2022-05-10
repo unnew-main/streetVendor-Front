@@ -1,11 +1,17 @@
 import { StoreInfoScreen } from '@/screens/boss/store'
 import { StoreDetailType } from '@/types/storeType'
+import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
 
 type Props = {
-  storeData: any
+  storeData: StoreDetailType
 }
 export const StoreInfoApp = ({ storeData }: Props) => {
-  console.log('store', storeData)
-  return <StoreInfoScreen storeData={storeData} />
+  const navigator = React.useContext(NavigationContext)
+  const handleBackList = () => {
+    navigator?.goBack()
+  }
+  return (
+    <StoreInfoScreen storeData={storeData} handleBackList={handleBackList} />
+  )
 }
