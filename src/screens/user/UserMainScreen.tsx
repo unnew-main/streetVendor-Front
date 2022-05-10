@@ -1,3 +1,4 @@
+import { ChangeBossButton } from '@/components'
 import { LocationType } from '@/types/storeType'
 import React from 'react'
 import { Text, View } from 'react-native'
@@ -19,6 +20,7 @@ export const UserMainScreen = ({ userLocation }: Props) => {
       }}
     >
       <Text>유저 메인스크린</Text>
+      <ChangeBossButton />
       <NaverMapWrapper>
         <NaverMapView
           style={{ width: '100%', height: '100%' }}
