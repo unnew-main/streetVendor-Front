@@ -31,7 +31,7 @@ export const RegisterStoreScreen = ({
             data={{
               name: storeProps.data.name,
               category: storeProps.data.category,
-              description: storeProps.data.description,
+              storeDescription: storeProps.data.storeDescription,
               paymentMethods: storeProps.data.paymentMethods,
               locationDescription: storeProps.data.locationDescription,
             }}

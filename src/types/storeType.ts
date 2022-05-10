@@ -1,7 +1,7 @@
 export type RegisterStorePropsType = {
   category: string
   name: string
-  description: string
+  storeDescription: string
   location: LocationType
   businessHours: BusinessHoursType[]
   menus: RegisterMenuType[]
@@ -19,7 +19,7 @@ export type LocationType = {
   longitude: number
 }
 export type RegisterMenuType = {
-  amount: number
+  menuCount: number
   name: string
   pictureUrl: string
   price: string
@@ -39,6 +39,27 @@ export type RegisterStoreScreenProps = {
       handleLocationDescription: (data: string) => void
     }
   }
+}
+
+export type StoreCategory = {
+  label:
+    | '붕어빵'
+    | '타코야키'
+    | '떡볶이'
+    | '호떡'
+    | '계란빵'
+    | '순대'
+    | '기타 음식'
+    | '기타 디저트'
+  value:
+    | 'BUNG_EO_PPANG'
+    | 'TAKOYAKI'
+    | 'TTEOK_BOKKI'
+    | 'HO_DDEOK'
+    | 'EGG_BREAD'
+    | 'SUNDAE'
+    | 'OTHER_MEAL'
+    | 'OTHER_DESSERT'
 }
 
 export type StoreListType = {
@@ -74,7 +95,6 @@ export type StoreDetailType = {
       days: string
       endTime: string
       startTime: string
-      storeId: string
     },
   ]
   storeId: number

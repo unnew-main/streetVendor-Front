@@ -8,29 +8,30 @@ type Props = {
 }
 export const StoreTabApp = ({ route }: Props) => {
   const { storeId } = route.params
-  const [storeData, setStoreData] = useState<StoreDetailType>({
-    bossNumber: '',
-    category: '',
-    description: 'string',
-    menuList: [
-      {
-        menuCount: 0,
-        menuName: '',
-        menuPrice: 0,
-        pictureUrl: '',
-      },
-    ],
-    openingTime: [
-      {
-        days: '',
-        endTime: '',
-        startTime: '',
-        storeId: '',
-      },
-    ],
-    storeId: 0,
-    storeName: '',
-  })
+  // const [storeData, setStoreData] = useState<StoreDetailType>({
+  //   bossNumber: '',
+  //   category: '',
+  //   description: 'string',
+  //   menuList: [
+  //     {
+  //       menuCount: 0,
+  //       menuName: '',
+  //       menuPrice: 0,
+  //       pictureUrl: '',
+  //     },
+  //   ],
+  //   openingTime: [
+  //     {
+  //       days: '',
+  //       endTime: '',
+  //       startTime: '',
+  //       storeId: '',
+  //     },
+  //   ],
+  //   storeId: 0,
+  //   storeName: '',
+  // })
+  const [storeData, setStoreData] = useState<StoreDetailType>()
   useEffect(() => {
     ;(async () => {
       try {
@@ -41,9 +42,9 @@ export const StoreTabApp = ({ route }: Props) => {
         console.log('detail storedata', data)
         setStoreData(data)
       } catch (e) {
-        console.log(e)
+        console.log('getDetailStore ERROR:', e)
       }
     })()
   }, [storeId])
-  return <StoreTabScreen storeData={storeData} />
+  return <StoreTabScreen /*  storeData={storeData} */ />
 }

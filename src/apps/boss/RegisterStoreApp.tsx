@@ -10,7 +10,7 @@ import {
 export const RegisterStoreApp = () => {
   const [category, setCategory] = useState<string>('')
   const [name, setName] = useState<string>('')
-  const [description, setdescription] = useState<string>('')
+  const [storeDescription, setStoreDescription] = useState<string>('')
   const [location, setLocation] = useState<LocationType>({
     longitude: 0,
     latitude: 0,
@@ -23,7 +23,7 @@ export const RegisterStoreApp = () => {
   const storeProps = {
     data: {
       name: name,
-      description: description,
+      storeDescription: storeDescription,
       category: category,
       location: location,
       businessHours: businessHours,
@@ -36,7 +36,7 @@ export const RegisterStoreApp = () => {
       handleCategory: useCallback((data: string) => setCategory(data), []),
       handleName: useCallback((data: string) => setName(data), []),
       handleDescription: useCallback(
-        (data: string) => setdescription(data),
+        (data: string) => setStoreDescription(data),
         [],
       ),
       handleLocation: useCallback(

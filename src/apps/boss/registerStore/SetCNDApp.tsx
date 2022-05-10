@@ -9,7 +9,7 @@ type Props = {
   data: {
     category: string
     name: string
-    description: string
+    storeDescription: string
     paymentMethods: string[]
     locationDescription: string
   }
@@ -58,7 +58,7 @@ export const SetCNDApp = ({
       goAlert('카테고리를 선택해주세요')
     } else if (data.name === '') {
       goAlert('가게 이름을 입력해주세요')
-    } else if (data.description === '') {
+    } else if (data.storeDescription === '') {
       goAlert('가게 설명을 입력해주세요')
     } else if (data.locationDescription === '') {
       goAlert('가게 위치 설명을 입력해주세요')
@@ -69,7 +69,7 @@ export const SetCNDApp = ({
     }
   }, [
     data.category,
-    data.description,
+    data.storeDescription,
     data.locationDescription,
     data.name,
     handle,

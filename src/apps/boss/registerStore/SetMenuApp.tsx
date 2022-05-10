@@ -18,13 +18,6 @@ export type ListType = {
   listData: RegisterMenuType
 }
 
-//     {
-//       "menuCount": 0,
-//       "name": "string",
-//       "pictureUrl": "string",
-//       "price": string
-//     }
-
 export const SetMenuApp = ({
   navigation: { navigate },
   handleMenu,
@@ -41,7 +34,7 @@ export const SetMenuApp = ({
         prev.concat({
           id: listId.current,
           listData: {
-            amount: data.amount,
+            menuCount: data.menuCount,
             name: data.name,
             pictureUrl: data.pictureUrl,
             price: data.price,
@@ -59,7 +52,7 @@ export const SetMenuApp = ({
         id: listId.current,
         listData: {
           name: '',
-          amount: 0,
+          menuCount: 0,
           price: '',
           pictureUrl: '',
         },
@@ -88,7 +81,7 @@ export const SetMenuApp = ({
     (
       id: number,
       name?: string,
-      amount?: number,
+      menuCount?: number,
       price?: string,
       pictureUrl?: string,
     ) => {
@@ -98,11 +91,11 @@ export const SetMenuApp = ({
             return {
               id,
               listData: {
-                amount: amount
-                  ? amount
-                  : amount === 0
+                menuCount: menuCount
+                  ? menuCount
+                  : menuCount === 0
                   ? 0
-                  : prevItem.listData.amount,
+                  : prevItem.listData.menuCount,
                 name: name ? name : name === '' ? '' : prevItem.listData.name,
                 pictureUrl: pictureUrl
                   ? pictureUrl
@@ -128,7 +121,7 @@ export const SetMenuApp = ({
       if (!data.listData.name) {
         goAlert('메뉴 이름을 선택해주세요')
         throw Error
-      } else if (data.listData.amount === 0) {
+      } else if (data.listData.menuCount === 0) {
         goAlert('음식 개수를 정해주세요')
         throw Error
       } else if (data.listData.price === '') {
@@ -151,7 +144,7 @@ export const SetMenuApp = ({
         if (!data.listData.name) {
           goAlert('메뉴 이름을 선택해주세요')
           throw Error
-        } else if (data.listData.amount === 0) {
+        } else if (data.listData.menuCount === 0) {
           goAlert('음식 개수를 정해주세요')
           throw Error
         } else if (data.listData.price === '') {

@@ -4,12 +4,13 @@ import RNPickerSelect from 'react-native-picker-select'
 import { Text, TextInput, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import CheckBox from '@react-native-community/checkbox'
+import { StoreCategory } from '@/types/storeType'
 type Props = {
   handleNextRouter: () => void
   data: {
     category: string
     name: string
-    description: string
+    storeDescription: string
     paymentMethods: string[]
     locationDescription: string
   }
@@ -27,7 +28,7 @@ type Props = {
   }
 }
 
-const categoryData = [
+const categoryData: StoreCategory[] = [
   { label: '붕어빵', value: 'BUNG_EO_PPANG' },
   { label: '타코야키', value: 'TAKOYAKI' },
   { label: '떡볶이', value: 'TTEOK_BOKKI' },
@@ -63,7 +64,7 @@ export const SetCNDScreen = ({
         <Text>가게 설명: </Text>
         <TextInput
           onChangeText={handle.handleDescription}
-          value={data.description}
+          value={data.storeDescription}
           placeholder="가게설명을 입력해주세요."
         />
         <Text>가게 위치 설명: </Text>

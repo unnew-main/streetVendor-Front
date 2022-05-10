@@ -65,7 +65,7 @@ export const SetMenuScreen = ({
             onChangeText={text =>
               handleUpdateList(props.id, props.listData.name, Number(text))
             }
-            value={String(props.listData.amount)}
+            value={String(props.listData.menuCount)}
             placeholder="음식 개수를 입력해주세요."
             keyboardType="number-pad"
           />
@@ -77,7 +77,7 @@ export const SetMenuScreen = ({
               handleUpdateList(
                 props.id,
                 props.listData.name,
-                props.listData.amount,
+                props.listData.menuCount,
                 text,
               )
             }
@@ -93,7 +93,7 @@ export const SetMenuScreen = ({
               handleOpenImage(
                 props.id,
                 props.listData.name,
-                props.listData.amount,
+                props.listData.menuCount,
                 props.listData.price,
               )
             }
