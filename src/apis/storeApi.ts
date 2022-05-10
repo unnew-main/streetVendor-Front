@@ -2,7 +2,7 @@ import { RegisterStorePropsType } from '@/types/storeType'
 import api from './common'
 
 export const storeApi = {
-  getStore: async () => {
+  getListStore: async () => {
     return api.getAuth('/api/v1/my-stores', {})
   },
   getDetailStore: async (storeId: number) => {

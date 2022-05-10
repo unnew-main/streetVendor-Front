@@ -27,7 +27,7 @@ export const StoreTabApp = ({ route }: Props) => {
     ],
     payments: ['CASH'],
     pictureUrl: '',
-    status: 'OPEN',
+    salesStatus: 'OPEN',
     storeDescription: '',
     storeId: 0,
     storeName: '',

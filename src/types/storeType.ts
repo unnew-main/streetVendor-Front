@@ -104,5 +104,5 @@ export type StoreDetailType = {
   storeName: string
   payments: string[]
   pictureUrl: string
-  status: 'CLOSED' | 'OPEN'
+  salesStatus: 'CLOSED' | 'OPEN'
 }

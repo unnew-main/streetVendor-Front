@@ -19,12 +19,12 @@ export const BossStoreListApp = () => {
         onLoading()
         const {
           data: { data },
-        } = await storeApi.getStore()
-        console.log('store data', data)
+        } = await storeApi.getListStore()
+        console.log('store data List', data)
         setList(data)
         offLoading()
       } catch (e) {
-        console.log('BossMainApp Error: ', e)
+        console.log('BossStoreListApp Error: ', e)
 
         offLoading()
         goAlert(String(e))
@@ -34,7 +34,9 @@ export const BossStoreListApp = () => {
 
   const handleClickStore = (id: number) => {
     console.log(id)
-    navigator?.navigate('BossStoreTab', { storeId: id })
+    navigator?.reset({
+      routes: [{ name: 'BossStoreTab', params: { storeId: id } }],
+    })
   }
   return <BossStoreListScreen list={list} handleClickStore={handleClickStore} />
 }

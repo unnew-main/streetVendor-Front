@@ -9,9 +9,16 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 type Props = {
   storeData: StoreDetailType
   handleBackList: () => void
+  isOpen: 'CLOSED' | 'OPEN'
+  setIsOpen: React.Dispatch<React.SetStateAction<'CLOSED' | 'OPEN'>>
 }
 
-export const StoreInfoScreen = ({ storeData, handleBackList }: Props) => {
+export const StoreInfoScreen = ({
+  storeData,
+  handleBackList,
+  isOpen,
+  setIsOpen,
+}: Props) => {
   return (
     <View
       style={{
@@ -30,8 +37,11 @@ export const StoreInfoScreen = ({ storeData, handleBackList }: Props) => {
       <Text>{storeData.category}</Text>
       <Text>{storeData.storeDescription}</Text>
       <ChangeUserButton />
-      <CloseStoreButton storeId={storeData.storeId} />
-      <OpenStoreButton storeId={storeData.storeId} />
+      {isOpen === 'CLOSED' ? (
+        <OpenStoreButton storeId={storeData.storeId} setIsOpen={setIsOpen} />
+      ) : (
+        <CloseStoreButton storeId={storeData.storeId} setIsOpen={setIsOpen} />
+      )}
     </View>
   )
 }
