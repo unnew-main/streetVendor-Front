@@ -4,6 +4,7 @@ import { authApi, memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { goAlert } from '@/utils/goAlert'
+import { useLoading } from '@/hooks/useLoading.hook'
 
 type RegisterMemberProps = {
   route: {
@@ -32,11 +33,13 @@ export function RegisterMemberApp({
   },
 }: RegisterMemberProps) {
   const navigator = React.useContext(NavigationContext)
+  const { onLoading, offLoading } = useLoading()
 
   const [userName, setUserName] = useState<string>('')
 
   const handleRegister = useCallback(async () => {
     try {
+      onLoading()
       const userSignUpData: UserSignUpDataProps = {
         email: data.email,
         name: data.name,
@@ -48,11 +51,23 @@ export function RegisterMemberApp({
       await sessionHelper.setSession(session.data.sessionId)
 
       navigator?.reset({ routes: [{ name: 'HomeStack' }] })
+      offLoading()
     } catch (e) {
       console.log('RegisterError: ', e)
+      offLoading()
+
       goAlert(String(e))
     }
-  }, [accessToken, data.email, data.name, data.profileUrl, navigator, userName])
+  }, [
+    accessToken,
+    data.email,
+    data.name,
+    data.profileUrl,
+    navigator,
+    offLoading,
+    onLoading,
+    userName,
+  ])
 
   return (
     <RegisterMemberScreen

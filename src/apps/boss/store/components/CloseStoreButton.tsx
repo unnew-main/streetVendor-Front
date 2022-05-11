@@ -11,7 +11,7 @@ type Props = {
 export const CloseStoreButton = ({ storeId, setIsOpen }: Props) => {
   const handleClose = useCallback(async () => {
     try {
-      await storeApi.changeStateStore(storeId, 'CLOSED')
+      await storeApi.closeStore(storeId)
       console.log('가게닫기완료')
       setIsOpen('CLOSED')
       goAlert('영업이 종료되었습니다.')

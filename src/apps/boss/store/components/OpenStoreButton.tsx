@@ -11,7 +11,7 @@ type Props = {
 export const OpenStoreButton = ({ storeId, setIsOpen }: Props) => {
   const handleOpen = useCallback(async () => {
     try {
-      await storeApi.changeStateStore(storeId, 'OPEN')
+      await storeApi.openStore(storeId)
       console.log('가게오픈완료')
       setIsOpen('OPEN')
       goAlert('영업이 시작되었습니다.')
