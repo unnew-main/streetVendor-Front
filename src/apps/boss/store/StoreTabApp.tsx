@@ -4,10 +4,16 @@ import { RouteProp } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/storeType'
 type Props = {
-  route: RouteProp<{ params: { storeId: number } }>
+  route: RouteProp<{
+    params: {
+      storeId: number
+      handleOpenStore: (id: number) => void
+      handleClosedStore: (id: number) => void
+    }
+  }>
 }
 export const StoreTabApp = ({ route }: Props) => {
-  const { storeId } = route.params
+  const { storeId, handleOpenStore, handleClosedStore } = route.params
 
   const [storeData, setStoreData] = useState<StoreDetailType>({
     bossNumber: '01012341234',
@@ -45,5 +51,11 @@ export const StoreTabApp = ({ route }: Props) => {
       }
     })()
   }, [storeId])
-  return <StoreTabScreen storeData={storeData} />
+  return (
+    <StoreTabScreen
+      storeData={storeData}
+      handleOpenStore={handleOpenStore}
+      handleClosedStore={handleClosedStore}
+    />
+  )
 }

@@ -5,8 +5,15 @@ import React, { useEffect, useState } from 'react'
 
 type Props = {
   storeData: StoreDetailType
+
+  handleOpenStore: (id: number) => void
+  handleClosedStore: (id: number) => void
 }
-export const StoreInfoApp = ({ storeData }: Props) => {
+export const StoreInfoApp = ({
+  storeData,
+  handleOpenStore,
+  handleClosedStore,
+}: Props) => {
   const [isOpen, setIsOpen] = useState<'CLOSED' | 'OPEN'>(storeData.salesStatus)
 
   useEffect(() => {
@@ -14,7 +21,7 @@ export const StoreInfoApp = ({ storeData }: Props) => {
   }, [storeData.salesStatus])
   const navigator = React.useContext(NavigationContext)
   const handleBackList = () => {
-    navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
+    navigator?.navigate('BossStoreList')
   }
   return (
     <StoreInfoScreen
@@ -22,6 +29,8 @@ export const StoreInfoApp = ({ storeData }: Props) => {
       handleBackList={handleBackList}
       setIsOpen={setIsOpen}
       isOpen={isOpen}
+      handleOpenStore={handleOpenStore}
+      handleClosedStore={handleClosedStore}
     />
   )
 }

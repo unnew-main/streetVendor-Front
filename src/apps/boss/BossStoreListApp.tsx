@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { BossStoreListScreen } from '@/screens/boss'
 // import { NavigationContext } from '@react-navigation/native'
@@ -32,11 +32,47 @@ export const BossStoreListApp = () => {
     })()
   }, [offLoading, onLoading])
 
-  const handleClickStore = (id: number) => {
-    console.log(id)
-    navigator?.reset({
-      routes: [{ name: 'BossStoreTab', params: { storeId: id } }],
-    })
-  }
+  const handleOpenStore = useCallback((id: number) => {
+    setList(prevList =>
+      prevList.map((prevItem: StoreListType) => {
+        if (prevItem.storeId === id) {
+          return {
+            locationDescription: prevItem.locationDescription,
+            storeName: prevItem.storeName,
+            storeId: prevItem.storeId,
+            salesStatus: 'OPEN',
+          }
+        }
+        return prevItem
+      }),
+    )
+  }, [])
+  const handleClosedStore = useCallback((id: number) => {
+    setList(prevList =>
+      prevList.map((prevItem: StoreListType) => {
+        if (prevItem.storeId === id) {
+          return {
+            locationDescription: prevItem.locationDescription,
+            storeName: prevItem.storeName,
+            storeId: prevItem.storeId,
+            salesStatus: 'CLOSED',
+          }
+        }
+        return prevItem
+      }),
+    )
+  }, [])
+
+  const handleClickStore = useCallback(
+    (id: number) => {
+      navigator?.navigate('BossStoreTab', {
+        storeId: id,
+        handleOpenStore,
+        handleClosedStore,
+      })
+    },
+    [handleClosedStore, handleOpenStore, navigator],
+  )
+
   return <BossStoreListScreen list={list} handleClickStore={handleClickStore} />
 }

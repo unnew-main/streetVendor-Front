@@ -1,4 +1,5 @@
 import { storeApi } from '@/apis'
+import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
 import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
@@ -6,19 +7,30 @@ import styled from 'styled-components/native'
 type Props = {
   storeId: number
   setIsOpen: React.Dispatch<React.SetStateAction<'CLOSED' | 'OPEN'>>
+  handleClosedStore: (id: number) => void
 }
 
-export const CloseStoreButton = ({ storeId, setIsOpen }: Props) => {
+export const CloseStoreButton = ({
+  storeId,
+  setIsOpen,
+  handleClosedStore,
+}: Props) => {
+  const { onLoading, offLoading } = useLoading()
+
   const handleClose = useCallback(async () => {
     try {
+      onLoading()
       await storeApi.closeStore(storeId)
       console.log('가게닫기완료')
       setIsOpen('CLOSED')
+      handleClosedStore(storeId)
+      offLoading()
       goAlert('영업이 종료되었습니다.')
     } catch (e) {
+      offLoading()
       console.log('CLOSED Store Error:', e)
     }
-  }, [setIsOpen, storeId])
+  }, [handleClosedStore, offLoading, onLoading, setIsOpen, storeId])
 
   return (
     <ButtonContainer onPress={handleClose}>
