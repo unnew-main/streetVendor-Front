@@ -9,12 +9,10 @@ type OuttroAppProps = {
 }
 export const OuttroApp = ({ data }: OuttroAppProps) => {
   const navigator = React.useContext(NavigationContext)
-  console.log(data)
 
   const handleNextRouter = useCallback(async () => {
     try {
       //여기에 가게정보 저장하는 APi 호출
-      console.log('lastData', data)
       await storeApi.createStore(data)
       navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (e) {
@@ -30,6 +28,7 @@ export const OuttroApp = ({ data }: OuttroAppProps) => {
     <OuttroScrreen
       handleNextRouter={handleNextRouter}
       handlePrevRouter={handlePrevRouter}
+      storeData={data}
     />
   )
 }

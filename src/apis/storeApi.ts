@@ -17,4 +17,22 @@ export const storeApi = {
   closeStore: async (storeId: number) => {
     return api.putAuth(`/api/v1/store/sales-status/closed/${storeId}`, {})
   },
+  /**
+   *
+   * @param distance N키로미터
+   * @param latitude 경도
+   * @param longitude 위도
+   * @returns
+   */
+  getLocationStore: async (
+    distance: number,
+    latitude: number,
+    longitude: number,
+  ) => {
+    return api.get('/api/v1/stores/location', { distance, latitude, longitude })
+  },
+
+  getLocationAllStore: async (lastId: number, size: number) => {
+    return api.get('/api/v1/stores', { lastId, size })
+  },
 }

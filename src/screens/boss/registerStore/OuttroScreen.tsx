@@ -1,12 +1,15 @@
+import { RegisterStorePropsType } from '@/types/storeType'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 
 type Props = {
+  storeData: RegisterStorePropsType
   handleNextRouter: () => void
   handlePrevRouter: () => void
 }
 
 export const OuttroScrreen = ({
+  storeData,
   handleNextRouter,
   handlePrevRouter,
 }: Props) => {
@@ -19,6 +22,10 @@ export const OuttroScrreen = ({
         height: '100%',
       }}
     >
+      <Text>{storeData.name}</Text>
+      <Text>{storeData.storeDescription}</Text>
+      <Text>{storeData.locationDescription}</Text>
+      <Text>{storeData.paymentMethods}</Text>
       <TouchableOpacity onPress={handlePrevRouter}>
         <Text>이전</Text>
       </TouchableOpacity>

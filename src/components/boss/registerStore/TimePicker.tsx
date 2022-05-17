@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
-type TimePicker = {
+type Props = {
   id: number
   buttonName: string
   handleUpdateTime: (
@@ -18,7 +18,7 @@ export const TimePicker = ({
   buttonName,
   handleUpdateTime,
   type,
-}: TimePicker) => {
+}: Props) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
 
   const showDatePicker = useCallback(() => {

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import RNPickerSelect from 'react-native-picker-select'
 import { ListType } from '@/apps/boss/registerStore/SetBusinessHoursApp'
-import { TimePicker } from '@/apps/boss/registerStore/components/TimePicker'
+import { TimePicker } from '@/components/boss/registerStore'
 
 type Props = {
   handleNextRouter: () => void
@@ -16,8 +16,8 @@ type Props = {
 
 const days = [
   { label: '월', value: 'MON' },
-  { label: '화', value: 'FRI' },
-  { label: '수', value: 'TUE' },
+  { label: '화', value: 'TUE' },
+  { label: '수', value: 'WED' },
   { label: '목', value: 'THU' },
   { label: '금', value: 'FRI' },
   { label: '토', value: 'SAT' },

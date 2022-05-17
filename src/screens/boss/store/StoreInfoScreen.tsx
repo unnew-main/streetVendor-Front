@@ -1,6 +1,5 @@
-import { CloseStoreButton } from '@/apps/boss/store/components/CloseStoreButton'
-import { OpenStoreButton } from '@/apps/boss/store/components/OpenStoreButton'
 import { ChangeUserButton } from '@/components'
+import { CloseStoreButton, OpenStoreButton } from '@/components/boss/store'
 import { StoreDetailType } from '@/types/storeType'
 import React from 'react'
 import { Text, View } from 'react-native'

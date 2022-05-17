@@ -1,15 +1,28 @@
 import { ChangeBossButton } from '@/components'
-import { LocationType } from '@/types/storeType'
+import { PreviewDetailStore } from '@/components/user'
+import { LocationType, StoreDetailType } from '@/types/storeType'
 import React from 'react'
 import { Text, View } from 'react-native'
-import NaverMapView from 'react-native-nmap'
+import NaverMapView, { Marker } from 'react-native-nmap'
 import styled from 'styled-components/native'
 
 type Props = {
   userLocation: LocationType
+  handleCameraMove: (latitude: number, longitude: number, zoom: number) => void
+  storeList: StoreDetailType[]
+  handleClickMapPin: (item: StoreDetailType) => void
+  isClickMapPin: boolean
+  detailStoreInfo: StoreDetailType
 }
 
-export const UserMainScreen = ({ userLocation }: Props) => {
+export const UserMainScreen = ({
+  userLocation,
+  handleCameraMove,
+  storeList,
+  handleClickMapPin,
+  isClickMapPin,
+  detailStoreInfo,
+}: Props) => {
   return (
     <View
       style={{
@@ -29,15 +42,23 @@ export const UserMainScreen = ({ userLocation }: Props) => {
           compass={true}
           scaleBar={true}
           onMapClick={e => console.log('onMapClick', e)}
-          onCameraChange={e => console.log('cameraChange', e)}
+          onCameraChange={e =>
+            handleCameraMove(e.latitude, e.longitude, e.zoom)
+          }
         >
-          {/* {isPin !== false && (
-            <Marker
-              coordinate={location}
-              onClick={() => handleMapClickCancel()}
-            />
-          )} */}
+          {storeList.length !== 0 &&
+            storeList.map(item => (
+              <Marker
+                key={item.storeId}
+                coordinate={{
+                  latitude: item.location.latitude,
+                  longitude: item.location.longitude,
+                }}
+                onClick={() => handleClickMapPin(item)}
+              />
+            ))}
         </NaverMapView>
+        {isClickMapPin && <PreviewDetailStore storeInfo={detailStoreInfo} />}
       </NaverMapWrapper>
     </View>
   )

@@ -1,5 +1,5 @@
-import { RegisterStoreButton } from '@/apps/boss/components/RegisterStoreButton'
 import { GoogleLogoutbutton, SignoutButton } from '@/components'
+import { RegisterStoreButton } from '@/components/boss'
 import { StoreListType } from '@/types/storeType'
 import React from 'react'
 import { Text, View } from 'react-native'
