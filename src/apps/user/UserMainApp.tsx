@@ -18,7 +18,30 @@ export const UserMainApp = () => {
   const [storeList, setStoreList] = useState<StoreDetailType[]>([])
 
   const [isClickMapPin, setIsClickMapPin] = useState<boolean>(false)
-  const [detailStoreInfo, setDetailStoreInfo] = useState<StoreDetailType>()
+  const [detailStoreInfo, setDetailStoreInfo] = useState<StoreDetailType>({
+    bossNumber: '01012341234',
+    businessHours: [
+      { days: 'MON', endTime: '12:00:00', startTime: '12:00:00' },
+    ],
+    category: 'BUNG_EO_PPANG',
+    location: { latitude: 37.787255643629464, longitude: 126.40588055822184 },
+    locationDescription: '',
+    menuList: [
+      {
+        menuCount: 0,
+        menuName: '',
+        menuPrice: 0,
+        pictureUrl: '',
+      },
+    ],
+    payments: ['CASH'],
+    pictureUrl: '',
+    salesStatus: 'OPEN',
+    storeDescription: '',
+    storeId: 0,
+    storeName: '',
+  })
+
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
@@ -66,9 +89,9 @@ export const UserMainApp = () => {
     setCameraLocation({ latitude, longitude, zoom })
   }
 
-  const handleClickMapPin = useCallback((item: StoreDetailType) => {
-    setIsClickMapPin(false)
-    setDetailStoreInfo(item)
+  const handleClickMapPin = useCallback((item?: StoreDetailType) => {
+    item ? setIsClickMapPin(prev => !prev) : setIsClickMapPin(false)
+    item && setDetailStoreInfo(item)
   }, [])
   return (
     <UserMainScreen

@@ -10,7 +10,7 @@ type Props = {
   userLocation: LocationType
   handleCameraMove: (latitude: number, longitude: number, zoom: number) => void
   storeList: StoreDetailType[]
-  handleClickMapPin: (item: StoreDetailType) => void
+  handleClickMapPin: (item?: StoreDetailType) => void
   isClickMapPin: boolean
   detailStoreInfo: StoreDetailType
 }
@@ -41,7 +41,7 @@ export const UserMainScreen = ({
           center={{ ...userLocation, zoom: 16 }}
           compass={true}
           scaleBar={true}
-          onMapClick={e => console.log('onMapClick', e)}
+          onMapClick={() => handleClickMapPin()}
           onCameraChange={e =>
             handleCameraMove(e.latitude, e.longitude, e.zoom)
           }
