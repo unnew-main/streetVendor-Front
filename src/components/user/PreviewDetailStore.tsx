@@ -1,6 +1,6 @@
 import { StoreDetailType } from '@/types/storeType'
-import React, { Suspense, useRef, useState } from 'react'
-import { Animated, Text, View } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { Animated } from 'react-native'
 import styled from 'styled-components/native'
 import { DetailStore } from './DetailStore'
 
@@ -20,13 +20,13 @@ export const PreviewDetailStore = ({ storeInfo }: Props) => {
       ? Animated.timing(Y, {
           toValue: 100,
           // easing: Easing.back(),
-          duration: 500,
+          duration: 300,
           useNativeDriver: false,
         }).start()
       : Animated.timing(Y, {
-          toValue: 400,
+          toValue: 500,
           // easing: Easing.back(),
-          duration: 500,
+          duration: 300,
           useNativeDriver: false,
         }).start()
   }
@@ -37,11 +37,7 @@ export const PreviewDetailStore = ({ storeInfo }: Props) => {
           <TitleText>{storeInfo.name}</TitleText>
         </StoreNameWrapper>
       </TouchWrapper>
-      {isOpenDetail && (
-        <Suspense fallback={null}>
-          <DetailStore storeId={storeInfo.storeId} />
-        </Suspense>
-      )}
+      {isOpenDetail && <DetailStore storeId={storeInfo.storeId} />}
     </Container>
   )
 }
@@ -49,7 +45,7 @@ export const PreviewDetailStore = ({ storeInfo }: Props) => {
 const Container = styled(Animated.View)<{
   isOpenDetail: boolean
 }>`
-  top: 0%;
+  bottom: 0%;
   left: 0%;
   position: absolute;
   width: 100%;
@@ -63,5 +59,3 @@ const TouchWrapper = styled.TouchableOpacity`
 const StoreNameWrapper = styled.View``
 
 const TitleText = styled.Text``
-
-const DetailContainer = styled.View``
