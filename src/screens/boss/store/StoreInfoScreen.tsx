@@ -1,5 +1,9 @@
 import { ChangeUserButton } from '@/components'
-import { CloseStoreButton, OpenStoreButton } from '@/components/boss/store'
+import {
+  CloseStoreButton,
+  OpenStoreButton,
+  RemoveStoreButton,
+} from '@/components/boss/store'
 import { StoreDetailType } from '@/types/store.type'
 import React from 'react'
 import { Text, View } from 'react-native'
@@ -51,6 +55,7 @@ export const StoreInfoScreen = ({
           handleStore={handleStore}
         />
       )}
+      <RemoveStoreButton storeId={storeData.storeId} isOpen={isOpen} />
     </View>
   )
 }

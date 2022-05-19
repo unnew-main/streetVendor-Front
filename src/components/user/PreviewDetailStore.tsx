@@ -34,7 +34,9 @@ export const PreviewDetailStore = ({ storeInfo }: Props) => {
     <Container isOpenDetail={isOpenDetail} style={{ height: Y }}>
       <TouchWrapper onPress={() => handleShowDetail()}>
         <StoreNameWrapper>
-          <TitleText>{storeInfo.name}</TitleText>
+          <TitleText>가게아이디: {storeInfo.storeId}</TitleText>
+
+          <TitleText>가게이름: {storeInfo.name}</TitleText>
         </StoreNameWrapper>
       </TouchWrapper>
       {isOpenDetail && <DetailStore storeId={storeInfo.storeId} />}

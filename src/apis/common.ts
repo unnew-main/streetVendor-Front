@@ -41,4 +41,14 @@ export default {
       },
     })
   },
+  deleteAuth: async (url: string, params: any) => {
+    return await axios({
+      method: 'delete',
+      url: setting.apiUrl + url,
+      data: params,
+      headers: {
+        Authorization: `Bearer ${await sessionHelper.getSession()}`,
+      },
+    })
+  },
 }

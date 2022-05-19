@@ -46,12 +46,12 @@ const ButtonContainer = styled.TouchableOpacity`
   width: 100px;
   height: 50px;
   border: 1px solid black;
-  background-color: red;
+  background-color: gray;
   border-radius: 10px;
 `
 
 const ButtonContent = styled.Text`
-  color: white;
+  color: black;
 
   font-weight: bold;
 `
