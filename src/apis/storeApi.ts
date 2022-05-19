@@ -1,4 +1,4 @@
-import { RegisterStorePropsType } from '@/types/storeType'
+import { RegisterStorePropsType } from '@/types/store.type'
 import api from './common'
 
 export const storeApi = {

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { UserMainScreen } from '@/screens/user'
-import { LocationType, StoreDetailType } from '@/types/storeType'
+import { LocationType, StoreDetailType } from '@/types/store.type'
 import Geolocation from '@react-native-community/geolocation'
 import { storeApi } from '@/apis'
 

@@ -1,5 +1,5 @@
 import { storeApi } from '@/apis'
-import { StoreDetailType } from '@/types/storeType'
+import { StoreDetailType } from '@/types/store.type'
 import React, { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
 

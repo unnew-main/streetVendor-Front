@@ -1,6 +1,6 @@
 import { SetBusinessHoursScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/types/routeType'
-import { BusinessHoursType } from '@/types/storeType'
+import { StackRegisterStoreList } from '@/types/route.type'
+import { BusinessHoursType } from '@/types/store.type'
 
 import { goAlert } from '@/utils/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'

@@ -1,28 +1,22 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ReservationListApp, StoreInfoApp } from '@/apps/boss/store'
-import { StoreDetailType } from '@/types/storeType'
+import { StoreDetailType } from '@/types/store.type'
 
 type Props = {
   storeData: StoreDetailType
-  handleOpenStore: (id: number) => void
-  handleClosedStore: (id: number) => void
+  handleStore: (id: number, isOpen: boolean) => void
 }
 const Tab = createBottomTabNavigator()
 
-export function StoreTabScreen({
-  storeData,
-  handleOpenStore,
-  handleClosedStore,
-}: Props) {
+export function StoreTabScreen({ storeData, handleStore }: Props) {
   return (
     <Tab.Navigator>
       <Tab.Screen name="가게정보">
         {props => (
           <StoreInfoApp
             storeData={storeData}
-            handleOpenStore={handleOpenStore}
-            handleClosedStore={handleClosedStore}
+            handleStore={handleStore}
             {...props}
           />
         )}

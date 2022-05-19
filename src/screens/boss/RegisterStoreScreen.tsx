@@ -7,8 +7,8 @@ import {
   SetBusinessHoursApp,
   SetPictureApp,
 } from '@/apps/boss/registerStore'
-import { StackRegisterStoreList } from '@/types/routeType'
-import { RegisterStoreScreenProps } from '@/types/storeType'
+import { StackRegisterStoreList } from '@/types/route.type'
+import { RegisterStoreScreenProps } from '@/types/store.type'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 

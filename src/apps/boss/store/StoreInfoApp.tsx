@@ -1,19 +1,13 @@
 import { StoreInfoScreen } from '@/screens/boss/store'
-import { StoreDetailType } from '@/types/storeType'
+import { StoreDetailType } from '@/types/store.type'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 
 type Props = {
   storeData: StoreDetailType
-
-  handleOpenStore: (id: number) => void
-  handleClosedStore: (id: number) => void
+  handleStore: (id: number, isOpen: boolean) => void
 }
-export const StoreInfoApp = ({
-  storeData,
-  handleOpenStore,
-  handleClosedStore,
-}: Props) => {
+export const StoreInfoApp = ({ storeData, handleStore }: Props) => {
   const [isOpen, setIsOpen] = useState<'CLOSED' | 'OPEN'>(storeData.salesStatus)
 
   useEffect(() => {
@@ -29,8 +23,7 @@ export const StoreInfoApp = ({
       handleBackList={handleBackList}
       setIsOpen={setIsOpen}
       isOpen={isOpen}
-      handleOpenStore={handleOpenStore}
-      handleClosedStore={handleClosedStore}
+      handleStore={handleStore}
     />
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import NaverMapView, { Marker } from 'react-native-nmap'
-import { LocationType } from '@/types/storeType'
+import { LocationType } from '@/types/store.type'
 import styled from 'styled-components/native'
 
 type Props = {

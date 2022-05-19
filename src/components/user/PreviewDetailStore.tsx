@@ -1,4 +1,4 @@
-import { StoreDetailType } from '@/types/storeType'
+import { StoreDetailType } from '@/types/store.type'
 import React, { useRef, useState } from 'react'
 import { Animated } from 'react-native'
 import styled from 'styled-components/native'

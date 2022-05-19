@@ -4,7 +4,7 @@ import RNPickerSelect from 'react-native-picker-select'
 import { Text, TextInput, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import CheckBox from '@react-native-community/checkbox'
-import { StoreCategory } from '@/types/storeType'
+import { StoreCategory } from '@/types/store.type'
 type Props = {
   handleNextRouter: () => void
   data: {

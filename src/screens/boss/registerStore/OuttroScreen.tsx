@@ -1,4 +1,4 @@
-import { RegisterStorePropsType } from '@/types/storeType'
+import { RegisterStorePropsType } from '@/types/store.type'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 

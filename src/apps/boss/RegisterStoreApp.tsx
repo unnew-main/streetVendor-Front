@@ -5,7 +5,7 @@ import {
   BusinessHoursType,
   LocationType,
   RegisterMenuType,
-} from '@/types/storeType'
+} from '@/types/store.type'
 
 export const RegisterStoreApp = () => {
   const [category, setCategory] = useState<string>('')

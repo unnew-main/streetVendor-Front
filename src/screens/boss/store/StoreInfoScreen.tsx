@@ -1,6 +1,6 @@
 import { ChangeUserButton } from '@/components'
 import { CloseStoreButton, OpenStoreButton } from '@/components/boss/store'
-import { StoreDetailType } from '@/types/storeType'
+import { StoreDetailType } from '@/types/store.type'
 import React from 'react'
 import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -10,9 +10,7 @@ type Props = {
   handleBackList: () => void
   isOpen: 'CLOSED' | 'OPEN'
   setIsOpen: React.Dispatch<React.SetStateAction<'CLOSED' | 'OPEN'>>
-
-  handleOpenStore: (id: number) => void
-  handleClosedStore: (id: number) => void
+  handleStore: (id: number, isOpen: boolean) => void
 }
 
 export const StoreInfoScreen = ({
@@ -20,8 +18,7 @@ export const StoreInfoScreen = ({
   handleBackList,
   isOpen,
   setIsOpen,
-  handleOpenStore,
-  handleClosedStore,
+  handleStore,
 }: Props) => {
   return (
     <View
@@ -45,13 +42,13 @@ export const StoreInfoScreen = ({
         <OpenStoreButton
           storeId={storeData.storeId}
           setIsOpen={setIsOpen}
-          handleOpenStore={handleOpenStore}
+          handleStore={handleStore}
         />
       ) : (
         <CloseStoreButton
           storeId={storeData.storeId}
           setIsOpen={setIsOpen}
-          handleClosedStore={handleClosedStore}
+          handleStore={handleStore}
         />
       )}
     </View>

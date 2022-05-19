@@ -4,7 +4,7 @@ import { BossStoreListScreen } from '@/screens/boss'
 // import { NavigationContext } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
-import { StoreListType } from '@/types/storeType'
+import { StoreListType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
 
@@ -32,7 +32,7 @@ export const BossStoreListApp = () => {
     })()
   }, [offLoading, onLoading])
 
-  const handleOpenStore = useCallback((id: number) => {
+  const handleStore = useCallback((id: number, isOpen: boolean) => {
     setList(prevList =>
       prevList.map((prevItem: StoreListType) => {
         if (prevItem.storeId === id) {
@@ -40,22 +40,7 @@ export const BossStoreListApp = () => {
             locationDescription: prevItem.locationDescription,
             storeName: prevItem.storeName,
             storeId: prevItem.storeId,
-            salesStatus: 'OPEN',
-          }
-        }
-        return prevItem
-      }),
-    )
-  }, [])
-  const handleClosedStore = useCallback((id: number) => {
-    setList(prevList =>
-      prevList.map((prevItem: StoreListType) => {
-        if (prevItem.storeId === id) {
-          return {
-            locationDescription: prevItem.locationDescription,
-            storeName: prevItem.storeName,
-            storeId: prevItem.storeId,
-            salesStatus: 'CLOSED',
+            salesStatus: isOpen ? 'OPEN' : 'CLOSED',
           }
         }
         return prevItem
@@ -67,11 +52,10 @@ export const BossStoreListApp = () => {
     (id: number) => {
       navigator?.navigate('BossStoreTab', {
         storeId: id,
-        handleOpenStore,
-        handleClosedStore,
+        handleStore,
       })
     },
-    [handleClosedStore, handleOpenStore, navigator],
+    [handleStore, navigator],
   )
 
   return <BossStoreListScreen list={list} handleClickStore={handleClickStore} />

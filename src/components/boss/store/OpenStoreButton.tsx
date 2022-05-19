@@ -7,21 +7,17 @@ import styled from 'styled-components/native'
 type Props = {
   storeId: number
   setIsOpen: React.Dispatch<React.SetStateAction<'CLOSED' | 'OPEN'>>
-  handleOpenStore: (id: number) => void
+  handleStore: (id: number, isOpen: boolean) => void
 }
 
-export const OpenStoreButton = ({
-  storeId,
-  setIsOpen,
-  handleOpenStore,
-}: Props) => {
+export const OpenStoreButton = ({ storeId, setIsOpen, handleStore }: Props) => {
   const { onLoading, offLoading } = useLoading()
   const handleOpen = useCallback(async () => {
     try {
       onLoading()
       await storeApi.openStore(storeId)
       console.log('가게오픈완료')
-      handleOpenStore(storeId)
+      handleStore(storeId, true)
       setIsOpen('OPEN')
       goAlert('영업이 시작되었습니다.')
       offLoading()
@@ -31,7 +27,7 @@ export const OpenStoreButton = ({
 
       console.log('Open Store Error:', e)
     }
-  }, [handleOpenStore, offLoading, onLoading, setIsOpen, storeId])
+  }, [handleStore, offLoading, onLoading, setIsOpen, storeId])
 
   return (
     <ButtonContainer onPress={handleOpen}>

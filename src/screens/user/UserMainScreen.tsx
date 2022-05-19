@@ -1,6 +1,6 @@
 import { ChangeBossButton } from '@/components'
 import { PreviewDetailStore } from '@/components/user'
-import { LocationType, StoreDetailType } from '@/types/storeType'
+import { LocationType, StoreDetailType } from '@/types/store.type'
 import React from 'react'
 import { Text, View } from 'react-native'
 import NaverMapView, { Marker } from 'react-native-nmap'

@@ -1,6 +1,6 @@
 import { storeApi } from '@/apis'
 import { OuttroScrreen } from '@/screens/boss/registerStore'
-import { RegisterStorePropsType } from '@/types/storeType'
+import { RegisterStorePropsType } from '@/types/store.type'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 

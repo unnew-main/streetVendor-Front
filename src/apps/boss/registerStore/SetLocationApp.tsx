@@ -4,8 +4,8 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useState } from 'react'
 import Geolocation from '@react-native-community/geolocation'
 import { goAlert } from '@/utils/goAlert'
-import { StackRegisterStoreList } from '@/types/routeType'
-import { LocationType } from '@/types/storeType'
+import { StackRegisterStoreList } from '@/types/route.type'
+import { LocationType } from '@/types/store.type'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>

@@ -1,6 +1,6 @@
 import { SetMenuScreen } from '@/screens/boss/registerStore'
-import { StackRegisterStoreList } from '@/types/routeType'
-import { RegisterMenuType } from '@/types/storeType'
+import { StackRegisterStoreList } from '@/types/route.type'
+import { RegisterMenuType } from '@/types/store.type'
 
 import { goAlert } from '@/utils/goAlert'
 import { openImage } from '@/utils/openImage'

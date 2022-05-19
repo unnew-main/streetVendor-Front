@@ -1,6 +1,7 @@
 import { GoogleLogoutbutton, SignoutButton } from '@/components'
 import { RegisterStoreButton } from '@/components/boss'
-import { StoreListType } from '@/types/storeType'
+import { AutoCreateStore } from '@/dummy/AutoCreateStore'
+import { StoreListType } from '@/types/store.type'
 import React from 'react'
 import { Text, View } from 'react-native'
 import styled from 'styled-components/native'
@@ -15,9 +16,10 @@ export const BossStoreListScreen = ({
 }: BossMainScreenProps) => {
   return (
     <Container>
-      <Scroll>
-        <ScrollWrapper>
-          <Text>가게 리스트</Text>
+      <ScrollWrapper>
+        <Text>가게 리스트</Text>
+        <AutoCreateStore />
+        <Scroll>
           {list.length ? (
             list.map((param, i) => (
               <ItemContainer
@@ -35,12 +37,13 @@ export const BossStoreListScreen = ({
               <Text>가게가 없습니다!</Text>
             </View>
           )}
-          <RegisterStoreButton />
+        </Scroll>
 
-          <GoogleLogoutbutton />
-          <SignoutButton />
-        </ScrollWrapper>
-      </Scroll>
+        <RegisterStoreButton />
+
+        <GoogleLogoutbutton />
+        <SignoutButton />
+      </ScrollWrapper>
     </Container>
   )
 }
@@ -55,7 +58,6 @@ const Container = styled.SafeAreaView`
 const Scroll = styled.ScrollView`
   width: 90%;
   height: 100%;
-  padding-top: 100px;
 `
 const ScrollWrapper = styled.View`
   display: flex;
