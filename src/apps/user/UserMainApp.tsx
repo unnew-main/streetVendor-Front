@@ -6,6 +6,7 @@ import Geolocation from '@react-native-community/geolocation'
 import { storeApi } from '@/apis'
 
 export const UserMainApp = () => {
+  const [showAllStore, setShowAllStore] = useState(false)
   const [userLocation, setUserLocation] = useState<LocationType>({
     latitude: 0,
     longitude: 0,
@@ -13,7 +14,6 @@ export const UserMainApp = () => {
   const [cameraLocation, setCameraLocation] = useState({
     latitude: 0,
     longitude: 0,
-    zoom: 0,
   })
   const [storeList, setStoreList] = useState<StoreDetailType[]>([])
 
@@ -52,7 +52,6 @@ export const UserMainApp = () => {
         setCameraLocation({
           latitude: Number(position.coords.latitude),
           longitude: Number(position.coords.longitude),
-          zoom: 16,
         })
       },
       error => {
@@ -67,26 +66,28 @@ export const UserMainApp = () => {
       try {
         const {
           data: { data },
-        } = await storeApi.getLocationStore(
-          2,
-          cameraLocation.latitude,
-          cameraLocation.longitude,
-        )
+        } = showAllStore
+          ? await storeApi.getLocationClosedStore(
+              2,
+              cameraLocation.latitude,
+              cameraLocation.longitude,
+            )
+          : await storeApi.getLocationOpenStore(
+              2,
+              cameraLocation.latitude,
+              cameraLocation.longitude,
+            )
         console.log('dateeeee', data)
         setStoreList(data)
       } catch (e) {
         console.log('getLocationStore API ERROR: ', e)
       }
     })()
-  }, [cameraLocation])
+  }, [cameraLocation, showAllStore])
 
-  const handleCameraMove = (
-    latitude: number,
-    longitude: number,
-    zoom: number,
-  ) => {
-    console.log(latitude, longitude, zoom)
-    setCameraLocation({ latitude, longitude, zoom })
+  const handleCameraMove = (latitude: number, longitude: number) => {
+    console.log('[카메라 위치]', latitude, longitude)
+    setCameraLocation({ latitude, longitude })
   }
 
   const handleClickMapPin = useCallback((item?: StoreDetailType) => {
@@ -101,6 +102,8 @@ export const UserMainApp = () => {
       handleClickMapPin={handleClickMapPin}
       isClickMapPin={isClickMapPin}
       detailStoreInfo={detailStoreInfo}
+      showAllStore={showAllStore}
+      setShowAllStore={setShowAllStore}
     />
   )
 }

@@ -31,6 +31,7 @@ export const RegisterBossScreen = ({
         onChangeText={setPhone}
         value={phone}
         placeholder="01012345678"
+        keyboardType="number-pad"
       />
       <TouchableOpacity onPress={handleSetBoss}>
         <Text> 사장님 등록하기</Text>

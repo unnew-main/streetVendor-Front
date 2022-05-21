@@ -1,18 +1,21 @@
 import { ChangeBossButton } from '@/components'
 import { PreviewDetailStore } from '@/components/user'
+import { StateStoreToogle } from '@/components/user/StateStoreToogle'
 import { LocationType, StoreDetailType } from '@/types/store.type'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import NaverMapView, { Marker } from 'react-native-nmap'
 import styled from 'styled-components/native'
 
 type Props = {
   userLocation: LocationType
-  handleCameraMove: (latitude: number, longitude: number, zoom: number) => void
+  handleCameraMove: (latitude: number, longitude: number) => void
   storeList: StoreDetailType[]
   handleClickMapPin: (item?: StoreDetailType) => void
   isClickMapPin: boolean
   detailStoreInfo: StoreDetailType
+  showAllStore: boolean
+  setShowAllStore: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const UserMainScreen = ({
@@ -22,6 +25,8 @@ export const UserMainScreen = ({
   handleClickMapPin,
   isClickMapPin,
   detailStoreInfo,
+  showAllStore,
+  setShowAllStore,
 }: Props) => {
   return (
     <View
@@ -32,8 +37,6 @@ export const UserMainScreen = ({
         height: '100%',
       }}
     >
-      <Text>유저 메인스크린</Text>
-      <ChangeBossButton />
       <NaverMapWrapper>
         <NaverMapView
           style={{ width: '100%', height: '100%' }}
@@ -42,9 +45,7 @@ export const UserMainScreen = ({
           compass={true}
           scaleBar={true}
           onMapClick={() => handleClickMapPin()}
-          onCameraChange={e =>
-            handleCameraMove(e.latitude, e.longitude, e.zoom)
-          }
+          onCameraChange={e => handleCameraMove(e.latitude, e.longitude)}
         >
           {storeList.length !== 0 &&
             storeList.map(item => (
@@ -55,16 +56,39 @@ export const UserMainScreen = ({
                   longitude: item.location.longitude,
                 }}
                 onClick={() => handleClickMapPin(item)}
+                pinColor={item.salesStatus === 'OPEN' ? 'black' : 'red'}
               />
             ))}
         </NaverMapView>
         {isClickMapPin && <PreviewDetailStore storeInfo={detailStoreInfo} />}
       </NaverMapWrapper>
+      <ChangeUserButtonWrapper>
+        <ChangeBossButton />
+      </ChangeUserButtonWrapper>
+      <StateStoreToogleWrapper>
+        <StateStoreToogle
+          isEnabled={showAllStore}
+          toggleSwitch={setShowAllStore}
+        />
+      </StateStoreToogleWrapper>
     </View>
   )
 }
 
 const NaverMapWrapper = styled.View`
   width: 100%;
-  height: 90%;
+  height: 100%;
+  position: absolute;
+`
+
+const ChangeUserButtonWrapper = styled.View`
+  position: absolute;
+  top: 10%;
+  left: 10%;
+`
+
+const StateStoreToogleWrapper = styled.View`
+  position: absolute;
+  top: 10%;
+  right: 10%;
 `

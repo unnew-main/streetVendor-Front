@@ -1,7 +1,7 @@
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import { Text } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import styled from 'styled-components/native'
 
 export const ChangeBossButton = () => {
   const navigator = React.useContext(NavigationContext)
@@ -11,8 +11,15 @@ export const ChangeBossButton = () => {
   }, [navigator])
 
   return (
-    <TouchableOpacity onPress={handlePressBoss}>
+    <ButtonWrapper onPress={handlePressBoss}>
       <Text>사장님 계정으로 전환</Text>
-    </TouchableOpacity>
+    </ButtonWrapper>
   )
 }
+
+const ButtonWrapper = styled.TouchableOpacity`
+  border: 1px solid #000000;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+`

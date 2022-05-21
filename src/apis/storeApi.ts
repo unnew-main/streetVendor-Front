@@ -23,11 +23,23 @@ export const storeApi = {
    * @param longitude 위도
    * @returns
    */
-  getLocationStore: async (
+  getLocationOpenStore: async (
     distance: number,
     latitude: number,
     longitude: number,
-  ) => api.get('/api/v1/stores/location', { distance, latitude, longitude }),
+  ) =>
+    api.get('/api/v1/stores/location/open', { distance, latitude, longitude }),
+
+  getLocationClosedStore: async (
+    distance: number,
+    latitude: number,
+    longitude: number,
+  ) =>
+    api.get('/api/v1/stores/location/closed', {
+      distance,
+      latitude,
+      longitude,
+    }),
 
   getLocationAllStore: async (lastId: number, size: number) =>
     api.get('/api/v1/stores', { lastId, size }),
