@@ -13,7 +13,7 @@ type Props = {
   storeList: StoreDetailType[]
   handleClickMapPin: (item?: StoreDetailType) => void
   isClickMapPin: boolean
-  detailStoreInfo: StoreDetailType
+  detailStoreInfo: StoreDetailType | null
   showAllStore: boolean
   setShowAllStore: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -60,7 +60,9 @@ export const UserMainScreen = ({
               />
             ))}
         </NaverMapView>
-        {isClickMapPin && <PreviewDetailStore storeInfo={detailStoreInfo} />}
+        {isClickMapPin && detailStoreInfo && (
+          <PreviewDetailStore storeInfo={detailStoreInfo} />
+        )}
       </NaverMapWrapper>
       <ChangeUserButtonWrapper>
         <ChangeBossButton />
