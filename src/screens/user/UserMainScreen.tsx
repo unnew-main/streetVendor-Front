@@ -1,16 +1,13 @@
 import { ChangeBossButton } from '@/components'
 import { PreviewDetailStore } from '@/components/user'
+import { NMap } from '@/components/user/NMap'
 import { StateStoreToogle } from '@/components/user/StateStoreToogle'
-import { LocationType, StoreDetailType } from '@/types/store.type'
+import { StoreDetailType } from '@/types/store.type'
 import React from 'react'
 import { View } from 'react-native'
-import NaverMapView, { Marker } from 'react-native-nmap'
 import styled from 'styled-components/native'
 
 type Props = {
-  userLocation: LocationType
-  handleCameraMove: (latitude: number, longitude: number) => void
-  storeList: StoreDetailType[]
   handleClickMapPin: (item?: StoreDetailType) => void
   isClickMapPin: boolean
   detailStoreInfo: StoreDetailType | null
@@ -19,9 +16,6 @@ type Props = {
 }
 
 export const UserMainScreen = ({
-  userLocation,
-  handleCameraMove,
-  storeList,
   handleClickMapPin,
   isClickMapPin,
   detailStoreInfo,
@@ -38,32 +32,14 @@ export const UserMainScreen = ({
       }}
     >
       <NaverMapWrapper>
-        <NaverMapView
-          style={{ width: '100%', height: '100%' }}
-          showsMyLocationButton={true}
-          center={{ ...userLocation, zoom: 16 }}
-          compass={true}
-          scaleBar={true}
-          onMapClick={() => handleClickMapPin()}
-          onCameraChange={e => handleCameraMove(e.latitude, e.longitude)}
-        >
-          {storeList.length !== 0 &&
-            storeList.map(item => (
-              <Marker
-                key={item.storeId}
-                coordinate={{
-                  latitude: item.location.latitude,
-                  longitude: item.location.longitude,
-                }}
-                onClick={() => handleClickMapPin(item)}
-                pinColor={item.salesStatus === 'OPEN' ? 'black' : 'red'}
-              />
-            ))}
-        </NaverMapView>
-        {isClickMapPin && detailStoreInfo && (
-          <PreviewDetailStore storeInfo={detailStoreInfo} />
-        )}
+        <NMap
+          showAllStore={showAllStore}
+          handleClickMapPin={handleClickMapPin}
+        />
       </NaverMapWrapper>
+      {isClickMapPin && detailStoreInfo && (
+        <PreviewDetailStore storeInfo={detailStoreInfo} />
+      )}
       <ChangeUserButtonWrapper>
         <ChangeBossButton />
       </ChangeUserButtonWrapper>

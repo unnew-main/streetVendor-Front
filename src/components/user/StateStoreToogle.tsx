@@ -21,5 +21,5 @@ const ButtonWrapper = styled.TouchableOpacity<{ isEnabled: boolean }>`
   border: 1px solid #000000;
   padding: 10px;
   border-radius: 10px;
-  background-color: ${({ isEnabled }) => (isEnabled ? 'cyan' : 'gray')};
+  background-color: ${({ isEnabled }) => (isEnabled ? 'gray' : 'yellow')};
 `

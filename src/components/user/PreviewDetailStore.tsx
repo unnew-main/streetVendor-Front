@@ -8,24 +8,20 @@ type Props = {
   storeInfo: StoreDetailType
 }
 export const PreviewDetailStore = ({ storeInfo }: Props) => {
-  console.log(storeInfo.name)
   const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false)
 
   const Y = useRef(new Animated.Value(100)).current
-  console.log('Y ', Y)
 
   const handleShowDetail = () => {
     setIsOpenDetail(prev => !prev)
     isOpenDetail
       ? Animated.timing(Y, {
           toValue: 100,
-          // easing: Easing.back(),
           duration: 300,
           useNativeDriver: false,
         }).start()
       : Animated.timing(Y, {
           toValue: 500,
-          // easing: Easing.back(),
           duration: 300,
           useNativeDriver: false,
         }).start()

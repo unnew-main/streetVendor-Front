@@ -17,7 +17,6 @@ export const storeApi = {
     api.putAuth(`/api/v1/store/sales-status/closed/${storeId}`, {}),
 
   /**
-   *
    * @param distance N키로미터(MAX: 2)
    * @param latitude 경도
    * @param longitude 위도
