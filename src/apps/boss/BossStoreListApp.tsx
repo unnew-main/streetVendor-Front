@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { BossStoreListScreen } from '@/screens/boss'
-// import { NavigationContext } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { StoreListType } from '@/types/store.type'

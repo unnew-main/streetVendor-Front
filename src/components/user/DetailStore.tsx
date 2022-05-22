@@ -26,7 +26,7 @@ export const DetailStore = ({ storeId }: Props) => {
     <View>
       {storeInfo ? (
         <View>
-          <Text>{storeInfo.storeName}</Text>
+          <Text>{storeInfo.name}</Text>
           {storeInfo.businessHours.map((item, index) => (
             <View key={index}>
               <Text>{item.days}</Text>

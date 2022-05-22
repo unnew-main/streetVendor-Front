@@ -40,9 +40,9 @@ export const UserMainScreen = ({
       {isClickMapPin && detailStoreInfo && (
         <PreviewDetailStore storeInfo={detailStoreInfo} />
       )}
-      <ChangeUserButtonWrapper>
+      <ChangeBossButtonWrapper>
         <ChangeBossButton />
-      </ChangeUserButtonWrapper>
+      </ChangeBossButtonWrapper>
       <StateStoreToogleWrapper>
         <StateStoreToogle
           isEnabled={showAllStore}
@@ -59,7 +59,7 @@ const NaverMapWrapper = styled.View`
   position: absolute;
 `
 
-const ChangeUserButtonWrapper = styled.View`
+const ChangeBossButtonWrapper = styled.View`
   position: absolute;
   top: 10%;
   left: 10%;

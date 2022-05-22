@@ -101,7 +101,7 @@ export type StoreDetailType = {
   locationDescription: string
 
   storeId: number
-  storeName: string
+  name: string
   payments: string[]
   pictureUrl: string
   salesStatus: 'CLOSED' | 'OPEN'
