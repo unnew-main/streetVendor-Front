@@ -1,4 +1,4 @@
-import { GoogleLogoutbutton } from '@/components'
+import { GoogleLogoutbutton } from '@/components/auth'
 import React from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 

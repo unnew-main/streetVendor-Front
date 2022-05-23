@@ -1,2 +1,5 @@
 export { PreviewDetailStore } from './PreviewDetailStore'
 export { DetailStore } from './DetailStore'
+export { NMap } from './NMap'
+export { SideMenu } from './SideMenu'
+export { StateStoreToogle } from './StateStoreToogle'

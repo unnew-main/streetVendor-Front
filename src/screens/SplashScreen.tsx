@@ -1,4 +1,4 @@
-import { GoogleLogoutbutton } from '@/components'
+import { GoogleLogoutbutton } from '@/components/auth'
 import React from 'react'
 import { ActivityIndicator, Image, Text, View } from 'react-native'
 

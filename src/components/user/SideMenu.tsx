@@ -1,10 +1,22 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import styled from 'styled-components/native'
 
-export const SideMenu = () => {
+type Props = {
+  handleClosed: (e?: boolean) => void
+}
+export const SideMenu = ({ handleClosed }: Props) => {
   return (
-    <View>
+    <SafeAreaView>
+      <MenuClosedButton onPress={() => handleClosed(false)}>
+        <Text>닫아라</Text>
+      </MenuClosedButton>
       <Text>SideMenu</Text>
-    </View>
+    </SafeAreaView>
   )
 }
+
+const MenuClosedButton = styled.TouchableOpacity`
+  border: 1px solid black;
+`

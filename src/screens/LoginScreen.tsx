@@ -1,5 +1,5 @@
+import { GoogleLoginbutton, GoogleLogoutbutton } from '@/components/auth'
 import React from 'react'
-import { GoogleLoginbutton, GoogleLogoutbutton } from '@/components'
 import { View } from 'react-native'
 
 export function LoginScreen() {

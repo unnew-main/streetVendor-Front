@@ -18,12 +18,12 @@ export const PreviewDetailStore = ({ storeInfo }: Props) => {
       ? Animated.timing(Y, {
           toValue: 100,
           duration: 300,
-          useNativeDriver: false,
+          useNativeDriver: true,
         }).start()
       : Animated.timing(Y, {
           toValue: 500,
           duration: 300,
-          useNativeDriver: false,
+          useNativeDriver: true,
         }).start()
   }
   return (

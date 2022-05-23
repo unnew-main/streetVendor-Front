@@ -1,4 +1,4 @@
-import { GoogleLogoutbutton, SignoutButton } from '@/components'
+import { GoogleLogoutbutton, SignoutButton } from '@/components/auth'
 import { RegisterStoreButton } from '@/components/boss'
 import { AutoCreateStore } from '@/dummy/AutoCreateStore'
 import { StoreListType } from '@/types/store.type'

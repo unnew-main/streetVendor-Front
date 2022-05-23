@@ -5,7 +5,7 @@ import { StoreDetailType } from '@/types/store.type'
 
 export const UserMainApp = () => {
   const [showAllStore, setShowAllStore] = useState(false)
-
+  const [isSideMenu, setIsSideMenu] = useState(false)
   const [isClickMapPin, setIsClickMapPin] = useState<boolean>(false)
   const [
     detailStoreInfo,
@@ -27,6 +27,14 @@ export const UserMainApp = () => {
     },
     [detailStoreInfo?.storeId],
   )
+  const handleSideMenu = (data?: boolean) => {
+    if (data !== undefined) {
+      setIsSideMenu(data)
+    } else if (data === undefined) {
+      setIsSideMenu(prev => !prev)
+    }
+  }
+  console.log('isSideMenum', isSideMenu)
   return (
     <UserMainScreen
       handleClickMapPin={handleClickMapPin}
@@ -34,6 +42,8 @@ export const UserMainApp = () => {
       detailStoreInfo={detailStoreInfo}
       showAllStore={showAllStore}
       setShowAllStore={setShowAllStore}
+      isSideMenu={isSideMenu}
+      handleSideMenu={handleSideMenu}
     />
   )
 }
