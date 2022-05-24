@@ -16,7 +16,6 @@ export const GoogleLoginbutton = () => {
   const handleLogin = useCallback(async () => {
     try {
       onLoading()
-
       await GoogleSignin.hasPlayServices()
       await GoogleSignin.signIn()
       const { accessToken } = await GoogleSignin.getTokens()
@@ -32,13 +31,12 @@ export const GoogleLoginbutton = () => {
         navigator?.reset({
           routes: [{ name: 'RegisterMember', params: { data, accessToken } }],
         })
-        offLoading()
       }
     } catch (e) {
-      offLoading()
       goAlert(String(e))
       console.log('LoginButton Error', e)
     }
+    offLoading()
   }, [navigator, offLoading, onLoading])
 
   useEffect(() => {

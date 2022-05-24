@@ -22,16 +22,18 @@ export const RegisterBossApp = () => {
       }
       await memberApi.setBossInfo({ bossName: name, bossPhoneNumber: phone })
       goAlert('사장님 등록이 완료되었습니다.')
-
-      navigator?.navigate('BossStoreList')
+      navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (e) {
       console.log('handleSetBoss Error: ', e)
       goAlert(String(e))
     }
   }, [name, navigator, phone])
-
+  const handleGoBack = () => {
+    navigator?.reset({ routes: [{ name: 'SelectJob' }] })
+  }
   return (
     <RegisterBossScreen
+      handleGoBack={handleGoBack}
       handleSetBoss={handleSetBoss}
       name={name}
       phone={phone}

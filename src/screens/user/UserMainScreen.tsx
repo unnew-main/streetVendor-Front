@@ -6,7 +6,7 @@ import {
 } from '@/components/user'
 import { StoreDetailType } from '@/types/store.type'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import styled from 'styled-components/native'
 import SideMenu from 'react-native-side-menu-updated'
 import { ChangeBossButton, SideMoreButton } from '@/components/common'

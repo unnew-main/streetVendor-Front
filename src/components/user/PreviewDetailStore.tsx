@@ -10,20 +10,20 @@ type Props = {
 export const PreviewDetailStore = ({ storeInfo }: Props) => {
   const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false)
 
-  const Y = useRef(new Animated.Value(100)).current
+  const Y = useRef(new Animated.Value(150)).current
 
   const handleShowDetail = () => {
     setIsOpenDetail(prev => !prev)
     isOpenDetail
       ? Animated.timing(Y, {
-          toValue: 100,
+          toValue: 150,
           duration: 300,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }).start()
       : Animated.timing(Y, {
-          toValue: 500,
+          toValue: 700,
           duration: 300,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }).start()
   }
   return (
@@ -35,7 +35,9 @@ export const PreviewDetailStore = ({ storeInfo }: Props) => {
           <TitleText>가게이름: {storeInfo.name}</TitleText>
         </StoreNameWrapper>
       </TouchWrapper>
-      {isOpenDetail && <DetailStore storeId={storeInfo.storeId} />}
+      <DetailStoreWrapper>
+        {isOpenDetail && <DetailStore storeId={storeInfo.storeId} />}
+      </DetailStoreWrapper>
     </Container>
   )
 }
@@ -51,9 +53,16 @@ const Container = styled(Animated.View)<{
 `
 
 const TouchWrapper = styled.TouchableOpacity`
-  height: 100px;
+  height: 150px;
 `
 
 const StoreNameWrapper = styled.View``
 
 const TitleText = styled.Text``
+
+const DetailStoreWrapper = styled.View`
+  height: 100%;
+  border-top-width: 1px;
+  border-top-color: gray;
+  border-top-style: solid;
+`

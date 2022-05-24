@@ -2,6 +2,8 @@ import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/store.type'
 import React, { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import styled from 'styled-components/native'
 
 type Props = {
   storeId: number
@@ -23,9 +25,9 @@ export const DetailStore = ({ storeId }: Props) => {
   }, [storeId])
 
   return (
-    <View>
+    <Container>
       {storeInfo ? (
-        <View>
+        <ScrollView>
           <Text>{storeInfo.name}</Text>
           {storeInfo.businessHours.map((item, index) => (
             <View key={index}>
@@ -34,10 +36,14 @@ export const DetailStore = ({ storeId }: Props) => {
               <Text>{item.endTime}</Text>
             </View>
           ))}
-        </View>
+        </ScrollView>
       ) : (
         <Text>로드중..</Text>
       )}
-    </View>
+    </Container>
   )
 }
+
+const Container = styled.View`
+  height: 100%;
+`

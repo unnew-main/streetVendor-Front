@@ -7,6 +7,7 @@ type Props = {
   phone: string
   setName: Dispatch<SetStateAction<string>>
   setPhone: Dispatch<SetStateAction<string>>
+  handleGoBack: () => void
 }
 export const RegisterBossScreen = ({
   handleSetBoss,
@@ -14,6 +15,7 @@ export const RegisterBossScreen = ({
   phone,
   setName,
   setPhone,
+  handleGoBack,
 }: Props) => {
   return (
     <View
@@ -24,6 +26,9 @@ export const RegisterBossScreen = ({
         height: '100%',
       }}
     >
+      <TouchableOpacity onPress={handleGoBack}>
+        <Text>돌아가기</Text>
+      </TouchableOpacity>
       <Text>사장님 이름입력 </Text>
       <TextInput onChangeText={setName} value={name} placeholder="홍길동" />
       <Text>전화번호 입력 </Text>

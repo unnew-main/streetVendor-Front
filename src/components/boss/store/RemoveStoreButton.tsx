@@ -19,19 +19,22 @@ export const RemoveStoreButton = ({ storeId, isOpen }: Props) => {
       goAlert('먼저 가게 운영을 종료해주세요!')
       return
     }
-    try {
-      //!! 예 아니오 모달버튼 필요
-      // goAlert('가게를 삭제하시겠습니까?')
-      onLoading()
-      await storeApi.removeStore(storeId)
-      console.log('가게 삭제 완료')
-      goAlert('가게가 삭제되었습니다.')
-      offLoading()
-      navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
-    } catch (e: unknown) {
-      offLoading()
-      console.log('Open Store Error:', e)
-    }
+    onLoading()
+    goAlert(
+      '가게가 삭제하시겠습니까?',
+      '한번 삭제한 가게는 되돌릴 수 없습니다.',
+      async () => {
+        try {
+          await storeApi.removeStore(storeId)
+          navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
+          goAlert('가게가 삭제되었습니다.')
+        } catch (e: unknown) {
+          offLoading()
+          console.log('Open Store Error:', e)
+        }
+      },
+    )
+    offLoading()
   }, [isOpen, navigator, offLoading, onLoading, storeId])
 
   return (
