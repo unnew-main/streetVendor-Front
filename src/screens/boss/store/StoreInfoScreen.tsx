@@ -3,7 +3,6 @@ import {
   OpenStoreButton,
   RemoveStoreButton,
 } from '@/components/boss/store'
-import { ChangeUserButton } from '@/components/common'
 import { StoreDetailType } from '@/types/store.type'
 import React from 'react'
 import { Text, View } from 'react-native'
@@ -41,7 +40,6 @@ export const StoreInfoScreen = ({
       <Text>{storeData.storeId}</Text>
       <Text>{storeData.category}</Text>
       <Text>{storeData.storeDescription}</Text>
-      <ChangeUserButton />
       {isOpen === 'CLOSED' ? (
         <OpenStoreButton
           storeId={storeData.storeId}

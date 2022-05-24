@@ -1,5 +1,6 @@
 import { GoogleLogoutbutton, SignoutButton } from '@/components/auth'
 import { RegisterStoreButton } from '@/components/boss'
+import { ChangeUserButton } from '@/components/common'
 import { AutoCreateStore } from '@/dummy/AutoCreateStore'
 import { StoreListType } from '@/types/store.type'
 import React from 'react'
@@ -40,6 +41,7 @@ export const BossStoreListScreen = ({
         </Scroll>
 
         <RegisterStoreButton />
+        <ChangeUserButton />
 
         <GoogleLogoutbutton />
         <SignoutButton />

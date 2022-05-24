@@ -51,5 +51,6 @@ const SettingButtonWrapper = styled.TouchableOpacity`
   border: 1px solid black;
   padding: 10px;
   position: absolute;
-  right: 0;
+  bottom: 10%;
+  left: 0;
 `

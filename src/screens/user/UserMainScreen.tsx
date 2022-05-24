@@ -9,7 +9,7 @@ import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 import SideMenu from 'react-native-side-menu-updated'
-import { ChangeBossButton, SideMoreButton } from '@/components/common'
+import { SideMoreButton } from '@/components/common'
 type Props = {
   handleClickMapPin: (item?: StoreDetailType) => void
   isClickMapPin: boolean
@@ -55,9 +55,7 @@ export const UserMainScreen = ({
         <SideMoreButtonWrapper>
           <SideMoreButton handleClick={handleSideMenu} />
         </SideMoreButtonWrapper>
-        <ChangeBossButtonWrapper>
-          <ChangeBossButton />
-        </ChangeBossButtonWrapper>
+
         <StateStoreToogleWrapper>
           <StateStoreToogle
             isEnabled={showAllStore}
@@ -73,12 +71,6 @@ const NaverMapWrapper = styled.View`
   width: 100%;
   height: 100%;
   position: absolute;
-`
-
-const ChangeBossButtonWrapper = styled.View`
-  position: absolute;
-  top: 10%;
-  left: 30%;
 `
 
 const StateStoreToogleWrapper = styled.View`
