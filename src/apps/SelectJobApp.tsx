@@ -7,7 +7,7 @@ export const SelectJobApp = () => {
   const navigator = React.useContext(NavigationContext)
 
   const handlePressUser = useCallback(() => {
-    navigator?.reset({ routes: [{ name: 'UserMain' }] })
+    navigator?.reset({ routes: [{ name: 'UserStack' }] })
   }, [navigator])
   const handlePressBoss = useCallback(() => {
     navigator?.reset({ routes: [{ name: 'BossStack' }] })

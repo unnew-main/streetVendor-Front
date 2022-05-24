@@ -1,4 +1,8 @@
-import { RegisterStoreApp, BossStoreListApp, RegisterBossApp } from '@/apps'
+import {
+  BossStoreListApp,
+  RegisterBossApp,
+  RegisterStoreApp,
+} from '@/apps/boss'
 import { BossSplashApp } from '@/apps/boss/BossSplashApp'
 import { StoreTabApp } from '@/apps/boss/store'
 
@@ -15,7 +19,7 @@ export type StackBossList = {
 
 const Stack = createStackNavigator<StackBossList>()
 
-export function BossStackScreen() {
+export function BossStack() {
   return (
     <Stack.Navigator initialRouteName="BossSplash">
       <Stack.Screen

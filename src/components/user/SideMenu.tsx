@@ -1,3 +1,4 @@
+import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
@@ -6,13 +7,20 @@ type Props = {
   handleClosed: (e?: boolean) => void
 }
 export const SideMenu = ({ handleClosed }: Props) => {
+  const navigator = React.useContext(NavigationContext)
+
   return (
     <SafeContainer>
       <Container>
         <Text>여기에 무엇을 넣을까</Text>
         <Text>유저명</Text>
         <Text>???</Text>
-        <Text>설정</Text>
+
+        <SettingButtonWrapper
+          onPress={() => navigator?.navigate('UserSetting')}
+        >
+          <Text>설정</Text>
+        </SettingButtonWrapper>
         <MenuClosedButton onPress={() => handleClosed(false)}>
           <Text>닫아라</Text>
         </MenuClosedButton>
@@ -33,6 +41,13 @@ const Container = styled.View`
   margin-top: 40px;
 `
 const MenuClosedButton = styled.TouchableOpacity`
+  border: 1px solid black;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+`
+
+const SettingButtonWrapper = styled.TouchableOpacity`
   border: 1px solid black;
   padding: 10px;
   position: absolute;

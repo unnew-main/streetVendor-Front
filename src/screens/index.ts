@@ -1,5 +1,4 @@
 export { LoginScreen } from './LoginScreen'
 export { SplashScreen } from './SplashScreen'
-export { HomeStackScreen } from './HomeStackScreen'
 export { RegisterMemberScreen } from './RegisterMemberScreen'
 export { SelectJobScreen } from './SelectJobScreen'

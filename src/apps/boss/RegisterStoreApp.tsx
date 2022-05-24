@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react'
 
-import { RegisterStoreScreen } from '@/screens/boss'
 import {
   BusinessHoursType,
   LocationType,
   RegisterMenuType,
 } from '@/types/store.type'
+import { RegisterStoreStack } from '@/navigates'
 
 export const RegisterStoreApp = () => {
   const [category, setCategory] = useState<string>('')
@@ -60,5 +60,5 @@ export const RegisterStoreApp = () => {
     },
   }
 
-  return <RegisterStoreScreen storeProps={storeProps} />
+  return <RegisterStoreStack storeProps={storeProps} />
 }

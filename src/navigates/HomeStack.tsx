@@ -1,18 +1,19 @@
-import { SelectJobApp, UserMainApp } from '@/apps'
-import { BossStackApp } from '@/apps/boss/BossStackApp'
+import { SelectJobApp } from '@/apps'
 
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
+import { BossStack } from './boss/BossStack'
+import { UserStack } from './user/UserStack'
 
 export type StackHomeList = {
   SelectJob: undefined
-  UserMain: undefined
+  UserStack: undefined
   BossStack: undefined
 }
 
 const Stack = createStackNavigator<StackHomeList>()
 
-export function HomeStackScreen() {
+export function HomeStack() {
   return (
     <Stack.Navigator initialRouteName="SelectJob">
       <Stack.Screen
@@ -21,13 +22,13 @@ export function HomeStackScreen() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="UserMain"
-        component={UserMainApp}
+        name="UserStack"
+        component={UserStack}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="BossStack"
-        component={BossStackApp}
+        component={BossStack}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -14,7 +14,7 @@ import React from 'react'
 
 const Stack = createStackNavigator<StackRegisterStoreList>()
 
-export const RegisterStoreScreen = ({
+export const RegisterStoreStack = ({
   storeProps,
 }: RegisterStoreScreenProps) => {
   console.log('RegisterStoreScreen: ', storeProps.data)

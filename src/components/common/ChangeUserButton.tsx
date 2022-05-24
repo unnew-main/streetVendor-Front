@@ -7,7 +7,7 @@ export const ChangeUserButton = () => {
   const navigator = React.useContext(NavigationContext)
 
   const handlePressUser = useCallback(() => {
-    navigator?.reset({ routes: [{ name: 'UserMain' }] })
+    navigator?.reset({ routes: [{ name: 'UserStack' }] })
   }, [navigator])
 
   return (

@@ -22,7 +22,7 @@ export const SignoutButton = () => {
           await GoogleSignin.signOut()
 
           navigator?.reset({ routes: [{ name: 'Splash' }] })
-          offLoading()
+          goAlert('회원탈퇴되었습니다.')
         } catch (e) {
           console.log('signOutError', e)
         }

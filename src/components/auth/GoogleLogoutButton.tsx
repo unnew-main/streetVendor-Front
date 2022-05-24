@@ -21,6 +21,7 @@ export const GoogleLogoutbutton = () => {
         await GoogleSignin.signOut()
 
         navigator?.reset({ routes: [{ name: 'Splash' }] })
+        goAlert('로그아웃되었습니다.')
       } catch (e) {
         console.log('LogoutError', e)
       }

@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SplashApp, LoginApp, HomeStackApp, RegisterMemberApp } from './apps'
+import { SplashApp, LoginApp, RegisterMemberApp } from './apps'
 import { LoadingContext } from './contexts/LoadingContext'
+import { HomeStack } from './navigates'
 
 export type StackAppList = {
   Splash: undefined
@@ -34,7 +35,7 @@ const App = () => {
           />
           <Stack.Screen
             name="HomeStack"
-            component={HomeStackApp}
+            component={HomeStack}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
