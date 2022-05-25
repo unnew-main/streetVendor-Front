@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
-import RNPickerSelect from 'react-native-picker-select'
 import { ListType } from '@/apps/boss/registerStore/SetBusinessHoursApp'
 import { TimePicker } from '@/components/boss/registerStore'
+import { CustomPicker } from '@/components/common'
 
 type Props = {
   handleNextRouter: () => void
@@ -50,7 +50,7 @@ export const SetBusinessHoursScreen = ({
             <View>
               <Text>-----------------------</Text>
               <Text>날짜를 선택해주세요</Text>
-              <RNPickerSelect
+              <CustomPicker
                 onValueChange={(value: string) =>
                   handleUpdateList(props.id, value)
                 }

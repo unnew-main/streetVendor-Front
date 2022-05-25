@@ -1,8 +1,9 @@
 import React from 'react'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import { ListType } from '@/apps/boss/registerStore/SetMenuApp'
 import styled from 'styled-components/native'
+import { CustomTextInput } from '@/components/common'
 
 type Props = {
   handleNextRouter: () => void
@@ -53,7 +54,7 @@ export const SetMenuScreen = ({
           <View>
             <Title>메뉴 이름을 적어주세요</Title>
           </View>
-          <TextInput
+          <CustomTextInput
             onChangeText={text => handleUpdateList(props.id, text)}
             value={props.listData.name}
             placeholder="메뉴이름을 입력해주세요."
@@ -61,7 +62,7 @@ export const SetMenuScreen = ({
           <View>
             <Title>개수를 </Title>
           </View>
-          <TextInput
+          <CustomTextInput
             onChangeText={text =>
               handleUpdateList(props.id, props.listData.name, Number(text))
             }
@@ -72,7 +73,7 @@ export const SetMenuScreen = ({
           <View>
             <Title>가격</Title>
           </View>
-          <TextInput
+          <CustomTextInput
             onChangeText={text =>
               handleUpdateList(
                 props.id,

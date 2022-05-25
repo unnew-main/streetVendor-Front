@@ -1,6 +1,6 @@
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
-import { Text, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import styled from 'styled-components/native'
 
@@ -28,13 +28,13 @@ export const RegisterStoreLayout = ({
   return (
     <Container>
       <Header>
-        <TouchableOpacity onPress={() => handleBackRouter()}>
+        <ButtonWrapper onPress={() => handleBackRouter()}>
           <Text>이전</Text>
-        </TouchableOpacity>
+        </ButtonWrapper>
         <Text style={{ color: 'red' }}>{title}</Text>
-        <TouchableOpacity onPress={handleNextRouter}>
+        <ButtonWrapper onPress={handleNextRouter}>
           <Text>다음</Text>
-        </TouchableOpacity>
+        </ButtonWrapper>
       </Header>
 
       <ContentWrapper>{children}</ContentWrapper>
@@ -63,4 +63,10 @@ const ContentWrapper = styled.View`
   align-items: center;
   width: 100%;
   height: 90%;
+`
+
+const ButtonWrapper = styled.TouchableOpacity`
+  border: 1px solid black;
+  background-color: white;
+  padding: 10px;
 `

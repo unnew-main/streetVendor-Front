@@ -1,10 +1,10 @@
 import React from 'react'
-import RNPickerSelect from 'react-native-picker-select'
 
-import { Text, TextInput, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { RegisterStoreLayout } from './RegisterStoreLayout'
 import CheckBox from '@react-native-community/checkbox'
 import { StoreCategory } from '@/types/store.type'
+import { CustomPicker, CustomTextInput } from '@/components/common'
 type Props = {
   handleNextRouter: () => void
   data: {
@@ -47,28 +47,35 @@ export const SetCNDScreen = ({
 }: Props) => {
   return (
     <RegisterStoreLayout title="카테고리" handleNextRouter={handleNextRouter}>
-      <View>
+      <View
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '70%',
+        }}
+      >
         <Text>SetCNDScreen</Text>
         <Text>가게 카테고리:</Text>
-        <RNPickerSelect
-          onValueChange={(value: string) => handle.handleCategory(value)}
+        <CustomPicker
+          onValueChange={handle.handleCategory}
           items={categoryData}
           value={data.category}
         />
         <Text>가게 이름: </Text>
-        <TextInput
+        <CustomTextInput
           onChangeText={handle.handleName}
           value={data.name}
           placeholder="가게이름을 입력해주세요."
         />
         <Text>가게 설명: </Text>
-        <TextInput
+        <CustomTextInput
           onChangeText={handle.handleDescription}
           value={data.storeDescription}
           placeholder="가게설명을 입력해주세요."
         />
         <Text>가게 위치 설명: </Text>
-        <TextInput
+        <CustomTextInput
           onChangeText={handle.handleLocationDescription}
           value={data.locationDescription}
           placeholder="Ex) oo역 1번출구 앞"

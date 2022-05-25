@@ -10,6 +10,8 @@ export const UserSettingSceen = () => {
 
   return (
     <Container>
+      <Text>설정화면</Text>
+
       <BackButtonWrapper onPress={() => navigator?.goBack()}>
         <Text>뒤로가기</Text>
       </BackButtonWrapper>

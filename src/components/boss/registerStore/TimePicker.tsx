@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, View } from 'react-native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import styled from 'styled-components/native'
 
 type Props = {
   id: number
@@ -56,9 +57,9 @@ export const TimePicker = ({
 
   return (
     <View>
-      <TouchableOpacity onPress={showDatePicker}>
+      <ButtonWrapper onPress={showDatePicker}>
         <Text style={{ color: 'blue' }}>{buttonName}</Text>
-      </TouchableOpacity>
+      </ButtonWrapper>
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="time"
@@ -68,3 +69,9 @@ export const TimePicker = ({
     </View>
   )
 }
+
+const ButtonWrapper = styled.TouchableOpacity`
+  padding: 10px;
+  border: 1px solid black;
+  background-color: white;
+`
