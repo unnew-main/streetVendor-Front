@@ -35,7 +35,7 @@ export const StoreTabApp = ({ route }: Props) => {
     salesStatus: 'OPEN',
     storeDescription: '',
     storeId: 0,
-    name: '',
+    storeName: '',
   })
   useEffect(() => {
     ;(async () => {

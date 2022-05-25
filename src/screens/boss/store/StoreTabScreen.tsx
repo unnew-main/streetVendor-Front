@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ReservationListApp, StoreInfoApp } from '@/apps/boss/store'
+import { OrderListApp, StoreInfoApp } from '@/apps/boss/store'
 import { StoreDetailType } from '@/types/store.type'
 
 type Props = {
@@ -21,7 +21,7 @@ export function StoreTabScreen({ storeData, handleStore }: Props) {
           />
         )}
       </Tab.Screen>
-      <Tab.Screen name="예약주문" component={ReservationListApp} />
+      <Tab.Screen name="주문주문" component={OrderListApp} />
     </Tab.Navigator>
   )
 }

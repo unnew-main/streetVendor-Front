@@ -1,4 +1,5 @@
 import { UserMainApp } from '@/apps/user'
+import { UserOrderApp } from '@/apps/user/Order'
 import { UserSettingApp } from '@/apps/user/sideMenu/UserSettingApp'
 
 import { createStackNavigator } from '@react-navigation/stack'
@@ -7,6 +8,7 @@ import React from 'react'
 export type UserStackList = {
   UserMain: undefined
   UserSetting: undefined
+  UserOrder: undefined
 }
 
 const Stack = createStackNavigator<UserStackList>()
@@ -22,6 +24,11 @@ export function UserStack() {
       <Stack.Screen
         name="UserSetting"
         component={UserSettingApp}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="UserOrder"
+        component={UserOrderApp}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

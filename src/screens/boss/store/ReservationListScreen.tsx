@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-export const ReservationListScreen = () => {
+export const OrderListScreen = () => {
   return (
     <View
       style={{
@@ -11,7 +11,7 @@ export const ReservationListScreen = () => {
         height: '100%',
       }}
     >
-      <Text>예약 리스트화면</Text>
+      <Text>주문 리스트화면</Text>
     </View>
   )
 }

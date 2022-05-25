@@ -2,10 +2,14 @@ import React from 'react'
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
-export const ReservationButton = () => {
+type Props = {
+  handleOrderClick: () => void
+}
+
+export const OrderButton = ({ handleOrderClick }: Props) => {
   return (
-    <ButtonWrapper onPress={() => {}}>
-      <Text>예약</Text>
+    <ButtonWrapper onPress={handleOrderClick}>
+      <Text>주문</Text>
     </ButtonWrapper>
   )
 }

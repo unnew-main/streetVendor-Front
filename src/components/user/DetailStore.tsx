@@ -1,15 +1,18 @@
 import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/store.type'
+import { NavigationContext } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
-import { ReservationButton } from './ReservationButton'
+import { OrderButton } from './OrderButton'
 
 type Props = {
   storeId: number
 }
 export const DetailStore = ({ storeId }: Props) => {
+  const navigator = React.useContext(NavigationContext)
+
   const [storeInfo, setStoreInfo] = useState<StoreDetailType>()
   useEffect(() => {
     ;(async () => {
@@ -17,7 +20,7 @@ export const DetailStore = ({ storeId }: Props) => {
         const {
           data: { data },
         } = await storeApi.getDetailStore(storeId)
-        console.log(data)
+        console.log('[DetailStore]storeDetail Info', data)
         setStoreInfo(data)
       } catch (e) {
         console.log('DetailStore Error: ', e)
@@ -25,25 +28,32 @@ export const DetailStore = ({ storeId }: Props) => {
     })()
   }, [storeId])
 
+  const handleOrderClick = () => {
+    console.log(storeInfo?.storeName)
+    navigator?.navigate('UserOrder', {
+      storeName: storeInfo?.storeName,
+      menuList: storeInfo?.menuList,
+    })
+  }
+  if (!storeInfo) {
+    return <Text>로드중..</Text>
+  }
+
   return (
     <Container>
+      <ScrollView>
+        <Text>{storeInfo.storeName}</Text>
+        {storeInfo.businessHours.map((item, index) => (
+          <View key={index}>
+            <Text>{item.days}</Text>
+            <Text>{item.startTime}</Text>
+            <Text>{item.endTime}</Text>
+          </View>
+        ))}
+      </ScrollView>
       <ButtonWrapper>
-        <ReservationButton />
+        <OrderButton handleOrderClick={handleOrderClick} />
       </ButtonWrapper>
-      {storeInfo ? (
-        <ScrollView>
-          <Text>{storeInfo.name}</Text>
-          {storeInfo.businessHours.map((item, index) => (
-            <View key={index}>
-              <Text>{item.days}</Text>
-              <Text>{item.startTime}</Text>
-              <Text>{item.endTime}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      ) : (
-        <Text>로드중..</Text>
-      )}
     </Container>
   )
 }

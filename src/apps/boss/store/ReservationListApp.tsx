@@ -1,6 +1,6 @@
-import { ReservationListScreen } from '@/screens/boss/store'
+import { OrderListScreen } from '@/screens/boss/store'
 import React from 'react'
 
-export const ReservationListApp = () => {
-  return <ReservationListScreen />
+export const OrderListApp = () => {
+  return <OrderListScreen />
 }

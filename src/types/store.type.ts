@@ -72,9 +72,9 @@ export type StoreListType = {
 export type StoreMenuType = {
   menuId: number
   menuCount: number
-  name: string
+  menuName: string
   pictureUrl: string
-  price: number
+  menuPrice: number
   salesStatus: 'SOLD_OUT' | 'ON_SALE'
 }
 
@@ -101,7 +101,7 @@ export type StoreDetailType = {
   locationDescription: string
 
   storeId: number
-  name: string
+  storeName: string
   payments: string[]
   pictureUrl: string
   salesStatus: 'CLOSED' | 'OPEN'
