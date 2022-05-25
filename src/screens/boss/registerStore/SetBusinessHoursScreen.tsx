@@ -4,6 +4,7 @@ import { RegisterStoreLayout } from './RegisterStoreLayout'
 import { ListType } from '@/apps/boss/registerStore/SetBusinessHoursApp'
 import { TimePicker } from '@/components/boss/registerStore'
 import { CustomPicker } from '@/components/common'
+import { ScrollView } from 'react-native-gesture-handler'
 
 type Props = {
   handleNextRouter: () => void
@@ -38,49 +39,51 @@ export const SetBusinessHoursScreen = ({
       handleNextRouter={handleNextRouter}
       beforeBackSave={beforeBackSave}
     >
-      <View>
-        <Text>SetBusinessHoursScreen</Text>
-      </View>
-      <View>
-        <TouchableOpacity onPress={onAddList}>
-          <Text style={{ color: 'blue' }}>추가하기</Text>
-        </TouchableOpacity>
-        {list.map(props => (
-          <View key={props.id}>
-            <View>
-              <Text>-----------------------</Text>
-              <Text>날짜를 선택해주세요</Text>
-              <CustomPicker
-                onValueChange={(value: string) =>
-                  handleUpdateList(props.id, value)
-                }
-                items={days}
-                value={props.listData.days}
+      <ScrollView>
+        <View>
+          <Text>SetBusinessHoursScreen</Text>
+        </View>
+        <View>
+          <TouchableOpacity onPress={onAddList}>
+            <Text style={{ color: 'blue' }}>추가하기</Text>
+          </TouchableOpacity>
+          {list.map(props => (
+            <View key={props.id}>
+              <View>
+                <Text>-----------------------</Text>
+                <Text>날짜를 선택해주세요</Text>
+                <CustomPicker
+                  onValueChange={(value: string) =>
+                    handleUpdateList(props.id, value)
+                  }
+                  items={days}
+                  value={props.listData.days}
+                />
+              </View>
+              <Text>{props.listData.days}</Text>
+
+              <TimePicker
+                id={props.id}
+                buttonName="영업 시작시간 설정"
+                handleUpdateTime={handleUpdateList}
+                type="start"
               />
+              <Text>{props.listData.startTime}</Text>
+
+              <TimePicker
+                id={props.id}
+                buttonName="영업 종료시간 설정"
+                handleUpdateTime={handleUpdateList}
+                type="end"
+              />
+              <Text>{props.listData.endTime}</Text>
+              <TouchableOpacity onPress={() => onRemoveList(props.id)}>
+                <Text style={{ color: 'red' }}>삭제</Text>
+              </TouchableOpacity>
             </View>
-            <Text>{props.listData.days}</Text>
-
-            <TimePicker
-              id={props.id}
-              buttonName="영업 시작시간 설정"
-              handleUpdateTime={handleUpdateList}
-              type="start"
-            />
-            <Text>{props.listData.startTime}</Text>
-
-            <TimePicker
-              id={props.id}
-              buttonName="영업 종료시간 설정"
-              handleUpdateTime={handleUpdateList}
-              type="end"
-            />
-            <Text>{props.listData.endTime}</Text>
-            <TouchableOpacity onPress={() => onRemoveList(props.id)}>
-              <Text style={{ color: 'red' }}>삭제</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
+          ))}
+        </View>
+      </ScrollView>
     </RegisterStoreLayout>
   )
 }
