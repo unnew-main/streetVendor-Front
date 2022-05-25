@@ -1,4 +1,4 @@
-import { UserOrderScreen } from '@/screens/user/Order'
+import { UserOrderScreen } from '@/screens/user/order'
 import { StoreDetailType, StoreMenuType } from '@/types/store.type'
 import { RouteProp } from '@react-navigation/native'
 import React from 'react'

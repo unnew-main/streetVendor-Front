@@ -18,6 +18,8 @@ type Props = {
   setShowAllStore: React.Dispatch<React.SetStateAction<boolean>>
   isSideMenu: boolean
   handleSideMenu: (e?: boolean) => void
+  isOpenDetail: boolean
+  setIsOpenDetail: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const UserMainScreen = ({
@@ -28,6 +30,8 @@ export const UserMainScreen = ({
   setShowAllStore,
   isSideMenu,
   handleSideMenu,
+  isOpenDetail,
+  setIsOpenDetail,
 }: Props) => {
   return (
     <SideMenu
@@ -50,18 +54,26 @@ export const UserMainScreen = ({
           />
         </NaverMapWrapper>
         {isClickMapPin && detailStoreInfo && (
-          <PreviewDetailStore storeInfo={detailStoreInfo} />
-        )}
-        <SideMoreButtonWrapper>
-          <SideMoreButton handleClick={handleSideMenu} />
-        </SideMoreButtonWrapper>
-
-        <StateStoreToogleWrapper>
-          <StateStoreToogle
-            isEnabled={showAllStore}
-            toggleSwitch={setShowAllStore}
+          <PreviewDetailStore
+            isOpenDetail={isOpenDetail}
+            setIsOpenDetail={setIsOpenDetail}
+            storeInfo={detailStoreInfo}
           />
-        </StateStoreToogleWrapper>
+        )}
+        {!isOpenDetail && (
+          <>
+            <SideMoreButtonWrapper>
+              <SideMoreButton handleClick={handleSideMenu} />
+            </SideMoreButtonWrapper>
+
+            <StateStoreToogleWrapper>
+              <StateStoreToogle
+                isEnabled={showAllStore}
+                toggleSwitch={setShowAllStore}
+              />
+            </StateStoreToogleWrapper>
+          </>
+        )}
       </View>
     </SideMenu>
   )

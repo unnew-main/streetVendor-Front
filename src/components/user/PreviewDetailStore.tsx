@@ -1,15 +1,19 @@
 import { StoreDetailType } from '@/types/store.type'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Animated } from 'react-native'
 import styled from 'styled-components/native'
 import { DetailStore } from './DetailStore'
 
 type Props = {
+  isOpenDetail: boolean
+  setIsOpenDetail: React.Dispatch<React.SetStateAction<boolean>>
   storeInfo: StoreDetailType
 }
-export const PreviewDetailStore = ({ storeInfo }: Props) => {
-  const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false)
-
+export const PreviewDetailStore = ({
+  isOpenDetail,
+  setIsOpenDetail,
+  storeInfo,
+}: Props) => {
   const Y = useRef(new Animated.Value(150)).current
 
   const handleShowDetail = () => {

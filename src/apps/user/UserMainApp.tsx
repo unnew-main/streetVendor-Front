@@ -7,6 +7,8 @@ export const UserMainApp = () => {
   const [showAllStore, setShowAllStore] = useState(false)
   const [isSideMenu, setIsSideMenu] = useState(false)
   const [isClickMapPin, setIsClickMapPin] = useState<boolean>(false)
+  const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false)
+
   const [
     detailStoreInfo,
     setDetailStoreInfo,
@@ -44,6 +46,8 @@ export const UserMainApp = () => {
       setShowAllStore={setShowAllStore}
       isSideMenu={isSideMenu}
       handleSideMenu={handleSideMenu}
+      isOpenDetail={isOpenDetail}
+      setIsOpenDetail={setIsOpenDetail}
     />
   )
 }

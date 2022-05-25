@@ -51,9 +51,11 @@ export const DetailStore = ({ storeId }: Props) => {
           </View>
         ))}
       </ScrollView>
-      <ButtonWrapper>
-        <OrderButton handleOrderClick={handleOrderClick} />
-      </ButtonWrapper>
+      {storeInfo.salesStatus === 'OPEN' && (
+        <ButtonWrapper>
+          <OrderButton handleOrderClick={handleOrderClick} />
+        </ButtonWrapper>
+      )}
     </Container>
   )
 }

@@ -1,5 +1,5 @@
 import { UserMainApp } from '@/apps/user'
-import { UserOrderApp } from '@/apps/user/Order'
+import { UserOrderApp } from '@/apps/user/order'
 import { UserSettingApp } from '@/apps/user/sideMenu/UserSettingApp'
 
 import { createStackNavigator } from '@react-navigation/stack'
