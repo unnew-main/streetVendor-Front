@@ -119,13 +119,16 @@ export const SetMenuApp = ({
   const beforeBackSave = useCallback(() => {
     list.map(data => {
       if (!data.listData.name) {
-        goAlert('메뉴 이름을 선택해주세요')
+        goAlert('메뉴 이름을 입력해주세요')
         throw Error
       } else if (data.listData.menuCount === 0) {
-        goAlert('음식 개수를 정해주세요')
+        goAlert('음식 개수를 입력해주세요')
         throw Error
       } else if (data.listData.price === '') {
-        goAlert('가격을 정해주세요')
+        goAlert('가격을 입력해주세요')
+        throw Error
+      } else if (data.listData.pictureUrl === '') {
+        goAlert('음식사진을 등록해주세요')
         throw Error
       }
     })
@@ -149,6 +152,9 @@ export const SetMenuApp = ({
           throw Error
         } else if (data.listData.price === '') {
           goAlert('가격을 정해주세요')
+          throw Error
+        } else if (data.listData.pictureUrl === '') {
+          goAlert('음식사진을 등록해주세요')
           throw Error
         }
       })

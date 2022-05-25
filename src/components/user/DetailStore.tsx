@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
+import { ReservationButton } from './ReservationButton'
 
 type Props = {
   storeId: number
@@ -26,6 +27,9 @@ export const DetailStore = ({ storeId }: Props) => {
 
   return (
     <Container>
+      <ButtonWrapper>
+        <ReservationButton />
+      </ButtonWrapper>
       {storeInfo ? (
         <ScrollView>
           <Text>{storeInfo.name}</Text>
@@ -46,4 +50,10 @@ export const DetailStore = ({ storeId }: Props) => {
 
 const Container = styled.View`
   height: 100%;
+  position: relative;
+`
+const ButtonWrapper = styled.View`
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
 `

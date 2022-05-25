@@ -61,7 +61,8 @@ const StoreNameWrapper = styled.View``
 const TitleText = styled.Text``
 
 const DetailStoreWrapper = styled.View`
-  height: 100%;
+  height: 550px;
+  position: relative;
   border-top-width: 1px;
   border-top-color: gray;
   border-top-style: solid;
