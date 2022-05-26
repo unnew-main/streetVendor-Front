@@ -4,11 +4,14 @@ import {
   BusinessHoursType,
   LocationType,
   RegisterMenuType,
+  StoreCategory,
 } from '@/types/store.type'
 import { RegisterStoreStack } from '@/navigates'
 
 export const RegisterStoreApp = () => {
-  const [category, setCategory] = useState<string>('')
+  const [category, setCategory] = useState<StoreCategory['value']>(
+    'BUNG_EO_PPANG',
+  )
   const [name, setName] = useState<string>('')
   const [storeDescription, setStoreDescription] = useState<string>('')
   const [location, setLocation] = useState<LocationType>({
@@ -33,7 +36,10 @@ export const RegisterStoreApp = () => {
       locationDescription: locationDescription,
     },
     handle: {
-      handleCategory: useCallback((data: string) => setCategory(data), []),
+      handleCategory: useCallback(
+        (data: StoreCategory['value']) => setCategory(data),
+        [],
+      ),
       handleName: useCallback((data: string) => setName(data), []),
       handleDescription: useCallback(
         (data: string) => setStoreDescription(data),

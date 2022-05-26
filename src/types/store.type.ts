@@ -1,5 +1,5 @@
 export type RegisterStorePropsType = {
-  category: string
+  category: StoreCategory['value']
   name: string
   storeDescription: string
   location: LocationType
@@ -28,7 +28,7 @@ export type RegisterStoreScreenProps = {
   storeProps: {
     data: RegisterStorePropsType
     handle: {
-      handleCategory: (data: string) => void
+      handleCategory: (data: StoreCategory['value']) => void
       handleName: (data: string) => void
       handleDescription: (data: string) => void
       handleLocation: (data: LocationType) => void
@@ -80,7 +80,7 @@ export type StoreMenuType = {
 
 export type StoreDetailType = {
   bossNumber: string
-  category: string
+  category: StoreCategory['value']
   storeDescription: string
   menuList: [
     {
@@ -105,4 +105,11 @@ export type StoreDetailType = {
   payments: string[]
   pictureUrl: string
   salesStatus: 'CLOSED' | 'OPEN'
+}
+
+export type StorePinType = {
+  category: StoreCategory['value']
+  name: string
+  salesStatus: 'CLOSED' | 'OPEN'
+  storeId: number
 }

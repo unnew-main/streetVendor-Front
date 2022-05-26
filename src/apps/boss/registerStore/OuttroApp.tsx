@@ -1,6 +1,7 @@
 import { storeApi } from '@/apis'
 import { OuttroScrreen } from '@/screens/boss/registerStore'
 import { RegisterStorePropsType } from '@/types/store.type'
+import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 
@@ -16,6 +17,7 @@ export const OuttroApp = ({ data }: OuttroAppProps) => {
       await storeApi.createStore(data)
       navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (e) {
+      goAlert(String(e))
       console.log('OuttroApp Error: ', e)
     }
   }, [data, navigator])

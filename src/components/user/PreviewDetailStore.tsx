@@ -1,4 +1,4 @@
-import { StoreDetailType } from '@/types/store.type'
+import { StorePinType } from '@/types/store.type'
 import React, { useRef } from 'react'
 import { Animated } from 'react-native'
 import styled from 'styled-components/native'
@@ -7,7 +7,7 @@ import { DetailStore } from './DetailStore'
 type Props = {
   isOpenDetail: boolean
   setIsOpenDetail: React.Dispatch<React.SetStateAction<boolean>>
-  storeInfo: StoreDetailType
+  storeInfo: StorePinType
 }
 export const PreviewDetailStore = ({
   isOpenDetail,

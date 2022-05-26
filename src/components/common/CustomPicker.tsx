@@ -4,7 +4,7 @@ import RNPickerSelect from 'react-native-picker-select'
 
 type Props = {
   items: { label: string; value: string }[]
-  onValueChange: (data: string) => void
+  onValueChange: (data: any) => void
   value: string
 }
 export const CustomPicker = ({ items, onValueChange, value }: Props) => {

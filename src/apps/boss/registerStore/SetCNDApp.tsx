@@ -1,5 +1,6 @@
 import { SetCNDScreen } from '@/screens/boss/registerStore'
 import { StackRegisterStoreList } from '@/types/route.type'
+import { StoreCategory } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useState } from 'react'
@@ -7,14 +8,14 @@ import React, { useCallback, useState } from 'react'
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
   data: {
-    category: string
+    category: StoreCategory['value']
     name: string
     storeDescription: string
     paymentMethods: string[]
     locationDescription: string
   }
   handle: {
-    handleCategory: (data: string) => void
+    handleCategory: (data: StoreCategory['value']) => void
     handleName: (data: string) => void
     handleDescription: (data: string) => void
     handlePaymentMethods: (data: string[]) => void
@@ -54,7 +55,7 @@ export const SetCNDApp = ({
       isCheckACCOUNT_TRANSFER &&
         handle.handlePaymentMethods(['ACCOUNT_TRANSFER'])
     }
-    if (data.category === '' || data.category === null) {
+    if (data.category === null) {
       goAlert('카테고리를 선택해주세요')
     } else if (data.name === '') {
       goAlert('가게 이름을 입력해주세요')

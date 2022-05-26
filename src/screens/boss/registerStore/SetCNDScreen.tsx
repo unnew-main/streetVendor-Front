@@ -9,14 +9,14 @@ import { ScrollView } from 'react-native-gesture-handler'
 type Props = {
   handleNextRouter: () => void
   data: {
-    category: string
+    category: StoreCategory['value']
     name: string
     storeDescription: string
     paymentMethods: string[]
     locationDescription: string
   }
   handle: {
-    handleCategory: (data: string) => void
+    handleCategory: (data: StoreCategory['value']) => void
     handleName: (data: string) => void
     handleDescription: (data: string) => void
     handlePaymentMethods: (data: string[]) => void

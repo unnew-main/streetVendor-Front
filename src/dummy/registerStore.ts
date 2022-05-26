@@ -21,7 +21,7 @@ export const dummyRegisterStore1: RegisterStorePropsType = {
   storeDescription: '가게설명',
 }
 
-export const dummyRegisterStore2 = {
+export const dummyRegisterStore2: RegisterStorePropsType = {
   businessHours: [{ days: 'MON', endTime: '12:00', startTime: '12:00' }],
   category: 'BUNG_EO_PPANG',
   location: { latitude: 37.78707193372723, longitude: 126.40790473175485 },

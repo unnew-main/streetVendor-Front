@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
 import { UserMainScreen } from '@/screens/user'
-import { StoreDetailType } from '@/types/store.type'
+import { StorePinType } from '@/types/store.type'
 
 export const UserMainApp = () => {
   const [showAllStore, setShowAllStore] = useState(false)
@@ -9,13 +9,12 @@ export const UserMainApp = () => {
   const [isClickMapPin, setIsClickMapPin] = useState<boolean>(false)
   const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false)
 
-  const [
-    detailStoreInfo,
-    setDetailStoreInfo,
-  ] = useState<StoreDetailType | null>(null)
+  const [detailStoreInfo, setDetailStoreInfo] = useState<StorePinType | null>(
+    null,
+  )
 
   const handleClickMapPin = useCallback(
-    (item?: StoreDetailType) => {
+    (item?: StorePinType) => {
       if (item) {
         detailStoreInfo?.storeId === item.storeId
           ? setIsClickMapPin(prev => !prev)

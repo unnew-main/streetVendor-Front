@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-import { LocationType, StoreDetailType } from '@/types/store.type'
+import { LocationType, StorePinType } from '@/types/store.type'
 import Geolocation from '@react-native-community/geolocation'
 import { storeApi } from '@/apis'
 import NaverMapView, { Marker } from 'react-native-nmap'
 
 type Props = {
   showAllStore: boolean
-  handleClickMapPin: (item?: StoreDetailType) => void
+  handleClickMapPin: (item?: StorePinType) => void
 }
 export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
   const [userLocation, setUserLocation] = useState<LocationType>({
@@ -18,7 +18,7 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
     latitude: 0,
     longitude: 0,
   })
-  const [storeList, setStoreList] = useState<StoreDetailType[]>([])
+  const [storeList, setStoreList] = useState<StorePinType[]>([])
 
   useEffect(() => {
     Geolocation.getCurrentPosition(

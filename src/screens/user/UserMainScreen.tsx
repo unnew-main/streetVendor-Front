@@ -4,16 +4,16 @@ import {
   StateStoreToogle,
   SideMenu as Menu,
 } from '@/components/user'
-import { StoreDetailType } from '@/types/store.type'
+import { StorePinType } from '@/types/store.type'
 import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 import SideMenu from 'react-native-side-menu-updated'
 import { SideMoreButton } from '@/components/common'
 type Props = {
-  handleClickMapPin: (item?: StoreDetailType) => void
+  handleClickMapPin: (item?: StorePinType) => void
   isClickMapPin: boolean
-  detailStoreInfo: StoreDetailType | null
+  detailStoreInfo: StorePinType | null
   showAllStore: boolean
   setShowAllStore: React.Dispatch<React.SetStateAction<boolean>>
   isSideMenu: boolean
