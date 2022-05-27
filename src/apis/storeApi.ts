@@ -29,18 +29,18 @@ export const storeApi = {
   ) =>
     api.get('/api/v1/stores/location/open', { distance, latitude, longitude }),
 
-  getLocationClosedStore: async (
+  getLocationAllStore: async (
     distance: number,
     latitude: number,
     longitude: number,
   ) =>
-    api.get('/api/v1/stores/location/closed', {
+    api.get('/api/v1/stores/location', {
       distance,
       latitude,
       longitude,
     }),
 
-  getLocationAllStore: async (lastId: number, size: number) =>
+  getAllLocationStore: async (lastId: number, size: number) =>
     api.get('/api/v1/stores', { lastId, size }),
 
   removeStore: async (storeId: number) =>

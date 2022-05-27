@@ -39,7 +39,7 @@ export const SetBusinessHoursScreen = ({
       handleNextRouter={handleNextRouter}
       beforeBackSave={beforeBackSave}
     >
-      <ScrollView>
+      <ScrollView style={{ width: '100%' }}>
         <View>
           <Text>SetBusinessHoursScreen</Text>
         </View>

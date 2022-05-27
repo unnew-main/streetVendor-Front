@@ -109,7 +109,8 @@ export type StoreDetailType = {
 
 export type StorePinType = {
   category: StoreCategory['value']
-  name: string
+  storeName: string
   salesStatus: 'CLOSED' | 'OPEN'
   storeId: number
+  location: LocationType
 }

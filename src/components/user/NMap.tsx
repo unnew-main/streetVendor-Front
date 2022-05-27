@@ -4,6 +4,7 @@ import { LocationType, StorePinType } from '@/types/store.type'
 import Geolocation from '@react-native-community/geolocation'
 import { storeApi } from '@/apis'
 import NaverMapView, { Marker } from 'react-native-nmap'
+import { goAlert } from '@/utils/goAlert'
 
 type Props = {
   showAllStore: boolean
@@ -33,6 +34,7 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
         })
       },
       error => {
+        goAlert('Location Geolocation Error', error.message)
         console.log('Location Geolocation Error', error.code, error.message)
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
@@ -46,7 +48,7 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
         const {
           data: { data },
         } = showAllStore
-          ? await storeApi.getLocationClosedStore(
+          ? await storeApi.getLocationAllStore(
               2,
               cameraLocation.latitude,
               cameraLocation.longitude,

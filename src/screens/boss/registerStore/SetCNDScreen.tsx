@@ -51,7 +51,7 @@ export const SetCNDScreen = ({
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <RegisterStoreLayout title="카테고리" handleNextRouter={handleNextRouter}>
-        <ScrollView>
+        <ScrollView style={{ width: '100%' }}>
           <View
             style={{
               display: 'flex',

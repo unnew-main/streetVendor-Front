@@ -52,7 +52,7 @@ export const SetMenuScreen = ({
         handleNextRouter={handleNextRouter}
         beforeBackSave={beforeBackSave}
       >
-        <ScrollView>
+        <ScrollView style={{ width: '100%' }}>
           <View>
             <Text>SetMenuScreen</Text>
           </View>
