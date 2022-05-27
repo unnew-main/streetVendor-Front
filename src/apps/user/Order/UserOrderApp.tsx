@@ -1,7 +1,8 @@
 import { UserOrderScreen } from '@/screens/user/order'
 import { StoreMenuType, StorePinType } from '@/types/store.type'
+import { goAlert } from '@/utils/goAlert'
 import { RouteProp } from '@react-navigation/native'
-import React from 'react'
+import React, { useState } from 'react'
 
 type Props = {
   route: RouteProp<{
@@ -13,5 +14,20 @@ type Props = {
 }
 
 export const UserOrderApp = ({ route: { params } }: Props) => {
-  return <UserOrderScreen {...params} />
+  const [checkOrder, setCheckOrder] = useState(false)
+  const handleAddBasket = (id: StoreMenuType['menuId']) => {
+    console.log(id)
+  }
+  const handleOrder = () => {
+    goAlert('주문이 완료되었습니다!')
+  }
+  return (
+    <UserOrderScreen
+      {...params}
+      handleAddBasket={handleAddBasket}
+      handleOrder={handleOrder}
+      checkOrder={checkOrder}
+      setCheckOrder={setCheckOrder}
+    />
+  )
 }

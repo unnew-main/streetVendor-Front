@@ -1,15 +1,25 @@
+import { OrderCheck } from '@/components/user/OrderCheck'
 import { StoreMenuType, StorePinType } from '@/types/store.type'
 import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
 import { Text } from 'react-native'
+
 import styled from 'styled-components/native'
 import { MenuItem } from './MenuItem'
 
 type Props = {
   storeName: StorePinType['storeName']
   menuList: StoreMenuType[]
+  handleAddBasket: (id: StoreMenuType['menuId']) => void
+  handleOrder: () => void
+  checkOrder: boolean
+  setCheckOrder: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const UserOrderScreen = ({ storeName, menuList }: Props) => {
+export const UserOrderScreen = ({
+  storeName,
+  menuList,
+  handleAddBasket,
+}: Props) => {
   console.log('menuList!!!', menuList)
   const navigator = React.useContext(NavigationContext)
 
@@ -25,13 +35,15 @@ export const UserOrderScreen = ({ storeName, menuList }: Props) => {
         </MenuInfoWrapper>
         <MenuList>
           {menuList.map((item, index) => (
-            <MenuItem key={index} {...item} />
+            <MenuItem
+              menuInfo={item}
+              handleAddBasket={handleAddBasket}
+              key={index}
+            />
           ))}
         </MenuList>
       </ScrollViewStyle>
-      <OrderButtonWrapper>
-        <Text>주문하기</Text>
-      </OrderButtonWrapper>
+      <OrderCheck />
     </Container>
   )
 }
@@ -68,13 +80,4 @@ const MenuList = styled.View`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
-
-const OrderButtonWrapper = styled.TouchableOpacity`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 60px;
-  background-color: cyan;
 `

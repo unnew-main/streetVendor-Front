@@ -62,10 +62,9 @@ export const DetailStore = ({ storeId }: Props) => {
 
 const Container = styled.View`
   height: 100%;
-  position: relative;
 `
 const ButtonWrapper = styled.View`
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   right: 5%;
 `

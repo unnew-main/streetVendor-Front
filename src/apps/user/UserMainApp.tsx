@@ -15,6 +15,7 @@ export const UserMainApp = () => {
 
   const handleClickMapPin = useCallback(
     (item?: StorePinType) => {
+      setIsOpenDetail(false)
       if (item) {
         detailStoreInfo?.storeId === item.storeId
           ? setIsClickMapPin(prev => !prev)

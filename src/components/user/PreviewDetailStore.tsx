@@ -14,24 +14,29 @@ export const PreviewDetailStore = ({
   setIsOpenDetail,
   storeInfo,
 }: Props) => {
-  const Y = useRef(new Animated.Value(150)).current
+  const Y = useRef(new Animated.Value(0)).current
 
   const handleShowDetail = () => {
     setIsOpenDetail(prev => !prev)
     isOpenDetail
       ? Animated.timing(Y, {
-          toValue: 150,
+          toValue: 0,
           duration: 300,
           useNativeDriver: false,
         }).start()
       : Animated.timing(Y, {
-          toValue: 700,
+          toValue: 1,
           duration: 300,
           useNativeDriver: false,
         }).start()
   }
+
+  const DetailContainerHeight = Y.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '80%'],
+  })
   return (
-    <Container isOpenDetail={isOpenDetail} style={{ height: Y }}>
+    <>
       <TouchWrapper onPress={() => handleShowDetail()}>
         <StoreNameWrapper>
           <TitleText>가게아이디: {storeInfo.storeId}</TitleText>
@@ -39,34 +44,31 @@ export const PreviewDetailStore = ({
           <TitleText>가게이름: {storeInfo.storeName}</TitleText>
         </StoreNameWrapper>
       </TouchWrapper>
-      <DetailStoreWrapper>
+      <DetailStoreWrapper style={{ height: DetailContainerHeight }}>
         {isOpenDetail && <DetailStore storeId={storeInfo.storeId} />}
       </DetailStoreWrapper>
-    </Container>
+    </>
   )
 }
 
-const Container = styled(Animated.View)<{
-  isOpenDetail: boolean
-}>`
-  bottom: 0%;
-  left: 0%;
-  position: absolute;
-  width: 100%;
-  background-color: white;
-`
-
 const TouchWrapper = styled.TouchableOpacity`
-  height: 150px;
+  background-color: white;
+
+  width: 100%;
+  height: 10%;
 `
 
-const StoreNameWrapper = styled.View``
+const StoreNameWrapper = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`
 
 const TitleText = styled.Text``
 
-const DetailStoreWrapper = styled.View`
-  height: 550px;
-  position: relative;
+const DetailStoreWrapper = styled(Animated.View)`
+  width: 100%;
+  background-color: white;
   border-top-width: 1px;
   border-top-color: gray;
   border-top-style: solid;

@@ -42,7 +42,7 @@ export const UserMainScreen = ({
       <View
         style={{
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'flex-end',
           alignItems: 'center',
           height: '100%',
         }}
@@ -95,4 +95,8 @@ const SideMoreButtonWrapper = styled.View`
   position: absolute;
   top: 10%;
   left: 10%;
+`
+
+const PreviewDetailStoreWrapper = styled.View`
+  width: 100%;
 `

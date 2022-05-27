@@ -82,14 +82,7 @@ export type StoreDetailType = {
   bossNumber: string
   category: StoreCategory['value']
   storeDescription: string
-  menuList: [
-    {
-      menuCount: number
-      menuName: string
-      menuPrice: number
-      pictureUrl: string
-    },
-  ]
+  menuList: StoreMenuType[]
   businessHours: [
     {
       days: string
