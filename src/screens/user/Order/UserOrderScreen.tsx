@@ -1,18 +1,24 @@
-import { StoreDetailType, StoreMenuType } from '@/types/store.type'
+import { StoreMenuType, StorePinType } from '@/types/store.type'
+import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 import { MenuItem } from './MenuItem'
 
 type Props = {
-  storeName: StoreDetailType['storeName']
+  storeName: StorePinType['storeName']
   menuList: StoreMenuType[]
 }
 export const UserOrderScreen = ({ storeName, menuList }: Props) => {
   console.log('menuList!!!', menuList)
+  const navigator = React.useContext(NavigationContext)
+
   return (
     <Container>
       <ScrollViewStyle>
+        <BackButtonWrapper onPress={() => navigator?.goBack()}>
+          <Text>뒤로가기</Text>
+        </BackButtonWrapper>
         <MenuInfoWrapper>
           <Text style={{ backgroundColor: 'red' }}>주문화면</Text>
           <Text>가게이름: {storeName}</Text>
@@ -43,6 +49,11 @@ const Container = styled.SafeAreaView`
   width: 100%;
 `
 
+const BackButtonWrapper = styled.TouchableOpacity`
+  width: 40%;
+  border: 1px solid black;
+  padding: 10px;
+`
 const MenuInfoWrapper = styled.View`
   display: flex;
   align-items: center;

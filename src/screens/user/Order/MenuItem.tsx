@@ -1,20 +1,13 @@
 import { StoreMenuType } from '@/types/store.type'
 import React from 'react'
-import { Image, Text } from 'react-native'
+import { Image, ImageSourcePropType, Text } from 'react-native'
 import styled from 'styled-components/native'
 
 export const MenuItem = (props: StoreMenuType) => {
-  console.log(props)
+  const url: ImageSourcePropType = { uri: props.pictureUrl }
   return (
     <ItemContainer>
-      <Image
-        source={
-          !props.pictureUrl
-            ? require('@/Assets/Images/TOM.png')
-            : props.pictureUrl
-        }
-        style={{ width: 80, height: 80 }}
-      />
+      <Image source={url} style={{ width: 80, height: 80 }} />
       <Text>{props.menuName}</Text>
       <Text>{props.menuCount}개</Text>
       <Text>{props.menuPrice}원</Text>

@@ -1,12 +1,12 @@
 import { UserOrderScreen } from '@/screens/user/order'
-import { StoreDetailType, StoreMenuType } from '@/types/store.type'
+import { StoreMenuType, StorePinType } from '@/types/store.type'
 import { RouteProp } from '@react-navigation/native'
 import React from 'react'
 
 type Props = {
   route: RouteProp<{
     params: {
-      storeName: StoreDetailType['storeName']
+      storeName: StorePinType['storeName']
       menuList: StoreMenuType[]
     }
   }>

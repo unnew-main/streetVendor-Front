@@ -36,7 +36,7 @@ export const PreviewDetailStore = ({
         <StoreNameWrapper>
           <TitleText>가게아이디: {storeInfo.storeId}</TitleText>
 
-          <TitleText>가게이름: {storeInfo.name}</TitleText>
+          <TitleText>가게이름: {storeInfo.storeName}</TitleText>
         </StoreNameWrapper>
       </TouchWrapper>
       <DetailStoreWrapper>
