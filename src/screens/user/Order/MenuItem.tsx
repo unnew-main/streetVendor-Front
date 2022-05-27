@@ -9,9 +9,9 @@ type Props = {
 }
 export const MenuItem = ({ menuInfo, handleAddBasket }: Props) => {
   const url: ImageSourcePropType = { uri: menuInfo.pictureUrl }
-  console.log('menuInfo.menuId,', menuInfo)
+  console.log('menuInfo.menuId,', menuInfo.menuSalesStatus)
   return (
-    <ItemContainer salesStatus={menuInfo.salesStatus}>
+    <ItemContainer menuSalesStatus={menuInfo.menuSalesStatus}>
       <Image source={url} style={{ width: 80, height: 80 }} />
       <Text>{menuInfo.menuName}</Text>
       <Text>{menuInfo.menuCount}개</Text>
@@ -24,7 +24,7 @@ export const MenuItem = ({ menuInfo, handleAddBasket }: Props) => {
 }
 
 const ItemContainer = styled.View<{
-  salesStatus: StoreMenuType['salesStatus']
+  menuSalesStatus: StoreMenuType['menuSalesStatus']
 }>`
   width: 90%;
   display: flex;
@@ -35,8 +35,8 @@ const ItemContainer = styled.View<{
   border-bottom-width: 1px;
   border-bottom-style: solid;
   height: 100px;
-  background-color: ${({ salesStatus }) =>
-    salesStatus === 'ON_SALE' ? 'white' : 'red'};
+  background-color: ${({ menuSalesStatus }) =>
+    menuSalesStatus === 'ON_SALE' ? 'white' : 'red'};
 `
 const AddButton = styled.TouchableOpacity`
   border: 1px solid black;

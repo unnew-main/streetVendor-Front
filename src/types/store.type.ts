@@ -75,7 +75,7 @@ export type StoreMenuType = {
   menuName: string
   pictureUrl: string
   menuPrice: number
-  salesStatus: 'SOLD_OUT' | 'ON_SALE'
+  menuSalesStatus: 'SOLD_OUT' | 'ON_SALE'
 }
 
 export type StoreDetailType = {

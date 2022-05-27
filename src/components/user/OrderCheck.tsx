@@ -29,7 +29,7 @@ export const OrderCheck = () => {
   return (
     <>
       <OrderButtonWrapper checkOrder={checkOrder} onPress={handleShowDetail}>
-        <Text>주문 확인하기</Text>
+        <Text>{!checkOrder ? '주문 확인하기 ' : '돌아가기'} </Text>
       </OrderButtonWrapper>
       <OrderWrapper style={{ height: ContainerHeight }}>
         <ScrollView>

@@ -55,7 +55,7 @@ const TouchWrapper = styled.TouchableOpacity`
   background-color: white;
 
   width: 100%;
-  height: 10%;
+  height: 15%;
 `
 
 const StoreNameWrapper = styled.View`

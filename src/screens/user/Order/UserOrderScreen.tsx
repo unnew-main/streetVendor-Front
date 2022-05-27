@@ -48,15 +48,16 @@ export const UserOrderScreen = ({
   )
 }
 
-const ScrollViewStyle = styled.ScrollView`
-  height: 100%;
-  width: 100%;
-`
-
 const Container = styled.SafeAreaView`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+`
+
+const ScrollViewStyle = styled.ScrollView`
   height: 100%;
   width: 100%;
 `

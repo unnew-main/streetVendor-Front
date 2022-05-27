@@ -96,7 +96,3 @@ const SideMoreButtonWrapper = styled.View`
   top: 10%;
   left: 10%;
 `
-
-const PreviewDetailStoreWrapper = styled.View`
-  width: 100%;
-`

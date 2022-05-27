@@ -29,7 +29,7 @@ export const StoreTabApp = ({ route }: Props) => {
         menuPrice: 0,
         pictureUrl: '',
         menuId: 0,
-        salesStatus: 'ON_SALE',
+        menuSalesStatus: 'ON_SALE',
       },
     ],
     payments: ['CASH'],
