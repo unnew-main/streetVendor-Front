@@ -1,4 +1,5 @@
 import { OrderCheck } from '@/components/user/OrderCheck'
+import { BasketType } from '@/types/order.type'
 import { StoreMenuType, StorePinType } from '@/types/store.type'
 import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
@@ -10,15 +11,16 @@ import { MenuItem } from './MenuItem'
 type Props = {
   storeName: StorePinType['storeName']
   menuList: StoreMenuType[]
-  handleAddBasket: (id: StoreMenuType['menuId']) => void
+  handleAddBasket: (props: BasketType) => void
   handleOrder: () => void
-  checkOrder: boolean
-  setCheckOrder: React.Dispatch<React.SetStateAction<boolean>>
+  basketList: BasketType[]
 }
 export const UserOrderScreen = ({
   storeName,
   menuList,
   handleAddBasket,
+  basketList,
+  handleOrder,
 }: Props) => {
   console.log('menuList!!!', menuList)
   const navigator = React.useContext(NavigationContext)
@@ -43,7 +45,7 @@ export const UserOrderScreen = ({
           ))}
         </MenuList>
       </ScrollViewStyle>
-      <OrderCheck />
+      <OrderCheck basketList={basketList} handleOrder={handleOrder} />
     </Container>
   )
 }
@@ -81,4 +83,11 @@ const MenuList = styled.View`
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 80%;
 `
+
+// const OrderCheckWrapper = styled.View`
+//   /* display: flex;
+//   justify-content: flex-end;
+//   align-items: center; */
+// `

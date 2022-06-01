@@ -1,3 +1,4 @@
+import { BasketType } from '@/types/order.type'
 import { StoreMenuType } from '@/types/store.type'
 import React from 'react'
 import { Image, ImageSourcePropType, Text } from 'react-native'
@@ -5,7 +6,7 @@ import styled from 'styled-components/native'
 
 type Props = {
   menuInfo: StoreMenuType
-  handleAddBasket: (id: StoreMenuType['menuId']) => void
+  handleAddBasket: (props: BasketType) => void
 }
 export const MenuItem = ({ menuInfo, handleAddBasket }: Props) => {
   const url: ImageSourcePropType = { uri: menuInfo.pictureUrl }
@@ -16,7 +17,18 @@ export const MenuItem = ({ menuInfo, handleAddBasket }: Props) => {
       <Text>{menuInfo.menuName}</Text>
       <Text>{menuInfo.menuCount}개</Text>
       <Text>{menuInfo.menuPrice}원</Text>
-      <AddButton onPress={() => handleAddBasket(menuInfo.menuId)}>
+      <AddButton
+        onPress={() =>
+          handleAddBasket({
+            menuId: menuInfo.menuId,
+            menuCount: menuInfo.menuCount,
+            menuName: menuInfo.menuName,
+            pictureUrl: menuInfo.pictureUrl,
+            menuPrice: menuInfo.menuPrice,
+            menuTotal: 1,
+          })
+        }
+      >
         <Text>추가</Text>
       </AddButton>
     </ItemContainer>
