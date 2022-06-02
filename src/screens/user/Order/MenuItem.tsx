@@ -10,7 +10,6 @@ type Props = {
 }
 export const MenuItem = ({ menuInfo, handleAddBasket }: Props) => {
   const url: ImageSourcePropType = { uri: menuInfo.pictureUrl }
-  console.log('menuInfo.menuId,', menuInfo.menuSalesStatus)
   return (
     <ItemContainer menuSalesStatus={menuInfo.menuSalesStatus}>
       <Image source={url} style={{ width: 80, height: 80 }} />

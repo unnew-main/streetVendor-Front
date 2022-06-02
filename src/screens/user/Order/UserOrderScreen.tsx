@@ -14,6 +14,8 @@ type Props = {
   handleAddBasket: (props: BasketType) => void
   handleOrder: () => void
   basketList: BasketType[]
+  handleRemoveBasket: (id: number) => void
+  handleMinerBasket: (id: number) => void
 }
 export const UserOrderScreen = ({
   storeName,
@@ -21,8 +23,9 @@ export const UserOrderScreen = ({
   handleAddBasket,
   basketList,
   handleOrder,
+  handleRemoveBasket,
+  handleMinerBasket,
 }: Props) => {
-  console.log('menuList!!!', menuList)
   const navigator = React.useContext(NavigationContext)
 
   return (
@@ -45,7 +48,12 @@ export const UserOrderScreen = ({
           ))}
         </MenuList>
       </ScrollViewStyle>
-      <OrderCheck basketList={basketList} handleOrder={handleOrder} />
+      <OrderCheck
+        basketList={basketList}
+        handleOrder={handleOrder}
+        handleRemoveBasket={handleRemoveBasket}
+        handleMinerBasket={handleMinerBasket}
+      />
     </Container>
   )
 }

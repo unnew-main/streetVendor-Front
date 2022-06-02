@@ -3,7 +3,7 @@ import { RegisterStorePropsType } from '@/types/store.type'
 export const dummyRegisterStore1: RegisterStorePropsType = {
   businessHours: [{ days: 'MON', endTime: '12:00', startTime: '12:00' }],
   category: 'BUNG_EO_PPANG',
-  location: { latitude: 37.78639644286615, longitude: 126.40572677813645 },
+  location: { latitude: 37.3467234148076, longitude: 126.95440917262977 },
   locationDescription: '가게위치설명',
   menus: [
     {
@@ -31,7 +31,7 @@ export const dummyRegisterStore1: RegisterStorePropsType = {
 export const dummyRegisterStore2: RegisterStorePropsType = {
   businessHours: [{ days: 'MON', endTime: '12:00', startTime: '12:00' }],
   category: 'BUNG_EO_PPANG',
-  location: { latitude: 37.78707193372723, longitude: 126.40790473175485 },
+  location: { latitude: 37.344991478862205, longitude: 126.95330793191249 },
   locationDescription: '가게위치설명2',
   menus: [
     {
