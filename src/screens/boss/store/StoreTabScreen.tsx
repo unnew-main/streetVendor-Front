@@ -21,7 +21,9 @@ export function StoreTabScreen({ storeData, handleStore }: Props) {
           />
         )}
       </Tab.Screen>
-      <Tab.Screen name="주문주문" component={OrderListApp} />
+      <Tab.Screen name="주문주문">
+        {props => <OrderListApp storeId={storeData['storeId']} {...props} />}
+      </Tab.Screen>
     </Tab.Navigator>
   )
 }

@@ -2,8 +2,7 @@ import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/store.type'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { FlatList, Text, View } from 'react-native'
 import styled from 'styled-components/native'
 import { OrderButton } from './OrderButton'
 
@@ -42,16 +41,19 @@ export const DetailStore = ({ storeId }: Props) => {
 
   return (
     <Container>
-      <ScrollView>
-        <Text>{storeInfo.storeName}</Text>
-        {storeInfo.businessHours.map((item, index) => (
-          <View key={index}>
+      <FlatList
+        data={storeInfo.businessHours}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{storeInfo.storeName}</Text>
+
             <Text>{item.days}</Text>
             <Text>{item.startTime}</Text>
             <Text>{item.endTime}</Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+        keyExtractor={(item, i) => String(i)}
+      />
       {storeInfo.salesStatus === 'OPEN' && (
         <ButtonWrapper>
           <OrderButton handleOrderClick={handleOrderClick} />

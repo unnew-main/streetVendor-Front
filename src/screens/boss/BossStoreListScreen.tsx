@@ -4,7 +4,7 @@ import { ChangeUserButton } from '@/components/common'
 import { AutoCreateStore } from '@/dummy/AutoCreateStore'
 import { StoreListType } from '@/types/store.type'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import styled from 'styled-components/native'
 
 type BossMainScreenProps = {
@@ -20,25 +20,27 @@ export const BossStoreListScreen = ({
       <ScrollWrapper>
         <Text>가게 리스트</Text>
         <AutoCreateStore />
-        <Scroll>
-          {list.length ? (
-            list.map((param, i) => (
+        {list.length ? (
+          <FlatList
+            data={list}
+            renderItem={({ item }) => (
               <ItemContainer
-                key={i}
-                onPress={() => handleClickStore(param.storeId)}
-                isOpen={param.salesStatus === 'CLOSED' ? false : true}
+                onPress={() => handleClickStore(item.storeId)}
+                isOpen={item.salesStatus === 'CLOSED' ? false : true}
               >
-                <Item>{param.storeId}</Item>
-                <Item>{param.storeName}</Item>
-                <Item>{param.locationDescription}</Item>
+                <Item>{item.storeId}</Item>
+                <Item>{item.storeName}</Item>
+                <Item>{item.locationDescription}</Item>
               </ItemContainer>
-            ))
-          ) : (
-            <View>
-              <Text>가게가 없습니다!</Text>
-            </View>
-          )}
-        </Scroll>
+            )}
+            keyExtractor={(item, i) => String(i)}
+            style={{ width: '100%' }}
+          />
+        ) : (
+          <View>
+            <Text>가게가 없습니다!</Text>
+          </View>
+        )}
 
         <RegisterStoreButton />
         <ChangeUserButton />
@@ -57,10 +59,7 @@ const Container = styled.SafeAreaView`
 
   height: 100%;
 `
-const Scroll = styled.ScrollView`
-  width: 90%;
-  height: 100%;
-`
+
 const ScrollWrapper = styled.View`
   display: flex;
   justify-content: center;

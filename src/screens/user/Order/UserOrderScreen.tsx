@@ -1,12 +1,12 @@
+import { MenuItem } from '@/components/user'
 import { OrderCheck } from '@/components/user/OrderCheck'
 import { BasketType } from '@/types/order.type'
 import { StoreMenuType, StorePinType } from '@/types/store.type'
 import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
-import { Text } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 
 import styled from 'styled-components/native'
-import { MenuItem } from './MenuItem'
 
 type Props = {
   storeName: StorePinType['storeName']
@@ -30,24 +30,26 @@ export const UserOrderScreen = ({
 
   return (
     <Container>
-      <ScrollViewStyle>
-        <BackButtonWrapper onPress={() => navigator?.goBack()}>
-          <Text>뒤로가기</Text>
-        </BackButtonWrapper>
-        <MenuInfoWrapper>
-          <Text style={{ backgroundColor: 'red' }}>주문화면</Text>
-          <Text>가게이름: {storeName}</Text>
-        </MenuInfoWrapper>
-        <MenuList>
-          {menuList.map((item, index) => (
-            <MenuItem
-              menuInfo={item}
-              handleAddBasket={handleAddBasket}
-              key={index}
-            />
-          ))}
-        </MenuList>
-      </ScrollViewStyle>
+      <BackButtonWrapper onPress={() => navigator?.goBack()}>
+        <Text>뒤로가기</Text>
+      </BackButtonWrapper>
+      <MenuInfoWrapper>
+        <Text style={{ backgroundColor: 'red' }}>주문화면</Text>
+        <Text>가게이름: {storeName}</Text>
+      </MenuInfoWrapper>
+      <MenuList>
+        {menuList ? (
+          <FlatList
+            data={menuList}
+            renderItem={({ item }) => (
+              <MenuItem menuInfo={item} handleAddBasket={handleAddBasket} />
+            )}
+            keyExtractor={(item, i) => String(i)}
+          />
+        ) : (
+          <View>메뉴가 없습니다!</View>
+        )}
+      </MenuList>
       <OrderCheck
         basketList={basketList}
         handleOrder={handleOrder}
@@ -65,11 +67,6 @@ const Container = styled.SafeAreaView`
   height: 100%;
   width: 100%;
   background-color: white;
-`
-
-const ScrollViewStyle = styled.ScrollView`
-  height: 100%;
-  width: 100%;
 `
 
 const BackButtonWrapper = styled.TouchableOpacity`
@@ -93,9 +90,3 @@ const MenuList = styled.View`
   width: 100%;
   height: 80%;
 `
-
-// const OrderCheckWrapper = styled.View`
-//   /* display: flex;
-//   justify-content: flex-end;
-//   align-items: center; */
-// `

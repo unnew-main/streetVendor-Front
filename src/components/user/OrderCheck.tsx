@@ -1,6 +1,6 @@
 import { BasketType } from '@/types/order.type'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { Animated, Image, Text } from 'react-native'
+import { Animated, Dimensions, Image, Text } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
@@ -38,7 +38,7 @@ export const OrderCheck = ({
     () =>
       animate.interpolate({
         inputRange: [0, 1],
-        outputRange: ['0%', '90%'],
+        outputRange: [60, Dimensions.get('window').height - 60],
       }),
     [animate],
   )
@@ -51,69 +51,69 @@ export const OrderCheck = ({
     [animate],
   )
   return (
-    <>
-      <OrderCheckButtonWrapper
-        checkOrder={checkOrder}
-        onPress={handleShowDetail}
-      >
+    <OrderWrapper
+      style={{
+        height: ContainerHeight,
+      }}
+    >
+      <OrderCheckButtonWrapper onPress={handleShowDetail}>
         <Text>{!checkOrder ? '주문 확인하기 ' : '돌아가기'} </Text>
       </OrderCheckButtonWrapper>
-      <OrderWrapper style={{ height: ContainerHeight }}>
-        <FlatList
-          data={basketList}
-          renderItem={({ item }) => (
-            <ItemContainer>
-              <Image
-                source={{ uri: item.pictureUrl }}
-                style={{ width: 80, height: 80 }}
-              />
-              <Text>{item.menuName}</Text>
-              <Text>{item.menuCount}개</Text>
-              <Text>{item.menuPrice}원</Text>
-              <Text>{item.menuTotal}개</Text>
-              <RemoveMenuButton onPress={() => handleRemoveBasket(item.menuId)}>
-                <Text>삭제</Text>
-              </RemoveMenuButton>
-              <RemoveMenuButton
-                onPress={() =>
-                  item.menuTotal > 1
-                    ? handleMinerBasket(item.menuId)
-                    : handleRemoveBasket(item.menuId)
-                }
-              >
-                <Text>카운트다운</Text>
-              </RemoveMenuButton>
-            </ItemContainer>
-          )}
-          keyExtractor={item => String(item.menuId)}
-        />
-        <ButtonWrapper style={{ height: ButtonHeight }}>
-          <OrderButton onPress={handleOrder}>
-            <Text>주문하기</Text>
-          </OrderButton>
-        </ButtonWrapper>
-      </OrderWrapper>
-    </>
+      <FlatList
+        data={basketList}
+        renderItem={({ item }) => (
+          <ItemContainer>
+            <Image
+              source={{ uri: item.pictureUrl }}
+              style={{ width: 80, height: 80 }}
+            />
+            <Text>{item.menuName}</Text>
+            <Text>{item.menuCount}개</Text>
+            <Text>{item.menuPrice}원</Text>
+            <Text>{item.menuTotal}개</Text>
+            <RemoveMenuButton onPress={() => handleRemoveBasket(item.menuId)}>
+              <Text>삭제</Text>
+            </RemoveMenuButton>
+            <RemoveMenuButton
+              onPress={() =>
+                item.menuTotal > 1
+                  ? handleMinerBasket(item.menuId)
+                  : handleRemoveBasket(item.menuId)
+              }
+            >
+              <Text>카운트다운</Text>
+            </RemoveMenuButton>
+          </ItemContainer>
+        )}
+        keyExtractor={item => String(item.menuId)}
+      />
+      <ButtonWrapper style={{ height: ButtonHeight }}>
+        <OrderButton onPress={handleOrder}>
+          <Text>주문하기</Text>
+        </OrderButton>
+      </ButtonWrapper>
+    </OrderWrapper>
   )
 }
 
-const OrderCheckButtonWrapper = styled.TouchableOpacity<{
-  checkOrder: boolean
-}>`
+const OrderWrapper = styled(Animated.View)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0px;
+  background-color: gray;
+`
+
+const OrderCheckButtonWrapper = styled.TouchableOpacity`
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   background-color: cyan;
-`
-
-const OrderWrapper = styled(Animated.View)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background-color: white;
 `
 
 const ItemContainer = styled.View`

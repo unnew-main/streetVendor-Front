@@ -59,6 +59,7 @@ export const SetMenuScreen = ({
           <TouchableOpacity onPress={onAddList}>
             <Text style={{ color: 'blue' }}>추가하기</Text>
           </TouchableOpacity>
+
           {list.map(props => (
             <View key={props.id}>
               <Text>-----------------------</Text>

@@ -20,3 +20,18 @@ export type BasketType = {
   menuPrice: number
   menuTotal: number
 }
+
+export type BossOrderListType = {
+  createTime: Date
+  memberId: number
+  orderId: number
+  orderMenus: {
+    count: number
+    menuId: number
+    menuName: string
+    price: number
+  }[]
+
+  orderStatus: 'PREPARING'
+  totalPrice: number
+}
