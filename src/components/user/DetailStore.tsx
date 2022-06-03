@@ -33,6 +33,7 @@ export const DetailStore = ({ storeId }: Props) => {
     navigator?.navigate('UserOrder', {
       storeName: storeInfo?.storeName,
       menuList: storeInfo?.menuList,
+      storeId: storeInfo?.storeId,
     })
   }
   if (!storeInfo) {

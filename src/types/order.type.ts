@@ -4,12 +4,11 @@ export type OrderType = {
     latitude: number
     longitude: number
   }
-  menus: [
-    {
-      count: number
-      menuId: number
-    },
-  ]
+  menus: {
+    count: number
+    menuId: number
+  }[]
+
   storeId: number
 }
 

@@ -1,5 +1,5 @@
 import { BasketType } from '@/types/order.type'
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { Animated, Image, Text } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
@@ -19,7 +19,7 @@ export const OrderCheck = ({
   const [checkOrder, setCheckOrder] = useState(false)
   const animate = useRef(new Animated.Value(0)).current
 
-  const handleShowDetail = () => {
+  const handleShowDetail = useCallback(() => {
     setCheckOrder(prev => !prev)
     checkOrder
       ? Animated.timing(animate, {
@@ -32,15 +32,24 @@ export const OrderCheck = ({
           duration: 300,
           useNativeDriver: false,
         }).start()
-  }
-  const ContainerHeight = animate.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0%', '90%'],
-  })
-  const ButtonHeight = animate.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 60],
-  })
+  }, [animate, checkOrder])
+
+  const ContainerHeight = useMemo(
+    () =>
+      animate.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0%', '90%'],
+      }),
+    [animate],
+  )
+  const ButtonHeight = useMemo(
+    () =>
+      animate.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 60],
+      }),
+    [animate],
+  )
   return (
     <>
       <OrderCheckButtonWrapper
