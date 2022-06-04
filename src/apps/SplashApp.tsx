@@ -14,7 +14,7 @@ export function SplashApp() {
         setNowState('세션 가져오는 중...')
 
         const session = await sessionHelper.getSession()
-        console.log(session)
+        console.log('sessionHelper', session)
         if (session) {
           console.log('스토리지에 세션 정보확인완료')
           setNowState('유저정보 가져오는 중...')

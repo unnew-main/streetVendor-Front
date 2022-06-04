@@ -5,6 +5,7 @@ import Geolocation from '@react-native-community/geolocation'
 import { storeApi } from '@/apis'
 import NaverMapView, { Marker } from 'react-native-nmap'
 import { goAlert } from '@/utils/goAlert'
+import { Text, View } from 'react-native'
 
 type Props = {
   showAllStore: boolean
@@ -20,6 +21,7 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
     longitude: 0,
   })
   const [storeList, setStoreList] = useState<StorePinType[]>([])
+  const [consoleData, setConsoleData] = useState('')
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
@@ -59,9 +61,27 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
               cameraLocation.longitude,
             )
         console.log('storeList', data)
+        setConsoleData(
+          '[Success] \n' +
+            'CameraLocation: \n' +
+            +cameraLocation.latitude +
+            ' ' +
+            cameraLocation.longitude +
+            '\n, [Data]: ' +
+            String(...data),
+        )
         setStoreList(data)
       } catch (e) {
         console.log('getLocationStore API ERROR: ', e)
+        setConsoleData(
+          '[fail] \n' +
+            '[CameraLocation] \n latitude: ' +
+            +cameraLocation.latitude +
+            ' longitude: ' +
+            cameraLocation.longitude +
+            '\n [Data]: ' +
+            String(e),
+        )
       }
     })()
   }, [cameraLocation, showAllStore])
@@ -71,27 +91,32 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
   }
 
   return (
-    <NaverMapView
-      style={{ width: '100%', height: '100%' }}
-      showsMyLocationButton={true}
-      center={{ ...userLocation, zoom: 16 }}
-      compass={true}
-      scaleBar={true}
-      onMapClick={() => handleClickMapPin()}
-      onCameraChange={e => handleCameraMove(e.latitude, e.longitude)}
-    >
-      {storeList.length !== 0 &&
-        storeList.map(item => (
-          <Marker
-            key={item.storeId}
-            coordinate={{
-              latitude: item.location.latitude,
-              longitude: item.location.longitude,
-            }}
-            onClick={() => handleClickMapPin(item)}
-            pinColor={item.salesStatus === 'OPEN' ? 'black' : 'red'}
-          />
-        ))}
-    </NaverMapView>
+    <>
+      <NaverMapView
+        style={{ width: '100%', height: '100%' }}
+        showsMyLocationButton={true}
+        center={{ ...userLocation, zoom: 16 }}
+        compass={true}
+        scaleBar={true}
+        onMapClick={() => handleClickMapPin()}
+        onCameraChange={e => handleCameraMove(e.latitude, e.longitude)}
+      >
+        {storeList.length !== 0 &&
+          storeList.map(item => (
+            <Marker
+              key={item.storeId}
+              coordinate={{
+                latitude: item.location.latitude,
+                longitude: item.location.longitude,
+              }}
+              onClick={() => handleClickMapPin(item)}
+              pinColor={item.salesStatus === 'OPEN' ? 'black' : 'red'}
+            />
+          ))}
+      </NaverMapView>
+      <View style={{ position: 'absolute', bottom: '10%', left: '10%' }}>
+        <Text>{consoleData}</Text>
+      </View>
+    </>
   )
 }

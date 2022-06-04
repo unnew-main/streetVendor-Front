@@ -2,14 +2,18 @@ import { orderApi } from '@/apis/orderApi'
 import { OrderListScreen } from '@/screens/boss/store'
 import { BossOrderListType } from '@/types/order.type'
 import React, { useEffect, useState } from 'react'
+import { useLoading } from '@/hooks/useLoading.hook'
 
 type Props = {
   storeId: number
 }
 export const OrderListApp = ({ storeId }: Props) => {
   const [orderList, setOrderList] = useState<BossOrderListType[]>([])
+  const { onLoading, offLoading } = useLoading()
+
   useEffect(() => {
     ;(async () => {
+      onLoading()
       try {
         const {
           data: { data: data },
@@ -19,7 +23,8 @@ export const OrderListApp = ({ storeId }: Props) => {
       } catch (e) {
         console.log('OrderListApp Error: ', e)
       }
+      offLoading()
     })()
-  }, [storeId])
+  }, [offLoading, onLoading, storeId])
   return <OrderListScreen orderList={orderList} />
 }
