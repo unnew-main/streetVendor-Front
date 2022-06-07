@@ -26,8 +26,16 @@ export const BossSplashApp = () => {
         setNowState('사장님 정보확인 불가')
 
         offLoading()
-        goAlert(String(e))
-        navigator?.reset({ routes: [{ name: 'RegisterBoss' }] })
+        goAlert(
+          '사장님 계정이 없습니다.',
+          '사장님 등록화면으로 이동하시겠습니까?.',
+          () => {
+            navigator?.reset({ routes: [{ name: 'RegisterBoss' }] })
+          },
+          () => {
+            navigator?.reset({ routes: [{ name: 'SelectJob' }] })
+          },
+        )
       }
     })()
   }, [navigator, offLoading, onLoading])

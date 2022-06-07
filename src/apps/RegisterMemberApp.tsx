@@ -52,11 +52,15 @@ export function RegisterMemberApp({
 
       navigator?.reset({ routes: [{ name: 'HomeStack' }] })
       offLoading()
-    } catch (e) {
-      console.log('RegisterError: ', e)
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message.lastIndexOf('400') !== -1) {
+          console.log(error.message.lastIndexOf('300'))
+          console.log('a', error.message)
+        } else if (error.message.search('401')) console.log('c', error.message)
+      } else console.log('b', String(error))
+      goAlert(String(error))
       offLoading()
-
-      goAlert(String(e))
     }
   }, [
     accessToken,

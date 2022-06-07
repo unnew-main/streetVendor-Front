@@ -4,6 +4,7 @@ export const goAlert = (
   title: string,
   subTitle?: string,
   handleComfirm?: () => void,
+  handleCancel?: () => void,
 ) =>
   handleComfirm
     ? // 예 | 아니오 버튼
@@ -17,9 +18,12 @@ export const goAlert = (
           },
           {
             text: '취소',
-            onPress: () => {
-              console.log('취소')
-            },
+            onPress:
+              handleCancel !== undefined
+                ? handleCancel
+                : () => {
+                    console.log('취소')
+                  },
           },
         ],
         { cancelable: true },
