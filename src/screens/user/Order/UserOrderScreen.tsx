@@ -52,6 +52,7 @@ export const UserOrderScreen = ({
         basketList={basketList}
         setBasketList={setBasketList}
         storeId={storeId}
+        handleAddBasket={handleAddBasket}
       />
     </Container>
   )

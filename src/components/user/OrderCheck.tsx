@@ -12,8 +12,14 @@ type Props = {
   basketList: BasketType[]
   storeId: number
   setBasketList: React.Dispatch<React.SetStateAction<BasketType[]>>
+  handleAddBasket: (props: BasketType) => void
 }
-export const OrderCheck = ({ basketList, setBasketList, storeId }: Props) => {
+export const OrderCheck = ({
+  basketList,
+  setBasketList,
+  storeId,
+  handleAddBasket,
+}: Props) => {
   const [checkOrder, setCheckOrder] = useState(false)
   const [totalPrice, setTotalPrice] = useState<any>(0)
   const animate = useRef(new Animated.Value(0)).current
@@ -37,6 +43,7 @@ export const OrderCheck = ({ basketList, setBasketList, storeId }: Props) => {
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     )
   }, [])
+
   useEffect(() => {
     setTotalPrice(
       basketList.reduce(
@@ -123,6 +130,7 @@ export const OrderCheck = ({ basketList, setBasketList, storeId }: Props) => {
       goAlert('주문이 완료되었습니다!')
     } catch (e) {
       console.log('User handleOrder Error: ', e)
+      goAlert(String(e))
     }
   }, [basketList, storeId, userLocation.latitude, userLocation.longitude])
 
@@ -155,10 +163,13 @@ export const OrderCheck = ({ basketList, setBasketList, storeId }: Props) => {
               onPress={() =>
                 item.menuTotal > 1
                   ? handleMinerBasket(item.menuId)
-                  : handleRemoveBasket(item.menuId)
+                  : goAlert('최소주문은 1개 이상입니다!')
               }
             >
-              <Text>카운트다운</Text>
+              <Text>-</Text>
+            </RemoveMenuButton>
+            <RemoveMenuButton onPress={() => handleAddBasket(item)}>
+              <Text>+</Text>
             </RemoveMenuButton>
           </ItemContainer>
         )}
