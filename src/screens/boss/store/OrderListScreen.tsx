@@ -21,6 +21,10 @@ export const OrderListScreen = ({ orderList }: Props) => {
           renderItem={({ item }) => (
             <View>
               <Text>orderId: {item.orderId}</Text>
+              <Text>주문자: {item.nickName}</Text>
+              <Text>주문시간: {item.createTime}</Text>
+              <Text>----</Text>
+
               <FlatList
                 data={item.orderMenus}
                 renderItem={({ item }) => (
@@ -32,7 +36,7 @@ export const OrderListScreen = ({ orderList }: Props) => {
                 )}
                 keyExtractor={item => String(item.menuId)}
               />
-              <Text>---------</Text>
+              <Text>================</Text>
             </View>
           )}
           keyExtractor={item => String(item.orderId)}

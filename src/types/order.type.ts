@@ -25,6 +25,7 @@ export type BossOrderListType = {
   createTime: Date
   memberId: number
   orderId: number
+  nickName: string
   orderMenus: {
     count: number
     menuId: number
@@ -32,6 +33,6 @@ export type BossOrderListType = {
     price: number
   }[]
 
-  orderStatus: 'PREPARING'
+  orderStatus: 'PREPARING' | 'REQUEST' | 'READY_TO_PICK_UP'
   totalPrice: number
 }
