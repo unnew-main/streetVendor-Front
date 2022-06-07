@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { RouteProp } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/store.type'
+import { ReportError } from '@/utils/reportError'
 type Props = {
   route: RouteProp<{
     params: {
@@ -47,8 +48,11 @@ export const StoreTabApp = ({ route }: Props) => {
         } = await storeApi.getDetailStore(storeId)
         console.log('detail storedata', data)
         setStoreData(data)
-      } catch (e) {
-        console.log('getDetailStore ERROR:', e)
+      } catch (error) {
+        console.log('getDetailStore ERROR:', error)
+        if (error instanceof Error) {
+          ReportError(error.message)
+        }
       }
     })()
   }, [storeId])

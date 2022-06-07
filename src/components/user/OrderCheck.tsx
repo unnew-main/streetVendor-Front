@@ -2,6 +2,7 @@ import { orderApi } from '@/apis/orderApi'
 import { BasketType } from '@/types/order.type'
 import { LocationType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 import Geolocation from '@react-native-community/geolocation'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Animated, Dimensions, Image, Text, View } from 'react-native'
@@ -110,8 +111,7 @@ export const OrderCheck = ({
   const handleOrder = useCallback(async () => {
     try {
       if (basketList.length === 0) {
-        goAlert('메뉴를 선택해주세요!')
-        throw Error('No Menu')
+        throw String('메뉴를 선택해주세요!')
       }
       await orderApi.userOrder({
         distance: 2,
@@ -128,9 +128,17 @@ export const OrderCheck = ({
         storeId: storeId,
       })
       goAlert('주문이 완료되었습니다!')
-    } catch (e) {
-      console.log('User handleOrder Error: ', e)
-      goAlert(String(e))
+    } catch (error) {
+      console.log('User handleOrder Error: ', error)
+      if (error instanceof Error) {
+        if (error.message.lastIndexOf('404') !== -1) {
+          goAlert('[404] 가게가 없습니다!')
+        } else {
+          ReportError(error.message)
+        }
+      } else {
+        goAlert(String(error))
+      }
     }
   }, [basketList, storeId, userLocation.latitude, userLocation.longitude])
 

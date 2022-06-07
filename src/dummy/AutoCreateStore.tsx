@@ -1,4 +1,5 @@
 import { storeApi } from '@/apis'
+import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
@@ -16,7 +17,7 @@ export const AutoCreateStore = () => {
       console.log('자동 가게 생성 완료!')
       navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (e) {
-      console.log('자동 가게 생성 실패!')
+      goAlert('자동 가게 생성 실패!', String(e))
     }
   }, [navigator])
 

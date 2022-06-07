@@ -6,6 +6,7 @@ import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 
 export const SignoutButton = () => {
   const navigator = React.useContext(NavigationContext)
@@ -23,8 +24,11 @@ export const SignoutButton = () => {
 
           navigator?.reset({ routes: [{ name: 'Splash' }] })
           goAlert('회원탈퇴되었습니다.')
-        } catch (e) {
-          console.log('signOutError', e)
+        } catch (error) {
+          console.log('signOutError', error)
+          if (error instanceof Error) {
+            ReportError(error.message)
+          }
         }
       },
     )

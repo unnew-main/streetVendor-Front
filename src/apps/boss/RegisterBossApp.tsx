@@ -3,6 +3,7 @@ import { RegisterBossScreen } from '@/screens/boss'
 import { goAlert } from '@/utils/goAlert'
 import React, { useCallback, useState } from 'react'
 import { NavigationContext } from '@react-navigation/native'
+import { ReportError } from '@/utils/reportError'
 
 export type RegisterBossType = {
   bossName: string
@@ -17,15 +18,22 @@ export const RegisterBossApp = () => {
   const handleSetBoss = useCallback(async () => {
     try {
       if (name === '' || phone === '') {
-        goAlert('이름과 전화번호를 입력해주세요')
-        throw Error
+        throw String('이름과 전화번호를 입력해주세요')
       }
       await memberApi.setBossInfo({ bossName: name, bossPhoneNumber: phone })
       goAlert('사장님 등록이 완료되었습니다.')
       navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
-    } catch (e) {
-      console.log('handleSetBoss Error: ', e)
-      goAlert(String(e))
+    } catch (error) {
+      console.log('handleSetBoss Error: ', error)
+      if (error instanceof Error) {
+        if (error.message.lastIndexOf('400') !== -1) {
+          goAlert('전화번호 10~11자를 입력해주세요.')
+        } else {
+          ReportError(error.message)
+        }
+      } else {
+        goAlert(String(error))
+      }
     }
   }, [name, navigator, phone])
   const handleGoBack = () => {

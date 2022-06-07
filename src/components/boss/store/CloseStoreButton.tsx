@@ -1,6 +1,7 @@
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
 
@@ -24,12 +25,14 @@ export const CloseStoreButton = ({
       console.log('가게닫기완료')
       setIsOpen('CLOSED')
       handleStore(storeId, false)
-      offLoading()
       goAlert('영업이 종료되었습니다.')
-    } catch (e) {
-      offLoading()
-      console.log('CLOSED Store Error:', e)
+    } catch (error) {
+      console.log('CLOSED Store Error:', error)
+      if (error instanceof Error) {
+        ReportError(error.message)
+      }
     }
+    offLoading()
   }, [handleStore, offLoading, onLoading, setIsOpen, storeId])
 
   return (

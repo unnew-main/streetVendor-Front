@@ -1,6 +1,7 @@
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
 
@@ -20,13 +21,16 @@ export const OpenStoreButton = ({ storeId, setIsOpen, handleStore }: Props) => {
       handleStore(storeId, true)
       setIsOpen('OPEN')
       goAlert('영업이 시작되었습니다.')
-      offLoading()
-    } catch (e: unknown) {
-      offLoading()
-      goAlert('이미 오픈된 가게가 있습니다!')
-
-      console.log('Open Store Error:', e)
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message.lastIndexOf('409') !== -1) {
+          goAlert('이미 오픈된 가게가 있습니다!')
+        } else {
+          ReportError(error.message)
+        }
+      }
     }
+    offLoading()
   }, [handleStore, offLoading, onLoading, setIsOpen, storeId])
 
   return (

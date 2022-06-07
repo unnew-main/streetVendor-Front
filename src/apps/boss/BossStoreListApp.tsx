@@ -4,8 +4,8 @@ import { BossStoreListScreen } from '@/screens/boss'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { StoreListType } from '@/types/store.type'
-import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
+import { ReportError } from '@/utils/reportError'
 
 export const BossStoreListApp = () => {
   const navigator = React.useContext(NavigationContext)
@@ -22,14 +22,15 @@ export const BossStoreListApp = () => {
         console.log('store data List', data)
         setList(data)
         offLoading()
-      } catch (e) {
-        console.log('BossStoreListApp Error: ', e)
-
+      } catch (error) {
+        console.log('BossStoreListApp Error: ', error)
+        if (error instanceof Error) {
+          ReportError(error.message)
+        }
         offLoading()
-        goAlert(String(e))
       }
     })()
-  }, [offLoading, onLoading])
+  }, [navigator, offLoading, onLoading])
 
   const handleStore = useCallback((id: number, isOpen: boolean) => {
     setList(prevList =>

@@ -3,6 +3,7 @@ import { OrderListScreen } from '@/screens/boss/store'
 import { BossOrderListType } from '@/types/order.type'
 import React, { useEffect, useState } from 'react'
 import { useLoading } from '@/hooks/useLoading.hook'
+import { ReportError } from '@/utils/reportError'
 
 type Props = {
   storeId: number
@@ -20,8 +21,11 @@ export const OrderListApp = ({ storeId }: Props) => {
         } = await orderApi.bossCheckOrder(storeId)
         console.log(data)
         setOrderList(data)
-      } catch (e) {
-        console.log('OrderListApp Error: ', e)
+      } catch (error) {
+        console.log('OrderListApp Error: ', error)
+        if (error instanceof Error) {
+          ReportError(error.message)
+        }
       }
       offLoading()
     })()

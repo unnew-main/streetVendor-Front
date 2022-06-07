@@ -6,6 +6,7 @@ import Geolocation from '@react-native-community/geolocation'
 import { goAlert } from '@/utils/goAlert'
 import { StackRegisterStoreList } from '@/types/route.type'
 import { LocationType } from '@/types/store.type'
+import { ReportError } from '@/utils/reportError'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -62,20 +63,24 @@ export const SetLocationApp = ({
 
   const beforeBackSave = useCallback(() => {
     if (isPin === false) {
-      goAlert('위치를 설정해주세요')
-      throw Error
+      throw String('위치를 설정해주세요')
     }
   }, [isPin])
 
   const handleNextRouter = useCallback(() => {
     try {
       if (isPin === false) {
-        goAlert('위치를 설정해주세요')
-        throw Error
+        throw String('위치를 설정해주세요')
       }
 
       navigate('SetBusinessHours')
-    } catch (e) {}
+    } catch (error) {
+      if (error instanceof Error) {
+        ReportError(error.message)
+      } else {
+        goAlert(String(error))
+      }
+    }
   }, [isPin, navigate])
 
   return (

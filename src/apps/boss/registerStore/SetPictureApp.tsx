@@ -3,6 +3,7 @@ import { StackRegisterStoreList } from '@/types/route.type'
 import { goAlert } from '@/utils/goAlert'
 import { openCamera } from '@/utils/openCamera'
 import { openImage } from '@/utils/openImage'
+import { ReportError } from '@/utils/reportError'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback } from 'react'
 
@@ -21,8 +22,11 @@ export const SetPictureApp = ({
     try {
       const imageUrl = await openImage()
       imageUrl && handlePictureUrl(imageUrl)
-    } catch (e) {
-      console.log('Error Open Image', e)
+    } catch (error) {
+      console.log('Error Open Image', error)
+      if (error instanceof Error) {
+        ReportError(error.message)
+      }
     }
   }, [handlePictureUrl])
 
@@ -31,8 +35,11 @@ export const SetPictureApp = ({
     try {
       const imageUrl = await openCamera()
       imageUrl && handlePictureUrl(imageUrl)
-    } catch (e) {
-      console.log('Error Open Image', e)
+    } catch (error) {
+      console.log('Error Open Image', error)
+      if (error instanceof Error) {
+        ReportError(error.message)
+      }
     }
   }, [handlePictureUrl])
 

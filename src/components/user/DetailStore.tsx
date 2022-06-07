@@ -1,5 +1,6 @@
 import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/store.type'
+import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { FlatList, Text, View } from 'react-native'
@@ -21,8 +22,11 @@ export const DetailStore = ({ storeId }: Props) => {
         } = await storeApi.getDetailStore(storeId)
         console.log('[DetailStore]storeDetail Info', data)
         setStoreInfo(data)
-      } catch (e) {
-        console.log('DetailStore Error: ', e)
+      } catch (error) {
+        console.log('DetailStore Error: ', error)
+        if (error instanceof Error) {
+          ReportError(error.message)
+        }
       }
     })()
   }, [storeId])

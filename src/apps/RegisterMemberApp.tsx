@@ -5,6 +5,7 @@ import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { goAlert } from '@/utils/goAlert'
 import { useLoading } from '@/hooks/useLoading.hook'
+import { ReportError } from '@/utils/reportError'
 
 type RegisterMemberProps = {
   route: {
@@ -55,11 +56,11 @@ export function RegisterMemberApp({
     } catch (error) {
       if (error instanceof Error) {
         if (error.message.lastIndexOf('400') !== -1) {
-          console.log(error.message.lastIndexOf('300'))
-          console.log('a', error.message)
-        } else if (error.message.search('401')) console.log('c', error.message)
-      } else console.log('b', String(error))
-      goAlert(String(error))
+          goAlert('닉네임은 2~8자로 입력해주세요.')
+        } else {
+          ReportError(error.message)
+        }
+      }
       offLoading()
     }
   }, [

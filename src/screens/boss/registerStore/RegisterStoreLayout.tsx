@@ -1,3 +1,5 @@
+import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import { Text } from 'react-native'
@@ -23,7 +25,13 @@ export const RegisterStoreLayout = ({
         beforeBackSave()
       }
       navigator?.goBack()
-    } catch (e) {}
+    } catch (error) {
+      if (error instanceof Error) {
+        ReportError(error.message)
+      } else {
+        goAlert(String(error))
+      }
+    }
   }, [beforeBackSave, navigator])
   return (
     <Container>

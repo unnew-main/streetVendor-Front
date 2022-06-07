@@ -8,7 +8,7 @@ import { NavigationContext } from '@react-navigation/native'
 import { authApi } from '@/apis'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { useLoading } from '@/hooks/useLoading.hook'
-import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 
 export const GoogleLoginbutton = () => {
   const navigator = React.useContext(NavigationContext)
@@ -32,9 +32,11 @@ export const GoogleLoginbutton = () => {
           routes: [{ name: 'RegisterMember', params: { data, accessToken } }],
         })
       }
-    } catch (e) {
-      goAlert(String(e))
-      console.log('LoginButton Error', e)
+    } catch (error) {
+      console.log('LoginButton Error', error)
+      if (error instanceof Error) {
+        ReportError(error.message)
+      }
     }
     offLoading()
   }, [navigator, offLoading, onLoading])

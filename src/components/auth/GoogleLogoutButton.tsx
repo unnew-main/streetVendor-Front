@@ -6,6 +6,7 @@ import { sessionHelper } from '@/utils/sessionHelper'
 import { authApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 export const GoogleLogoutbutton = () => {
   const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
@@ -22,8 +23,11 @@ export const GoogleLogoutbutton = () => {
 
         navigator?.reset({ routes: [{ name: 'Splash' }] })
         goAlert('로그아웃되었습니다.')
-      } catch (e) {
-        console.log('LogoutError', e)
+      } catch (error) {
+        console.log('LogoutError', error)
+        if (error instanceof Error) {
+          ReportError(error.message)
+        }
       }
     })
     offLoading()

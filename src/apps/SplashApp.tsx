@@ -3,7 +3,7 @@ import { SplashScreen } from '@/screens'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
-import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 
 export function SplashApp() {
   const navigator = React.useContext(NavigationContext)
@@ -34,12 +34,19 @@ export function SplashApp() {
 
           navigator?.reset({ routes: [{ name: 'Login' }] })
         }
-      } catch (e) {
-        console.log('Splash Error: ', e)
+      } catch (error) {
+        console.log('Splash Error: ', error)
         setNowState('에러가 발생했습니다.')
-        goAlert(String(e))
+        if (error instanceof Error) {
+          // if (error.message.lastIndexOf('400') !== -1) {
+          //   goAlert(String(error), '', () =>
+          //     navigator?.reset({ routes: [{ name: 'Login' }] }),
+          //   )
+          // } else {
+          ReportError(error.message)
 
-        navigator?.reset({ routes: [{ name: 'Login' }] })
+          // }
+        }
       }
     })()
   }, [navigator])

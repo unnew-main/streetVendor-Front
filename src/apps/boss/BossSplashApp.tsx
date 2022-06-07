@@ -5,6 +5,7 @@ import { SplashScreen } from '@/screens'
 import { memberApi } from '@/apis'
 import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
+import { ReportError } from '@/utils/reportError'
 
 export const BossSplashApp = () => {
   const navigator = React.useContext(NavigationContext)
@@ -21,21 +22,27 @@ export const BossSplashApp = () => {
         setNowState('사장님 정보확인 완료')
         offLoading()
         navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
-      } catch (e) {
-        console.log('BossMainApp Error: ', e)
+      } catch (error) {
+        console.log('BossMainApp Error: ', error)
         setNowState('사장님 정보확인 불가')
 
+        if (error instanceof Error) {
+          if (error.message.lastIndexOf('404') !== -1) {
+            goAlert(
+              '사장님 계정이 없습니다.',
+              '사장님 등록화면으로 이동하시겠습니까?.',
+              () => {
+                navigator?.reset({ routes: [{ name: 'RegisterBoss' }] })
+              },
+              () => {
+                navigator?.reset({ routes: [{ name: 'SelectJob' }] })
+              },
+            )
+          } else {
+            ReportError(error.message)
+          }
+        }
         offLoading()
-        goAlert(
-          '사장님 계정이 없습니다.',
-          '사장님 등록화면으로 이동하시겠습니까?.',
-          () => {
-            navigator?.reset({ routes: [{ name: 'RegisterBoss' }] })
-          },
-          () => {
-            navigator?.reset({ routes: [{ name: 'SelectJob' }] })
-          },
-        )
       }
     })()
   }, [navigator, offLoading, onLoading])

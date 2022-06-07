@@ -4,6 +4,7 @@ import { RegisterMenuType } from '@/types/store.type'
 
 import { goAlert } from '@/utils/goAlert'
 import { openImage } from '@/utils/openImage'
+import { ReportError } from '@/utils/reportError'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -69,8 +70,10 @@ export const SetMenuApp = ({
       try {
         const imageUrl = await openImage()
         imageUrl && handleUpdateList(id, name, menuCount, price, imageUrl)
-      } catch (e) {
-        console.log('Error Open Image', e)
+      } catch (error) {
+        if (error instanceof Error) {
+          ReportError(error.message)
+        }
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -116,52 +119,42 @@ export const SetMenuApp = ({
     },
     [],
   )
-  const beforeBackSave = useCallback(() => {
+  const listCheckMap = () => {
     list.map(data => {
       if (!data.listData.name) {
-        goAlert('메뉴 이름을 입력해주세요')
-        throw Error
+        throw String('메뉴 이름을 입력해주세요')
       } else if (data.listData.menuCount === 0) {
-        goAlert('음식 개수를 입력해주세요')
-        throw Error
+        throw String('음식 개수를 입력해주세요')
       } else if (data.listData.price === '') {
-        goAlert('가격을 입력해주세요')
-        throw Error
+        throw String('가격을 입력해주세요')
       } else if (data.listData.pictureUrl === '') {
-        goAlert('음식사진을 등록해주세요')
-        throw Error
+        throw String('음식사진을 등록해주세요')
       }
     })
-
+  }
+  const beforeBackSave = useCallback(() => {
+    listCheckMap()
     handleMenu(list.map(data => data.listData))
-    // navigate('SetPicture')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleMenu, list])
 
   const handleNextRouter = useCallback(() => {
     try {
       if (list.length === 0) {
-        goAlert('메뉴를 추가해주세요')
-        throw Error
+        throw String('메뉴를 추가해주세요')
       }
-      list.map(data => {
-        if (!data.listData.name) {
-          goAlert('메뉴 이름을 선택해주세요')
-          throw Error
-        } else if (data.listData.menuCount === 0) {
-          goAlert('음식 개수를 정해주세요')
-          throw Error
-        } else if (data.listData.price === '') {
-          goAlert('가격을 정해주세요')
-          throw Error
-        } else if (data.listData.pictureUrl === '') {
-          goAlert('음식사진을 등록해주세요')
-          throw Error
-        }
-      })
+      listCheckMap()
 
       handleMenu(list.map(data => data.listData))
       navigate('SetPicture')
-    } catch (e) {}
+    } catch (error) {
+      if (error instanceof Error) {
+        ReportError(error.message)
+      } else {
+        goAlert(String(error))
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleMenu, list, navigate])
 
   return (

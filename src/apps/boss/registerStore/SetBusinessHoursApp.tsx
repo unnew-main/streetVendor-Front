@@ -3,6 +3,7 @@ import { StackRegisterStoreList } from '@/types/route.type'
 import { BusinessHoursType } from '@/types/store.type'
 
 import { goAlert } from '@/utils/goAlert'
+import { ReportError } from '@/utils/reportError'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -84,8 +85,7 @@ export const SetBusinessHoursApp = ({
   const beforeBackSave = useCallback(() => {
     list.map(data => {
       if (data.listData.days === '') {
-        goAlert('날짜를 선택해주세요')
-        throw Error
+        throw String('날짜를 선택해주세요')
       }
     })
     handleBusinessHours(list.map(data => data.listData))
@@ -94,18 +94,22 @@ export const SetBusinessHoursApp = ({
   const handleNextRouter = useCallback(() => {
     try {
       if (list.length === 0) {
-        goAlert('운영시간를 선택해주세요')
-        throw Error
+        throw String('운영시간를 선택해주세요')
       }
       list.map(data => {
         if (data.listData.days === '') {
-          goAlert('날짜를 선택해주세요')
-          throw Error
+          throw String('날짜를 선택해주세요')
         }
       })
       handleBusinessHours(list.map(data => data.listData))
       navigate('SetMenu')
-    } catch (e) {}
+    } catch (error) {
+      if (error instanceof Error) {
+        ReportError(error.message)
+      } else {
+        goAlert(String(error))
+      }
+    }
   }, [handleBusinessHours, list, navigate])
 
   return (
