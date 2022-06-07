@@ -1,23 +1,51 @@
+import { orderApi } from '@/apis/orderApi'
 import { BasketType } from '@/types/order.type'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { Animated, Dimensions, Image, Text } from 'react-native'
+import { LocationType } from '@/types/store.type'
+import { goAlert } from '@/utils/goAlert'
+import Geolocation from '@react-native-community/geolocation'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Animated, Dimensions, Image, Text, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
 type Props = {
   basketList: BasketType[]
-  handleOrder: () => void
-  handleRemoveBasket: (id: number) => void
-  handleMinerBasket: (id: number) => void
+  storeId: number
+  setBasketList: React.Dispatch<React.SetStateAction<BasketType[]>>
 }
-export const OrderCheck = ({
-  basketList,
-  handleOrder,
-  handleRemoveBasket,
-  handleMinerBasket,
-}: Props) => {
+export const OrderCheck = ({ basketList, setBasketList, storeId }: Props) => {
   const [checkOrder, setCheckOrder] = useState(false)
+  const [totalPrice, setTotalPrice] = useState<any>(0)
   const animate = useRef(new Animated.Value(0)).current
+  const [userLocation, setUserLocation] = useState<LocationType>({
+    latitude: 0,
+    longitude: 0,
+  })
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        setUserLocation({
+          latitude: Number(position.coords.latitude),
+          longitude: Number(position.coords.longitude),
+        })
+      },
+      error => {
+        goAlert('Location Geolocation Error', error.message)
+        console.log('Location Geolocation Error', error.code, error.message)
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
+    )
+  }, [])
+  useEffect(() => {
+    setTotalPrice(
+      basketList.reduce(
+        (pervPrice, nextPrice) =>
+          pervPrice + nextPrice.menuPrice * nextPrice.menuTotal,
+        0,
+      ),
+    )
+  }, [basketList])
 
   const handleShowDetail = useCallback(() => {
     setCheckOrder(prev => !prev)
@@ -50,6 +78,54 @@ export const OrderCheck = ({
       }),
     [animate],
   )
+
+  const handleMinerBasket = useCallback(
+    (id: number) => {
+      const basketTemp = [...basketList]
+
+      basketTemp.forEach((item, index) => {
+        if (item.menuId === id) {
+          basketTemp[index].menuTotal--
+        }
+      })
+      setBasketList(basketTemp)
+    },
+    [basketList, setBasketList],
+  )
+
+  const handleRemoveBasket = useCallback(
+    (id: number) => {
+      setBasketList(prev => prev.filter(data => data.menuId !== id))
+    },
+    [setBasketList],
+  )
+
+  const handleOrder = useCallback(async () => {
+    try {
+      if (basketList.length === 0) {
+        goAlert('메뉴를 선택해주세요!')
+        throw Error('No Menu')
+      }
+      await orderApi.userOrder({
+        distance: 2,
+        location: {
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
+        },
+        menus: basketList.map(item => {
+          const obj = { count: 0, menuId: 0 }
+          obj.count = item.menuTotal
+          obj.menuId = item.menuId
+          return obj
+        }),
+        storeId: storeId,
+      })
+      goAlert('주문이 완료되었습니다!')
+    } catch (e) {
+      console.log('User handleOrder Error: ', e)
+    }
+  }, [basketList, storeId, userLocation.latitude, userLocation.longitude])
+
   return (
     <OrderWrapper
       style={{
@@ -59,6 +135,7 @@ export const OrderCheck = ({
       <OrderCheckButtonWrapper onPress={handleShowDetail}>
         <Text>{!checkOrder ? '주문 확인하기 ' : '돌아가기'} </Text>
       </OrderCheckButtonWrapper>
+
       <FlatList
         data={basketList}
         renderItem={({ item }) => (
@@ -87,7 +164,11 @@ export const OrderCheck = ({
         )}
         keyExtractor={item => String(item.menuId)}
       />
+
       <ButtonWrapper style={{ height: ButtonHeight }}>
+        <View>
+          <Text>{totalPrice}</Text>
+        </View>
         <OrderButton onPress={handleOrder}>
           <Text>주문하기</Text>
         </OrderButton>

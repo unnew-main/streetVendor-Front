@@ -10,21 +10,19 @@ import styled from 'styled-components/native'
 
 type Props = {
   storeName: StorePinType['storeName']
+  storeId: StorePinType['storeId']
   menuList: StoreMenuType[]
   handleAddBasket: (props: BasketType) => void
-  handleOrder: () => void
   basketList: BasketType[]
-  handleRemoveBasket: (id: number) => void
-  handleMinerBasket: (id: number) => void
+  setBasketList: React.Dispatch<React.SetStateAction<BasketType[]>>
 }
 export const UserOrderScreen = ({
   storeName,
+  storeId,
   menuList,
   handleAddBasket,
   basketList,
-  handleOrder,
-  handleRemoveBasket,
-  handleMinerBasket,
+  setBasketList,
 }: Props) => {
   const navigator = React.useContext(NavigationContext)
 
@@ -52,9 +50,8 @@ export const UserOrderScreen = ({
       </MenuList>
       <OrderCheck
         basketList={basketList}
-        handleOrder={handleOrder}
-        handleRemoveBasket={handleRemoveBasket}
-        handleMinerBasket={handleMinerBasket}
+        setBasketList={setBasketList}
+        storeId={storeId}
       />
     </Container>
   )
