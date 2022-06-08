@@ -9,14 +9,9 @@ import styled from 'styled-components/native'
 type Props = {
   storeId: number
   setIsOpen: React.Dispatch<React.SetStateAction<'CLOSED' | 'OPEN'>>
-  handleStore: (id: number, isOpen: boolean) => void
 }
 
-export const CloseStoreButton = ({
-  storeId,
-  setIsOpen,
-  handleStore,
-}: Props) => {
+export const CloseStoreButton = ({ storeId, setIsOpen }: Props) => {
   const { onLoading, offLoading } = useLoading()
   const navigator = React.useContext(NavigationContext)
 
@@ -26,7 +21,6 @@ export const CloseStoreButton = ({
       await storeApi.closeStore(storeId)
       console.log('가게닫기완료')
       setIsOpen('CLOSED')
-      handleStore(storeId, false)
       goAlert('영업이 종료되었습니다.')
     } catch (error) {
       console.log('CLOSED Store Error:', error)
@@ -35,7 +29,7 @@ export const CloseStoreButton = ({
       }
     }
     offLoading()
-  }, [handleStore, navigator, offLoading, onLoading, setIsOpen, storeId])
+  }, [navigator, offLoading, onLoading, setIsOpen, storeId])
 
   return (
     <ButtonContainer onPress={handleClose}>

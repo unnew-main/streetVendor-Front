@@ -11,8 +11,11 @@ export const ReportError = (errorString: string, navigator: any) => {
     )
   } else if (errorString.lastIndexOf('500') !== -1) {
     console.log('500 ERROR')
-    goAlert('서버에 문제가 발생했습니다.', '', false, () =>
-      navigator?.reset({ routes: [{ name: 'Splash' }] }),
+    goAlert(
+      '서버에 문제가 발생했습니다.',
+      '처음 화면으로 돌아갑니다.',
+      false,
+      // () => navigator?.reset({ routes: [{ name: 'Splash' }] }),
     )
   } else {
     goAlert(errorString)

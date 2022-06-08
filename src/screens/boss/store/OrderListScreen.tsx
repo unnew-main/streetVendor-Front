@@ -1,11 +1,13 @@
+import { CancelOrderButton } from '@/components/boss/order'
 import { BossOrderListType } from '@/types/order.type'
 import React from 'react'
 import { FlatList, Text, View } from 'react-native'
 
 type Props = {
   orderList: BossOrderListType[]
+  storeId: number
 }
-export const OrderListScreen = ({ orderList }: Props) => {
+export const OrderListScreen = ({ orderList, storeId }: Props) => {
   return (
     <View
       style={{
@@ -23,6 +25,7 @@ export const OrderListScreen = ({ orderList }: Props) => {
               <Text>orderId: {item.orderId}</Text>
               <Text>주문자: {item.nickName}</Text>
               <Text>주문시간: {item.createTime}</Text>
+              <CancelOrderButton orderId={item.orderId} storeId={storeId} />
               <Text>----</Text>
 
               <FlatList

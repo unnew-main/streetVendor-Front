@@ -13,7 +13,7 @@ type Props = {
   }>
 }
 export const StoreTabApp = ({ route }: Props) => {
-  const { storeId, handleStore } = route.params
+  const { storeId /* handleStore */ } = route.params
   const navigator = React.useContext(NavigationContext)
 
   const [storeData, setStoreData] = useState<StoreDetailType>({
@@ -57,5 +57,5 @@ export const StoreTabApp = ({ route }: Props) => {
       }
     })()
   }, [navigator, storeId])
-  return <StoreTabScreen storeData={storeData} handleStore={handleStore} />
+  return <StoreTabScreen storeData={storeData} />
 }

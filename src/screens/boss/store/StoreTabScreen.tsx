@@ -5,24 +5,27 @@ import { StoreDetailType } from '@/types/store.type'
 
 type Props = {
   storeData: StoreDetailType
-  handleStore: (id: number, isOpen: boolean) => void
 }
 const Tab = createBottomTabNavigator()
 
-export function StoreTabScreen({ storeData, handleStore }: Props) {
+export function StoreTabScreen({ storeData }: Props) {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="가게정보">
-        {props => (
-          <StoreInfoApp
-            storeData={storeData}
-            handleStore={handleStore}
-            {...props}
-          />
-        )}
+      <Tab.Screen
+        name="가게정보"
+        options={{
+          unmountOnBlur: true,
+        }}
+      >
+        {props => <StoreInfoApp storeData={storeData} {...props} />}
       </Tab.Screen>
-      <Tab.Screen name="주문주문">
-        {props => <OrderListApp storeId={storeData['storeId']} {...props} />}
+      <Tab.Screen
+        name="주문주문"
+        options={{
+          unmountOnBlur: true,
+        }}
+      >
+        {props => <OrderListApp storeId={storeData.storeId} {...props} />}
       </Tab.Screen>
     </Tab.Navigator>
   )

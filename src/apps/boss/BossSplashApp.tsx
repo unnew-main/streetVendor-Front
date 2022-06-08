@@ -30,7 +30,7 @@ export const BossSplashApp = () => {
           if (error.message.lastIndexOf('404') !== -1) {
             goAlert(
               '사장님 계정이 없습니다.',
-              '사장님 등록화면으로 이동하시겠습니까?.',
+              '사장님 등록화면으로 이동하시겠습니까?',
               true,
               () => {
                 navigator?.reset({ routes: [{ name: 'RegisterBoss' }] })

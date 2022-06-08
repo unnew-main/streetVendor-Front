@@ -37,7 +37,15 @@ export const BossStoreListScreen = ({
             style={{ width: '100%' }}
           />
         ) : (
-          <View>
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              height: '60%',
+            }}
+          >
             <Text>가게가 없습니다!</Text>
           </View>
         )}

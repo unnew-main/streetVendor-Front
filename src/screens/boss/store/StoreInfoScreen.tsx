@@ -13,7 +13,6 @@ type Props = {
   handleBackList: () => void
   isOpen: 'CLOSED' | 'OPEN'
   setIsOpen: React.Dispatch<React.SetStateAction<'CLOSED' | 'OPEN'>>
-  handleStore: (id: number, isOpen: boolean) => void
 }
 
 export const StoreInfoScreen = ({
@@ -21,7 +20,6 @@ export const StoreInfoScreen = ({
   handleBackList,
   isOpen,
   setIsOpen,
-  handleStore,
 }: Props) => {
   return (
     <View
@@ -41,17 +39,9 @@ export const StoreInfoScreen = ({
       <Text>{storeData.category}</Text>
       <Text>{storeData.storeDescription}</Text>
       {isOpen === 'CLOSED' ? (
-        <OpenStoreButton
-          storeId={storeData.storeId}
-          setIsOpen={setIsOpen}
-          handleStore={handleStore}
-        />
+        <OpenStoreButton storeId={storeData.storeId} setIsOpen={setIsOpen} />
       ) : (
-        <CloseStoreButton
-          storeId={storeData.storeId}
-          setIsOpen={setIsOpen}
-          handleStore={handleStore}
-        />
+        <CloseStoreButton storeId={storeData.storeId} setIsOpen={setIsOpen} />
       )}
       <RemoveStoreButton storeId={storeData.storeId} isOpen={isOpen} />
     </View>

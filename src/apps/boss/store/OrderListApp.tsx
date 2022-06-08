@@ -32,5 +32,5 @@ export const OrderListApp = ({ storeId }: Props) => {
       offLoading()
     })()
   }, [navigator, offLoading, onLoading, storeId])
-  return <OrderListScreen orderList={orderList} />
+  return <OrderListScreen orderList={orderList} storeId={storeId} />
 }

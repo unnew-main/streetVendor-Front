@@ -4,13 +4,14 @@ import { BossStoreListScreen } from '@/screens/boss'
 import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { StoreListType } from '@/types/store.type'
-import { NavigationContext } from '@react-navigation/native'
+import { NavigationContext, useIsFocused } from '@react-navigation/native'
 import { ReportError } from '@/utils/reportError'
 
 export const BossStoreListApp = () => {
   const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
   const [list, setList] = useState<StoreListType[]>([])
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     ;(async () => {
@@ -30,32 +31,15 @@ export const BossStoreListApp = () => {
         offLoading()
       }
     })()
-  }, [navigator, offLoading, onLoading])
-
-  const handleStore = useCallback((id: number, isOpen: boolean) => {
-    setList(prevList =>
-      prevList.map((prevItem: StoreListType) => {
-        if (prevItem.storeId === id) {
-          return {
-            locationDescription: prevItem.locationDescription,
-            storeName: prevItem.storeName,
-            storeId: prevItem.storeId,
-            salesStatus: isOpen ? 'OPEN' : 'CLOSED',
-          }
-        }
-        return prevItem
-      }),
-    )
-  }, [])
+  }, [navigator, offLoading, onLoading, isFocused])
 
   const handleClickStore = useCallback(
     (id: number) => {
       navigator?.navigate('BossStoreTab', {
         storeId: id,
-        handleStore,
       })
     },
-    [handleStore, navigator],
+    [navigator],
   )
 
   return <BossStoreListScreen list={list} handleClickStore={handleClickStore} />
