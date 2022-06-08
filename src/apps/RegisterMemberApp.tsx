@@ -58,7 +58,7 @@ export function RegisterMemberApp({
         if (error.message.lastIndexOf('400') !== -1) {
           goAlert('닉네임은 2~8자로 입력해주세요.')
         } else {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
       offLoading()

@@ -2,6 +2,7 @@ import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
 
@@ -13,6 +14,8 @@ type Props = {
 
 export const OpenStoreButton = ({ storeId, setIsOpen, handleStore }: Props) => {
   const { onLoading, offLoading } = useLoading()
+  const navigator = React.useContext(NavigationContext)
+
   const handleOpen = useCallback(async () => {
     try {
       onLoading()
@@ -26,12 +29,12 @@ export const OpenStoreButton = ({ storeId, setIsOpen, handleStore }: Props) => {
         if (error.message.lastIndexOf('409') !== -1) {
           goAlert('이미 오픈된 가게가 있습니다!')
         } else {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
     }
     offLoading()
-  }, [handleStore, offLoading, onLoading, setIsOpen, storeId])
+  }, [handleStore, navigator, offLoading, onLoading, setIsOpen, storeId])
 
   return (
     <ButtonContainer onPress={handleOpen}>

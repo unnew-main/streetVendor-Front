@@ -27,7 +27,7 @@ export const RegisterStoreLayout = ({
       navigator?.goBack()
     } catch (error) {
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       } else {
         goAlert(String(error))
       }

@@ -4,6 +4,7 @@ import { goAlert } from '@/utils/goAlert'
 import { openCamera } from '@/utils/openCamera'
 import { openImage } from '@/utils/openImage'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback } from 'react'
 
@@ -18,6 +19,8 @@ export const SetPictureApp = ({
   pictureUrl,
   handlePictureUrl,
 }: Props) => {
+  const navigator = React.useContext(NavigationContext)
+
   const handleOpenImage = useCallback(async () => {
     try {
       const imageUrl = await openImage()
@@ -25,10 +28,10 @@ export const SetPictureApp = ({
     } catch (error) {
       console.log('Error Open Image', error)
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       }
     }
-  }, [handlePictureUrl])
+  }, [handlePictureUrl, navigator])
 
   const handleOpenCamera = useCallback(async () => {
     console.log('Camera Click!')
@@ -38,10 +41,10 @@ export const SetPictureApp = ({
     } catch (error) {
       console.log('Error Open Image', error)
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       }
     }
-  }, [handlePictureUrl])
+  }, [handlePictureUrl, navigator])
 
   const handleNextRouter = useCallback(() => {
     if (pictureUrl === '') {

@@ -15,7 +15,7 @@ export const GoogleLogoutbutton = () => {
 
   const handleLogout = useCallback(async () => {
     onLoading()
-    goAlert('로그아웃 하시겠습니까?', '', async () => {
+    goAlert('로그아웃 하시겠습니까?', '', true, async () => {
       try {
         await authApi.logout()
         await sessionHelper.setSession(null)
@@ -26,7 +26,7 @@ export const GoogleLogoutbutton = () => {
       } catch (error) {
         console.log('LogoutError', error)
         if (error instanceof Error) {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
     })

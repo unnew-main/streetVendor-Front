@@ -5,6 +5,7 @@ import { RegisterMenuType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
 import { openImage } from '@/utils/openImage'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -27,6 +28,7 @@ export const SetMenuApp = ({
   const [list, setList] = useState<ListType[]>([])
 
   const listId = useRef(0)
+  const navigator = React.useContext(NavigationContext)
 
   useEffect(() => {
     menu.forEach(data => {
@@ -72,7 +74,7 @@ export const SetMenuApp = ({
         imageUrl && handleUpdateList(id, name, menuCount, price, imageUrl)
       } catch (error) {
         if (error instanceof Error) {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
     },
@@ -149,7 +151,7 @@ export const SetMenuApp = ({
       navigate('SetPicture')
     } catch (error) {
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       } else {
         goAlert(String(error))
       }

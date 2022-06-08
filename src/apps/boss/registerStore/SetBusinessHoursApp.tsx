@@ -4,6 +4,7 @@ import { BusinessHoursType } from '@/types/store.type'
 
 import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -26,6 +27,7 @@ export const SetBusinessHoursApp = ({
   const [list, setList] = useState<ListType[]>([])
 
   const listId = useRef(0)
+  const navigator = React.useContext(NavigationContext)
 
   useEffect(() => {
     busniessHours.forEach(data => {
@@ -105,12 +107,12 @@ export const SetBusinessHoursApp = ({
       navigate('SetMenu')
     } catch (error) {
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       } else {
         goAlert(String(error))
       }
     }
-  }, [handleBusinessHours, list, navigate])
+  }, [handleBusinessHours, list, navigate, navigator])
 
   return (
     <SetBusinessHoursScreen

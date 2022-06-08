@@ -1,6 +1,6 @@
 import { StoreTabScreen } from '@/screens/boss/store'
 import React, { useEffect, useState } from 'react'
-import { RouteProp } from '@react-navigation/native'
+import { NavigationContext, RouteProp } from '@react-navigation/native'
 import { storeApi } from '@/apis'
 import { StoreDetailType } from '@/types/store.type'
 import { ReportError } from '@/utils/reportError'
@@ -14,6 +14,7 @@ type Props = {
 }
 export const StoreTabApp = ({ route }: Props) => {
   const { storeId, handleStore } = route.params
+  const navigator = React.useContext(NavigationContext)
 
   const [storeData, setStoreData] = useState<StoreDetailType>({
     bossNumber: '01012341234',
@@ -51,10 +52,10 @@ export const StoreTabApp = ({ route }: Props) => {
       } catch (error) {
         console.log('getDetailStore ERROR:', error)
         if (error instanceof Error) {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
     })()
-  }, [storeId])
+  }, [navigator, storeId])
   return <StoreTabScreen storeData={storeData} handleStore={handleStore} />
 }

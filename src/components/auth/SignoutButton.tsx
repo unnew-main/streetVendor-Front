@@ -16,6 +16,7 @@ export const SignoutButton = () => {
     goAlert(
       '회원을 탈퇴하시겠습니까?',
       '유저정보, 사장정보, 가게정보가 모두 삭제됩니다.',
+      true,
       async () => {
         try {
           await memberApi.signOut()
@@ -27,7 +28,7 @@ export const SignoutButton = () => {
         } catch (error) {
           console.log('signOutError', error)
           if (error instanceof Error) {
-            ReportError(error.message)
+            ReportError(error.message, navigator)
           }
         }
       },

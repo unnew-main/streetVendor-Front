@@ -4,6 +4,7 @@ import { LocationType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'
 import Geolocation from '@react-native-community/geolocation'
+import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Animated, Dimensions, Image, Text, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
@@ -28,6 +29,7 @@ export const OrderCheck = ({
     latitude: 0,
     longitude: 0,
   })
+  const navigator = React.useContext(NavigationContext)
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
@@ -134,13 +136,19 @@ export const OrderCheck = ({
         if (error.message.lastIndexOf('404') !== -1) {
           goAlert('[404] 가게가 없습니다!')
         } else {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       } else {
         goAlert(String(error))
       }
     }
-  }, [basketList, storeId, userLocation.latitude, userLocation.longitude])
+  }, [
+    basketList,
+    navigator,
+    storeId,
+    userLocation.latitude,
+    userLocation.longitude,
+  ])
 
   return (
     <OrderWrapper

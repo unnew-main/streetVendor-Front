@@ -1,6 +1,7 @@
 import { GoogleLogoutbutton, SignoutButton } from '@/components/auth'
 import React from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
+import styled from 'styled-components/native'
 
 type SelectJobScreenType = {
   handlePressUser: () => void
@@ -24,14 +25,23 @@ export const SelectJobScreen = ({
         style={{ width: 100, height: 100 }}
       />
       <Text>직업선택</Text>
-      <TouchableOpacity onPress={handlePressUser}>
+      <ButtonWrapper onPress={handlePressUser}>
         <Text>손님으로 입장</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handlePressBoss}>
+      </ButtonWrapper>
+      <ButtonWrapper onPress={handlePressBoss}>
         <Text>사장님으로 입장</Text>
-      </TouchableOpacity>
+      </ButtonWrapper>
       <GoogleLogoutbutton />
       <SignoutButton />
     </View>
   )
 }
+
+const ButtonWrapper = styled.TouchableOpacity`
+  border: 1px solid #000000;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  margin-top: 20px;
+`

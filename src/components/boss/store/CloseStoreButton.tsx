@@ -2,6 +2,7 @@ import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
 
@@ -17,6 +18,7 @@ export const CloseStoreButton = ({
   handleStore,
 }: Props) => {
   const { onLoading, offLoading } = useLoading()
+  const navigator = React.useContext(NavigationContext)
 
   const handleClose = useCallback(async () => {
     try {
@@ -29,11 +31,11 @@ export const CloseStoreButton = ({
     } catch (error) {
       console.log('CLOSED Store Error:', error)
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       }
     }
     offLoading()
-  }, [handleStore, offLoading, onLoading, setIsOpen, storeId])
+  }, [handleStore, navigator, offLoading, onLoading, setIsOpen, storeId])
 
   return (
     <ButtonContainer onPress={handleClose}>

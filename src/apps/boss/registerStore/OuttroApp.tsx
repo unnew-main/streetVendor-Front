@@ -20,7 +20,7 @@ export const OuttroApp = ({ data }: OuttroAppProps) => {
     } catch (error) {
       console.log('OuttroApp Error: ', error)
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       }
     }
   }, [data, navigator])

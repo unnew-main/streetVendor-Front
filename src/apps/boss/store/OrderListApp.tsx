@@ -4,6 +4,7 @@ import { BossOrderListType } from '@/types/order.type'
 import React, { useEffect, useState } from 'react'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 
 type Props = {
   storeId: number
@@ -11,6 +12,7 @@ type Props = {
 export const OrderListApp = ({ storeId }: Props) => {
   const [orderList, setOrderList] = useState<BossOrderListType[]>([])
   const { onLoading, offLoading } = useLoading()
+  const navigator = React.useContext(NavigationContext)
 
   useEffect(() => {
     ;(async () => {
@@ -24,11 +26,11 @@ export const OrderListApp = ({ storeId }: Props) => {
       } catch (error) {
         console.log('OrderListApp Error: ', error)
         if (error instanceof Error) {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
       offLoading()
     })()
-  }, [offLoading, onLoading, storeId])
+  }, [navigator, offLoading, onLoading, storeId])
   return <OrderListScreen orderList={orderList} />
 }

@@ -7,6 +7,7 @@ import { goAlert } from '@/utils/goAlert'
 import { StackRegisterStoreList } from '@/types/route.type'
 import { LocationType } from '@/types/store.type'
 import { ReportError } from '@/utils/reportError'
+import { NavigationContext } from '@react-navigation/native'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -24,6 +25,8 @@ export const SetLocationApp = ({
     longitude: 0,
   })
   const [isPin, setIsPin] = useState(false)
+  const navigator = React.useContext(NavigationContext)
+
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
@@ -76,12 +79,12 @@ export const SetLocationApp = ({
       navigate('SetBusinessHours')
     } catch (error) {
       if (error instanceof Error) {
-        ReportError(error.message)
+        ReportError(error.message, navigator)
       } else {
         goAlert(String(error))
       }
     }
-  }, [isPin, navigate])
+  }, [isPin, navigate, navigator])
 
   return (
     <SetLocationScreen

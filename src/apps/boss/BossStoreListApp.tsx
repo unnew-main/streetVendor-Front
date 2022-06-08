@@ -25,7 +25,7 @@ export const BossStoreListApp = () => {
       } catch (error) {
         console.log('BossStoreListApp Error: ', error)
         if (error instanceof Error) {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
         offLoading()
       }

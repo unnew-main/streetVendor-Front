@@ -3,10 +3,11 @@ import { Alert } from 'react-native'
 export const goAlert = (
   title: string,
   subTitle?: string,
+  double?: boolean,
   handleComfirm?: () => void,
   handleCancel?: () => void,
 ) =>
-  handleComfirm
+  double
     ? // 예 | 아니오 버튼
       Alert.alert(
         title, // 첫번째 text: 타이틀 제목
@@ -14,7 +15,12 @@ export const goAlert = (
         [
           {
             text: '확인',
-            onPress: handleComfirm,
+            onPress:
+              handleComfirm !== undefined
+                ? handleComfirm
+                : () => {
+                    console.log('확인')
+                  },
           },
           {
             text: '취소',
@@ -35,7 +41,12 @@ export const goAlert = (
         [
           {
             text: '확인',
-            onPress: () => console.log('확인'),
+            onPress:
+              handleComfirm !== undefined
+                ? handleComfirm
+                : () => {
+                    console.log('확인')
+                  },
           },
         ],
         { cancelable: false },

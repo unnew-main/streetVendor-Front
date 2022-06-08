@@ -25,11 +25,11 @@ export const DetailStore = ({ storeId }: Props) => {
       } catch (error) {
         console.log('DetailStore Error: ', error)
         if (error instanceof Error) {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       }
     })()
-  }, [storeId])
+  }, [navigator, storeId])
 
   const handleOrderClick = () => {
     console.log(storeInfo?.storeName)

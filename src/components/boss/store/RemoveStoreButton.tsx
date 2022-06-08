@@ -24,6 +24,7 @@ export const RemoveStoreButton = ({ storeId, isOpen }: Props) => {
     goAlert(
       '가게가 삭제하시겠습니까?',
       '한번 삭제한 가게는 되돌릴 수 없습니다.',
+      true,
       async () => {
         onLoading()
         try {
@@ -33,7 +34,7 @@ export const RemoveStoreButton = ({ storeId, isOpen }: Props) => {
         } catch (error) {
           console.log('Open Store Error:', error)
           if (error instanceof Error) {
-            ReportError(error.message)
+            ReportError(error.message, navigator)
           }
         }
         offLoading()

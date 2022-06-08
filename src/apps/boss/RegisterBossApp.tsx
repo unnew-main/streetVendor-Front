@@ -29,7 +29,7 @@ export const RegisterBossApp = () => {
         if (error.message.lastIndexOf('400') !== -1) {
           goAlert('전화번호 10~11자를 입력해주세요.')
         } else {
-          ReportError(error.message)
+          ReportError(error.message, navigator)
         }
       } else {
         goAlert(String(error))

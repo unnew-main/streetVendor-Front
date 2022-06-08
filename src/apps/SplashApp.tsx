@@ -38,14 +38,7 @@ export function SplashApp() {
         console.log('Splash Error: ', error)
         setNowState('에러가 발생했습니다.')
         if (error instanceof Error) {
-          // if (error.message.lastIndexOf('400') !== -1) {
-          //   goAlert(String(error), '', () =>
-          //     navigator?.reset({ routes: [{ name: 'Login' }] }),
-          //   )
-          // } else {
-          ReportError(error.message)
-
-          // }
+          ReportError(error.message, navigator)
         }
       }
     })()

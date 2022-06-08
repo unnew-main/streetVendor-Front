@@ -1,13 +1,8 @@
 import { GoogleLogoutbutton } from '@/components/auth'
 import { CustomTextInput } from '@/components/common'
 import React from 'react'
-import {
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { KeyboardAvoidingView, Platform, Text, View } from 'react-native'
+import styled from 'styled-components/native'
 
 type RegisterMemberType = {
   userName: string
@@ -32,16 +27,24 @@ export function RegisterMemberScreen({
         }}
       >
         <Text>회원가입페이지</Text>
+        <Text>닉네임을 입력해주세요</Text>
         <CustomTextInput
           onChangeText={setUserName}
           value={userName}
           placeholder="닉네임을 입력해주세요."
         />
-        <TouchableOpacity onPress={handleRegister}>
+        <ButtonWrapper onPress={handleRegister}>
           <Text>등록하기</Text>
-        </TouchableOpacity>
+        </ButtonWrapper>
         <GoogleLogoutbutton />
       </View>
     </KeyboardAvoidingView>
   )
 }
+
+const ButtonWrapper = styled.TouchableOpacity`
+  border: 1px solid #000000;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+`
