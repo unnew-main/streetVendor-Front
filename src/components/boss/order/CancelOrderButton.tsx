@@ -9,8 +9,13 @@ import { Text, TouchableOpacity } from 'react-native'
 type Props = {
   storeId: number
   orderId: number
+  setRefreshing: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const CancelOrderButton = ({ storeId, orderId }: Props) => {
+export const CancelOrderButton = ({
+  storeId,
+  orderId,
+  setRefreshing,
+}: Props) => {
   const navigator = React.useContext(NavigationContext)
   const { onLoading, offLoading } = useLoading()
   const handleCancelOrder = async () => {
@@ -24,6 +29,8 @@ export const CancelOrderButton = ({ storeId, orderId }: Props) => {
         ReportError(error.message, navigator)
       }
     }
+    setRefreshing(prev => !prev)
+
     offLoading()
   }
   return (

@@ -11,9 +11,9 @@ type Props = {
 }
 export const OrderListApp = ({ storeId }: Props) => {
   const [orderList, setOrderList] = useState<BossOrderListType[]>([])
+  const [refreshing, setRefreshing] = useState<boolean>(false)
   const { onLoading, offLoading } = useLoading()
   const navigator = React.useContext(NavigationContext)
-
   useEffect(() => {
     ;(async () => {
       onLoading()
@@ -31,6 +31,12 @@ export const OrderListApp = ({ storeId }: Props) => {
       }
       offLoading()
     })()
-  }, [navigator, offLoading, onLoading, storeId])
-  return <OrderListScreen orderList={orderList} storeId={storeId} />
+  }, [navigator, offLoading, onLoading, storeId, refreshing])
+  return (
+    <OrderListScreen
+      orderList={orderList}
+      storeId={storeId}
+      setRefreshing={setRefreshing}
+    />
+  )
 }

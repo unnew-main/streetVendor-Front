@@ -6,8 +6,13 @@ import { FlatList, Text, View } from 'react-native'
 type Props = {
   orderList: BossOrderListType[]
   storeId: number
+  setRefreshing: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const OrderListScreen = ({ orderList, storeId }: Props) => {
+export const OrderListScreen = ({
+  orderList,
+  storeId,
+  setRefreshing,
+}: Props) => {
   return (
     <View
       style={{
@@ -19,27 +24,45 @@ export const OrderListScreen = ({ orderList, storeId }: Props) => {
     >
       {orderList.length !== 0 ? (
         <FlatList
-          data={orderList}
+          data={orderList.sort((a, b) => b.orderId - a.orderId)}
           renderItem={({ item }) => (
-            <View>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Text>==========================</Text>
+              <CancelOrderButton
+                orderId={item.orderId}
+                storeId={storeId}
+                setRefreshing={setRefreshing}
+              />
               <Text>orderId: {item.orderId}</Text>
               <Text>주문자: {item.nickName}</Text>
               <Text>주문시간: {item.createTime}</Text>
-              <CancelOrderButton orderId={item.orderId} storeId={storeId} />
-              <Text>----</Text>
+
+              <Text>-----주문내역-----</Text>
 
               <FlatList
                 data={item.orderMenus}
                 renderItem={({ item }) => (
-                  <View>
+                  <View
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
                     <Text>menuName: {item.menuName}</Text>
                     <Text>count: {item.count}</Text>
                     <Text>price: {item.price}</Text>
+                    <Text>----------</Text>
                   </View>
                 )}
                 keyExtractor={item => String(item.menuId)}
               />
-              <Text>================</Text>
             </View>
           )}
           keyExtractor={item => String(item.orderId)}
