@@ -6,6 +6,10 @@ export const orderApi = {
     console.log(props)
     return api.postAuth('/api/v1/order', props)
   },
+  userCheckOrder: async () => {
+    return api.getAuth('/api/v1/orders', {})
+  },
+
   bossCancelOrder: async (storeId: number, orderId: number) => {
     return api.deleteAuth(`/api/v1/${storeId}/orders/${orderId}/cancel`, {})
   },
