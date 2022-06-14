@@ -1,8 +1,6 @@
 import { goAlert } from './goAlert'
 
 export const ReportError = (errorString: string, navigator: any) => {
-  // const navigator = React.useContext(NavigationContext)
-
   console.log('ReportError string: ', errorString)
   if (errorString.lastIndexOf('401') !== -1) {
     console.log('401 ERROR')

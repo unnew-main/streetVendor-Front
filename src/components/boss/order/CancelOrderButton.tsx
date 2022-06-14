@@ -20,17 +20,19 @@ export const CancelOrderButton = ({
   const { onLoading, offLoading } = useLoading()
   const handleCancelOrder = async () => {
     onLoading()
-    try {
-      await orderApi.bossCancelOrder(storeId, orderId)
-      goAlert('주문이 거절되었습니다.')
-    } catch (error) {
-      console.log('handleCancelOrder Error: ', error)
-      if (error instanceof Error) {
-        ReportError(error.message, navigator)
-      }
-    }
-    setRefreshing(prev => !prev)
 
+    goAlert('주문을 거절하시겠습니까?', '', true, async () => {
+      try {
+        await orderApi.bossCancelOrder(storeId, orderId)
+        goAlert('주문이 거절되었습니다.')
+      } catch (error) {
+        console.log('handleCancelOrder Error: ', error)
+        if (error instanceof Error) {
+          ReportError(error.message, navigator)
+        }
+      }
+      setRefreshing(prev => !prev)
+    })
     offLoading()
   }
   return (

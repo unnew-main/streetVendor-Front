@@ -16,6 +16,12 @@ export const SideMenu = ({ handleClosed }: Props) => {
         <Text>유저명</Text>
         <Text>???</Text>
 
+        <OrderListButtonWrapper
+          onPress={() => navigator?.navigate('UserOrderCheckList')}
+        >
+          <Text>주문 확인</Text>
+        </OrderListButtonWrapper>
+
         <SettingButtonWrapper
           onPress={() => navigator?.navigate('UserSetting')}
         >
@@ -45,6 +51,13 @@ const MenuClosedButton = styled.TouchableOpacity`
   padding: 10px;
   position: absolute;
   right: 0;
+`
+const OrderListButtonWrapper = styled.TouchableOpacity`
+  border: 1px solid black;
+  padding: 10px;
+  position: absolute;
+  bottom: 20%;
+  left: 0;
 `
 
 const SettingButtonWrapper = styled.TouchableOpacity`
