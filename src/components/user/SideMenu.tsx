@@ -1,3 +1,4 @@
+import { useMember } from '@/hooks/useMember.hook'
 import { NavigationContext } from '@react-navigation/native'
 import React from 'react'
 import { Text } from 'react-native'
@@ -6,15 +7,15 @@ import styled from 'styled-components/native'
 type Props = {
   handleClosed: (e?: boolean) => void
 }
+
 export const SideMenu = ({ handleClosed }: Props) => {
   const navigator = React.useContext(NavigationContext)
-
+  const { memberInfo } = useMember()
   return (
     <SafeContainer>
       <Container>
-        <Text>여기에 무엇을 넣을까</Text>
-        <Text>유저명</Text>
-        <Text>???</Text>
+        <Text>유저명 : {memberInfo.nickName}</Text>
+        <Text>이메일 : {memberInfo.email}</Text>
 
         <OrderListButtonWrapper
           onPress={() => navigator?.navigate('UserOrderCheckList')}

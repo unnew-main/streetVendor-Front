@@ -14,7 +14,7 @@ export function SplashApp() {
         setNowState('세션 가져오는 중...')
 
         const session = await sessionHelper.getSession()
-        console.log('sessionHelper', session)
+        console.log('현재 가지고 있는 세션', session)
         if (session) {
           console.log('스토리지에 세션 정보확인완료')
           setNowState('유저정보 가져오는 중...')
@@ -22,7 +22,6 @@ export function SplashApp() {
             data: { data: data },
           } = await memberApi.getInfo()
 
-          console.log('memberApi', data)
           if (data) {
             navigator?.reset({ routes: [{ name: 'HomeStack' }] })
           } else {
@@ -35,7 +34,6 @@ export function SplashApp() {
           navigator?.reset({ routes: [{ name: 'Login' }] })
         }
       } catch (error) {
-        console.log('Splash Error: ', error)
         setNowState('에러가 발생했습니다.')
         if (error instanceof Error) {
           ReportError(error.message, navigator)
