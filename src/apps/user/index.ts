@@ -1,1 +1,1 @@
-export { UserMainApp } from './UserMainApp'
+export { UserMain } from './UserMain'

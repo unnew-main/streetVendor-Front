@@ -1,4 +1,4 @@
-import { SelectJobApp } from '@/apps'
+import { SelectJob } from '@/apps'
 
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
@@ -18,7 +18,7 @@ export function HomeStack() {
     <Stack.Navigator initialRouteName="SelectJob">
       <Stack.Screen
         name="SelectJob"
-        component={SelectJobApp}
+        component={SelectJob}
         options={{ headerShown: false }}
       />
       <Stack.Screen

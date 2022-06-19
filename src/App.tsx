@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SplashApp, LoginApp, RegisterMemberApp } from './apps'
+import { Splash, Login, RegisterMember } from './apps'
 import { LoadingContext } from './contexts/LoadingContext'
 import { HomeStack } from './navigates'
 
@@ -20,17 +20,17 @@ const App = () => {
         <Stack.Navigator initialRouteName="Splash">
           <Stack.Screen
             name="Splash"
-            component={SplashApp}
+            component={Splash}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name="Login"
-            component={LoginApp}
+            component={Login}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name="RegisterMember"
-            component={RegisterMemberApp}
+            component={RegisterMember}
             options={{ headerShown: false }}
           />
           <Stack.Screen

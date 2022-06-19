@@ -1,12 +1,13 @@
 import {
-  IntroApp,
-  OuttroApp,
-  SetCNDApp,
-  SetLocationApp,
-  SetMenuApp,
-  SetBusinessHoursApp,
-  SetPictureApp,
-} from '@/apps/boss/registerStore'
+  SetLocation,
+  SetBusinessHours,
+  SetBasicInformation,
+  SetMenu,
+  Outtro,
+  SetStorePicture,
+  Intro,
+} from '@/apps/boss/registerStore/'
+
 import { StackRegisterStoreList } from '@/types/route.type'
 import { RegisterStoreScreenProps } from '@/types/store.type'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -22,12 +23,12 @@ export const RegisterStoreStack = ({
     <Stack.Navigator initialRouteName="Intro">
       <Stack.Screen
         name="Intro"
-        component={IntroApp}
+        component={Intro}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="SetCND" options={{ headerShown: false }}>
         {props => (
-          <SetCNDApp
+          <SetBasicInformation
             data={{
               name: storeProps.data.name,
               category: storeProps.data.category,
@@ -50,7 +51,7 @@ export const RegisterStoreStack = ({
 
       <Stack.Screen name="SetLocation" options={{ headerShown: false }}>
         {props => (
-          <SetLocationApp
+          <SetLocation
             location={storeProps.data.location}
             handleLocation={storeProps.handle.handleLocation}
             {...props}
@@ -60,7 +61,7 @@ export const RegisterStoreStack = ({
 
       <Stack.Screen name="SetBusinessHours" options={{ headerShown: false }}>
         {props => (
-          <SetBusinessHoursApp
+          <SetBusinessHours
             busniessHours={storeProps.data.businessHours}
             handleBusinessHours={storeProps.handle.handleBusinessHours}
             {...props}
@@ -70,7 +71,7 @@ export const RegisterStoreStack = ({
 
       <Stack.Screen name="SetMenu" options={{ headerShown: false }}>
         {props => (
-          <SetMenuApp
+          <SetMenu
             handleMenu={storeProps.handle.handleMenu}
             menu={storeProps.data.menus}
             {...props}
@@ -80,7 +81,7 @@ export const RegisterStoreStack = ({
 
       <Stack.Screen name="SetPicture" options={{ headerShown: false }}>
         {props => (
-          <SetPictureApp
+          <SetStorePicture
             pictureUrl={storeProps.data.pictureUrl}
             handlePictureUrl={storeProps.handle.handlePictureUrl}
             {...props}
@@ -89,7 +90,7 @@ export const RegisterStoreStack = ({
       </Stack.Screen>
 
       <Stack.Screen name="Outtro" options={{ headerShown: false }}>
-        {props => <OuttroApp data={storeProps.data} {...props} />}
+        {props => <Outtro data={storeProps.data} {...props} />}
       </Stack.Screen>
     </Stack.Navigator>
   )

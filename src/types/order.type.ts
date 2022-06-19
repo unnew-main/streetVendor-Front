@@ -72,7 +72,7 @@ export type UserOrderCheckListType = {
           price: number
           updatedAt: Date
         }
-        //메뉴 안에있는 것과 차이는..?
+        //메뉴 안에있는 것들과 차이는..?
         menuCount: number
         menuName: string
         pictureUrl: string
@@ -80,9 +80,9 @@ export type UserOrderCheckListType = {
         totalPrice: number
       },
     ]
-    //주문ID 2?
+    //맨위에 있는 orderId와 차이점은 뭔가여..??
     orderId: number
-    //위에 orderHistoryMenuResponses 와의 차이점은..?
+    //위에 orderHistoryMenuResponses 와의 차이점은 뭔가여?
     orderMenuResponses: [
       {
         count: number
@@ -93,7 +93,7 @@ export type UserOrderCheckListType = {
     ]
     orderStatus: OrderStatusType
 
-    //이거말고 따른 상태값은?
+    //ACTIVE 말고 따른 상태값은 뭐가 있난요?
     statusCanceled: 'ACTIVE'
     storeId: number
   }

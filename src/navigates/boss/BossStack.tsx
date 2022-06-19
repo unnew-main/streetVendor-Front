@@ -1,10 +1,10 @@
 import {
-  BossStoreListApp,
-  RegisterBossApp,
-  RegisterStoreApp,
+  BossStoreList,
+  RegisterBoss,
+  RegisterStore,
+  BossSplash,
 } from '@/apps/boss'
-import { BossSplashApp } from '@/apps/boss/BossSplashApp'
-import { StoreTabApp } from '@/apps/boss/store'
+import { BossStoreTab } from '@/apps/boss/store'
 
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
@@ -24,27 +24,27 @@ export function BossStack() {
     <Stack.Navigator initialRouteName="BossSplash">
       <Stack.Screen
         name="BossSplash"
-        component={BossSplashApp}
+        component={BossSplash}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="RegisterStore"
-        component={RegisterStoreApp}
+        component={RegisterStore}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="BossStoreList"
-        component={BossStoreListApp}
+        component={BossStoreList}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="BossStoreTab"
-        component={StoreTabApp}
+        component={BossStoreTab}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="RegisterBoss"
-        component={RegisterBossApp}
+        component={RegisterBoss}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

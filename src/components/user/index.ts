@@ -1,7 +1,7 @@
 export { PreviewDetailStore } from './PreviewDetailStore'
 export { DetailStore } from './DetailStore'
 export { NMap } from './NMap'
-export { SideMenu } from './SideMenu'
+export { SideMenuSection } from './SideMenuSection'
 export { StateStoreToogle } from './StateStoreToogle'
 export { OrderButton } from './OrderButton'
 export { MenuItem } from './MenuItem'

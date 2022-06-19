@@ -1,6 +1,6 @@
-import { UserMainApp } from '@/apps/user'
-import { UserOrderApp } from '@/apps/user/order'
-import { UserSettingApp, UserOrderCheckListApp } from '@/apps/user/sideMenu'
+import { UserMain } from '@/apps/user'
+import { UserOrder } from '@/apps/user/order'
+import { UserSetting, UserOrderCheckList } from '@/apps/user/sideMenu'
 
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
@@ -19,22 +19,22 @@ export function UserStack() {
     <Stack.Navigator initialRouteName="UserMain">
       <Stack.Screen
         name="UserMain"
-        component={UserMainApp}
+        component={UserMain}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="UserSetting"
-        component={UserSettingApp}
+        component={UserSetting}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="UserOrderCheckList"
-        component={UserOrderCheckListApp}
+        component={UserOrderCheckList}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="UserOrder"
-        component={UserOrderApp}
+        component={UserOrder}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

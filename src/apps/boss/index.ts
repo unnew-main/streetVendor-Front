@@ -1,4 +1,4 @@
-export { BossSplashApp } from './BossSplashApp'
-export { BossStoreListApp } from './BossStoreListApp'
-export { RegisterBossApp } from './RegisterBossApp'
-export { RegisterStoreApp } from './RegisterStoreApp'
+export { BossSplash } from './BossSplash'
+export { BossStoreList } from './BossStoreList'
+export { RegisterBoss } from './RegisterBoss'
+export { RegisterStore } from './RegisterStore'

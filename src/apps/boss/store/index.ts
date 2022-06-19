@@ -1,3 +1,3 @@
-export { StoreTabApp } from './StoreTabApp'
-export { StoreInfoApp } from './StoreInfoApp'
-export { OrderListApp } from './OrderListApp'
+export { BossStoreTab } from './BossStoreTab'
+export { BossStoreInfo } from './BossStoreInfo'
+export { BossOrderList } from './BossOrderList'

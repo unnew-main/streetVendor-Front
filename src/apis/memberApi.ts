@@ -1,5 +1,5 @@
-import { RegisterBossType } from '@/apps/boss/RegisterBossApp'
-import { UserSignUpDataProps } from '@/apps/RegisterMemberApp'
+import { RegisterBossType } from '@/apps/boss/RegisterBoss'
+import { UserSignUpDataProps } from '@/apps/RegisterMember'
 import api from './common'
 
 export const memberApi = {

@@ -1,2 +1,2 @@
-export { UserSettingApp } from './UserSettingApp'
-export { UserOrderCheckListApp } from './UserOrderCheckListApp'
+export { UserSetting } from './UserSetting'
+export { UserOrderCheckList } from './UserOrderCheckList'

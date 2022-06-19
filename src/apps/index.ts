@@ -1,4 +1,4 @@
-export { LoginApp } from './LoginApp'
-export { SplashApp } from './SplashApp'
-export { RegisterMemberApp } from './RegisterMemberApp'
-export { SelectJobApp } from './SelectJobApp'
+export { Login } from './Login'
+export { Splash } from './Splash'
+export { RegisterMember } from './RegisterMember'
+export { SelectJob } from './SelectJob'
