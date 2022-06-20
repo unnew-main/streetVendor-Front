@@ -1,5 +1,5 @@
 export type RegisterStorePropsType = {
-  category: StoreCategory['value']
+  category: StoreCategoryType
   name: string
   storeDescription: string
   location: LocationType
@@ -28,7 +28,7 @@ export type RegisterStoreScreenProps = {
   storeProps: {
     data: RegisterStorePropsType
     handle: {
-      handleCategory: (data: StoreCategory['value']) => void
+      handleCategory: (data: StoreCategoryType) => void
       handleName: (data: string) => void
       handleDescription: (data: string) => void
       handleLocation: (data: LocationType) => void
@@ -41,26 +41,17 @@ export type RegisterStoreScreenProps = {
   }
 }
 
-export type StoreCategory = {
-  label:
-    | '붕어빵'
-    | '타코야키'
-    | '떡볶이'
-    | '호떡'
-    | '계란빵'
-    | '순대'
-    | '기타 음식'
-    | '기타 디저트'
-  value:
-    | 'BUNG_EO_PPANG'
-    | 'TAKOYAKI'
-    | 'TTEOK_BOKKI'
-    | 'HO_DDEOK'
-    | 'EGG_BREAD'
-    | 'SUNDAE'
-    | 'OTHER_MEAL'
-    | 'OTHER_DESSERT'
-}
+export type StoreCategoryType =
+  | 'BUNG_EO_PPANG'
+  | 'TAKOYAKI'
+  | 'TTEOK_BOKKI'
+  | 'HO_DDEOK'
+  | 'EGG_BREAD'
+  | 'SUNDAE'
+  | 'OTHER_MEAL'
+  | 'OTHER_DESSERT'
+
+export type DayType = 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN'
 
 export type StoreListType = {
   storeName: string
@@ -80,7 +71,7 @@ export type StoreMenuType = {
 
 export type StoreDetailType = {
   bossNumber: string
-  category: StoreCategory['value']
+  category: StoreCategoryType
   storeDescription: string
   menuList: StoreMenuType[]
   businessHours: [
@@ -101,7 +92,7 @@ export type StoreDetailType = {
 }
 
 export type StorePinType = {
-  category: StoreCategory['value']
+  category: StoreCategoryType
   storeName: string
   salesStatus: 'CLOSED' | 'OPEN'
   storeId: number

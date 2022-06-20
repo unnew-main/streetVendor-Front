@@ -1,6 +1,7 @@
 import { TimePicker } from '@/components/boss/registerStore'
 import { RegisterStoreLayout } from '@/components/boss/registerStore/RegisterStoreLayout'
 import { CustomPicker } from '@/components/common'
+import { days } from '@/constants/menuCategory'
 import { StackRegisterStoreList } from '@/types/route.type'
 import { BusinessHoursType } from '@/types/store.type'
 
@@ -21,16 +22,6 @@ export type ListType = {
   id: number
   listData: BusinessHoursType
 }
-
-const days = [
-  { label: '월', value: 'MON' },
-  { label: '화', value: 'TUE' },
-  { label: '수', value: 'WED' },
-  { label: '목', value: 'THU' },
-  { label: '금', value: 'FRI' },
-  { label: '토', value: 'SAT' },
-  { label: '일', value: 'SUN' },
-]
 
 export const SetBusinessHours = ({
   navigation: { navigate },

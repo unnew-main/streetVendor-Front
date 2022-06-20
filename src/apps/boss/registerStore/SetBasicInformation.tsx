@@ -1,7 +1,8 @@
 import { RegisterStoreLayout } from '@/components/boss/registerStore/RegisterStoreLayout'
 import { CustomPicker, CustomTextInput } from '@/components/common'
+import { categoryData } from '@/constants/menuCategory'
 import { StackRegisterStoreList } from '@/types/route.type'
-import { StoreCategory } from '@/types/store.type'
+import { StoreCategoryType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
 import CheckBox from '@react-native-community/checkbox'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -17,31 +18,20 @@ import {
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
   data: {
-    category: StoreCategory['value']
+    category: StoreCategoryType
     name: string
     storeDescription: string
     paymentMethods: string[]
     locationDescription: string
   }
   handle: {
-    handleCategory: (data: StoreCategory['value']) => void
+    handleCategory: (data: StoreCategoryType) => void
     handleName: (data: string) => void
     handleDescription: (data: string) => void
     handlePaymentMethods: (data: string[]) => void
     handleLocationDescription: (data: string) => void
   }
 }
-
-const categoryData: StoreCategory[] = [
-  { label: '붕어빵', value: 'BUNG_EO_PPANG' },
-  { label: '타코야키', value: 'TAKOYAKI' },
-  { label: '떡볶이', value: 'TTEOK_BOKKI' },
-  { label: '호떡', value: 'HO_DDEOK' },
-  { label: '계란빵', value: 'EGG_BREAD' },
-  { label: '순대', value: 'SUNDAE' },
-  { label: '기타 음식', value: 'OTHER_MEAL' },
-  { label: '기타 디저트', value: 'OTHER_DESSERT' },
-]
 
 export const SetBasicInformation = ({
   navigation: { navigate },

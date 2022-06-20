@@ -37,7 +37,7 @@ export type BossOrderListType = {
   totalPrice: number
 }
 
-export type OrderStatusType = 'PREPARING' | 'REQUEST' | 'READY_TO_PICK_UP'
+export type OrderStatusType = 'REQUEST' | 'PREPARING' | 'READY_TO_PICK_UP'
 
 export type UserOrderCheckListType = {
   //주문 ID
@@ -46,54 +46,56 @@ export type UserOrderCheckListType = {
   request: {
     //사용자 ID?
     memberId: number
-    orderHistoryMenuResponses: [
-      {
+    orderHistoryMenuResponses: {
+      count: number
+      menu: {
         count: number
-        menu: {
-          count: number
+        createdAt: Date
+        id: number
+        menuName: string
+        orderHistory: {
           createdAt: Date
           id: number
-          menuName: string
-          orderHistory: {
-            createdAt: Date
-            id: number
-            memberId: number
-            menus: [null]
-            orderId: number
-            storeInfo: {
-              description: string
-              locationDescription: string
-              name: string
-              storeId: number
-            }
-            updatedAt: Date
+          memberId: number
+          menus: [null]
+          orderId: number
+          storeInfo: {
+            description: string
+            locationDescription: string
+            name: string
+            storeId: number
           }
-          pictureUrl: string
-          price: number
           updatedAt: Date
         }
-        //메뉴 안에있는 것들과 차이는..?
-        menuCount: number
-        menuName: string
         pictureUrl: string
         price: number
-        totalPrice: number
-      },
-    ]
+        updatedAt: Date
+      }
+      //메뉴 안에있는 것들과 차이는..?
+      //붕어빵 3개 = 1000
+      //menuCount: 3
+      menuCount: number
+      menuName: string
+      pictureUrl: string
+      price: number
+      totalPrice: number
+    }[]
+
     //맨위에 있는 orderId와 차이점은 뭔가여..??
     orderId: number
     //위에 orderHistoryMenuResponses 와의 차이점은 뭔가여?
-    orderMenuResponses: [
-      {
-        count: number
-        menuId: number
-        menuName: string
-        price: number
-      },
-    ]
+    // orderMenuResponses: [
+    //   {
+    //     count: number
+    //     menuId: number
+    //     menuName: string
+    //     price: number
+    //   },
+    // ]
     orderStatus: OrderStatusType
 
     //ACTIVE 말고 따른 상태값은 뭐가 있난요?
+    //ACTIVE | CANCELED
     statusCanceled: 'ACTIVE'
     storeId: number
   }
