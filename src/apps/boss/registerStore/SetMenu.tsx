@@ -4,6 +4,7 @@ import { StackRegisterStoreList } from '@/types/route.type'
 import { RegisterMenuType } from '@/types/store.type'
 
 import { goAlert } from '@/utils/goAlert'
+import { openCamera } from '@/utils/openCamera'
 import { openImage } from '@/utils/openImage'
 import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'
@@ -89,7 +90,22 @@ export const SetMenu = ({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [navigator],
+  )
+
+  const handleOpenCamera = useCallback(
+    async (id: number, name?: string, menuCount?: number, price?: string) => {
+      try {
+        const imageUrl = await openCamera()
+        imageUrl && handleUpdateList(id, name, menuCount, price, imageUrl)
+      } catch (error) {
+        if (error instanceof Error) {
+          ReportError(error.message, navigator)
+        }
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [navigator],
   )
 
   const handleUpdateList = useCallback(
@@ -238,6 +254,18 @@ export const SetMenu = ({
                 }
               >
                 <Text style={{ color: 'blue' }}>사진가져오기</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  handleOpenCamera(
+                    props.id,
+                    props.listData.name,
+                    props.listData.menuCount,
+                    props.listData.price,
+                  )
+                }
+              >
+                <Text style={{ color: 'blue' }}>사진 찍기</Text>
               </TouchableOpacity>
               {props.listData.pictureUrl ? (
                 <ImageWrapper
