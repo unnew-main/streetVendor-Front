@@ -1,6 +1,6 @@
 import { RegisterStoreLayout } from '@/components/boss/registerStore/RegisterStoreLayout'
 import { CustomPicker, CustomTextInput } from '@/components/common'
-import { categoryData } from '@/constants/menuCategory'
+import { menuCategory } from '@/constants/list'
 import { StackRegisterStoreList } from '@/types/route.type'
 import { StoreCategoryType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
@@ -106,7 +106,7 @@ export const SetBasicInformation = ({
             <Text>가게 카테고리:</Text>
             <CustomPicker
               onValueChange={handle.handleCategory}
-              items={categoryData}
+              items={menuCategory}
               value={data.category}
             />
             <Text>가게 이름: </Text>

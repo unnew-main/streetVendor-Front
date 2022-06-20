@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLoading } from '@/hooks/useLoading.hook'
 
-import { SplashScreen } from '@/components/SplashScreen'
+import { SplashScreen } from '@/components/common/SplashScreen'
 import { memberApi } from '@/apis'
 import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'

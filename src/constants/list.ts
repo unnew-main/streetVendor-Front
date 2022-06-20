@@ -1,7 +1,7 @@
 import { ListType } from '@/types/common.type'
 import { DayType, StoreCategoryType } from '@/types/store.type'
 
-export const categoryData: ListType<StoreCategoryType>[] = [
+export const menuCategory: ListType<StoreCategoryType>[] = [
   { label: '타코야키', value: 'TAKOYAKI' },
   { label: '떡볶이', value: 'TTEOK_BOKKI' },
   { label: '호떡', value: 'HO_DDEOK' },

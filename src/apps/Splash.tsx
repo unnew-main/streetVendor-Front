@@ -3,7 +3,7 @@ import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { memberApi } from '@/apis'
 import { ReportError } from '@/utils/reportError'
-import { SplashScreen } from '@/components/SplashScreen'
+import { SplashScreen } from '@/components/common/SplashScreen'
 
 export function Splash() {
   const navigator = React.useContext(NavigationContext)
