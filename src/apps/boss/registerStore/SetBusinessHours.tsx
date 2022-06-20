@@ -1,7 +1,7 @@
 import { TimePicker } from '@/components/boss/registerStore'
 import { RegisterStoreLayout } from '@/components/boss/registerStore/RegisterStoreLayout'
 import { CustomPicker } from '@/components/common'
-import { days } from '@/constants/menuCategory'
+import { days } from '@/constants/list'
 import { StackRegisterStoreList } from '@/types/route.type'
 import { BusinessHoursType } from '@/types/store.type'
 
