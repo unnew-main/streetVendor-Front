@@ -37,7 +37,7 @@ export const UserOrderCheckList = () => {
             <View>
               <Text>orderId: {item.orderId}</Text>
               <Text>
-                memberId: {item.request.orderMenuResponses[0].menuName}
+                memberId: {item.request.orderHistoryMenuResponses[0].menuName}
               </Text>
               <Text>---------------</Text>
             </View>

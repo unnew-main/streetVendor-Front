@@ -25,7 +25,6 @@ export const BossStoreList = () => {
         const {
           data: { data },
         } = await storeApi.getListStore()
-        console.log('store data List', data)
         setList(data)
         offLoading()
       } catch (error) {
