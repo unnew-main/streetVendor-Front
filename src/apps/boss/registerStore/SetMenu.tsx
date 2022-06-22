@@ -9,7 +9,7 @@ import { openImage } from '@/utils/openImage'
 import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
@@ -19,6 +19,7 @@ import {
   View,
 } from 'react-native'
 import styled from 'styled-components/native'
+import { useMenu } from './SetMenu.hook'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetMenu'>
@@ -26,25 +27,25 @@ type Props = {
   menu: RegisterMenuType[]
 }
 
-export type ListType = {
-  id: number
-  listData: RegisterMenuType
-}
-
 export const SetMenu = ({
   navigation: { navigate },
   handleMenu,
   menu,
 }: Props) => {
-  const [list, setList] = useState<ListType[]>([])
-
-  const listId = useRef(0)
   const navigator = React.useContext(NavigationContext)
+  const {
+    listId,
+    setMenuList,
+    menuList,
+    onAddMenu,
+    onRemoveMenu,
+    onUpdateMenu,
+  } = useMenu()
 
   useEffect(() => {
     menu.forEach(data => {
       listId.current += 1
-      setList(prev =>
+      setMenuList(prev =>
         prev.concat({
           id: listId.current,
           listData: {
@@ -59,30 +60,11 @@ export const SetMenu = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onAddList = useCallback(() => {
-    listId.current += 1
-    setList(prev =>
-      prev.concat({
-        id: listId.current,
-        listData: {
-          name: '',
-          menuCount: 0,
-          price: '',
-          pictureUrl: '',
-        },
-      }),
-    )
-  }, [])
-
-  const onRemoveList = useCallback((id: number) => {
-    setList(prev => prev.filter(data => data.id !== id))
-  }, [])
-
   const handleOpenImage = useCallback(
     async (id: number, name?: string, menuCount?: number, price?: string) => {
       try {
         const imageUrl = await openImage()
-        imageUrl && handleUpdateList(id, name, menuCount, price, imageUrl)
+        imageUrl && onUpdateMenu(id, name, menuCount, price, imageUrl)
       } catch (error) {
         if (error instanceof Error) {
           ReportError(error.message, navigator)
@@ -97,7 +79,7 @@ export const SetMenu = ({
     async (id: number, name?: string, menuCount?: number, price?: string) => {
       try {
         const imageUrl = await openCamera()
-        imageUrl && handleUpdateList(id, name, menuCount, price, imageUrl)
+        imageUrl && onUpdateMenu(id, name, menuCount, price, imageUrl)
       } catch (error) {
         if (error instanceof Error) {
           ReportError(error.message, navigator)
@@ -108,47 +90,8 @@ export const SetMenu = ({
     [navigator],
   )
 
-  const handleUpdateList = useCallback(
-    (
-      id: number,
-      name?: string,
-      menuCount?: number,
-      price?: string,
-      pictureUrl?: string,
-    ) => {
-      setList(prevList =>
-        prevList.map(prevItem => {
-          if (prevItem.id === id) {
-            return {
-              id,
-              listData: {
-                menuCount: menuCount
-                  ? menuCount
-                  : menuCount === 0
-                  ? 0
-                  : prevItem.listData.menuCount,
-                name: name ? name : name === '' ? '' : prevItem.listData.name,
-                pictureUrl: pictureUrl
-                  ? pictureUrl
-                  : pictureUrl === ''
-                  ? ''
-                  : prevItem.listData.pictureUrl,
-                price: price
-                  ? price
-                  : price === ''
-                  ? ''
-                  : prevItem.listData.price,
-              },
-            }
-          }
-          return prevItem
-        }),
-      )
-    },
-    [],
-  )
   const listCheckMap = () => {
-    list.map(data => {
+    menuList.map(data => {
       if (!data.listData.name) {
         throw String('메뉴 이름을 입력해주세요')
       } else if (data.listData.menuCount === 0) {
@@ -162,18 +105,18 @@ export const SetMenu = ({
   }
   const beforeBackSave = useCallback(() => {
     listCheckMap()
-    handleMenu(list.map(data => data.listData))
+    handleMenu(menuList.map(data => data.listData))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleMenu, list])
+  }, [handleMenu, menuList])
 
   const handleNextRouter = useCallback(() => {
     try {
-      if (list.length === 0) {
+      if (menuList.length === 0) {
         throw String('메뉴를 추가해주세요')
       }
       listCheckMap()
 
-      handleMenu(list.map(data => data.listData))
+      handleMenu(menuList.map(data => data.listData))
       navigate('SetPicture')
     } catch (error) {
       if (error instanceof Error) {
@@ -183,7 +126,7 @@ export const SetMenu = ({
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleMenu, list, navigate])
+  }, [handleMenu, menuList, navigate])
 
   return (
     <KeyboardAvoidingView
@@ -198,27 +141,30 @@ export const SetMenu = ({
           <View>
             <Text>SetMenuScreen</Text>
           </View>
-          <TouchableOpacity onPress={onAddList}>
+          <TouchableOpacity onPress={onAddMenu}>
             <Text style={{ color: 'blue' }}>추가하기</Text>
           </TouchableOpacity>
 
-          {list.map(props => (
+          {menuList.map(props => (
             <View key={props.id}>
               <Text>-----------------------</Text>
+              <View>
+                <Title>{props.id}</Title>
+              </View>
               <View>
                 <Title>메뉴 이름을 적어주세요</Title>
               </View>
               <CustomTextInput
-                onChangeText={text => handleUpdateList(props.id, text)}
+                onChangeText={text => onUpdateMenu(props.id, text)}
                 value={props.listData.name}
                 placeholder="메뉴이름을 입력해주세요."
               />
               <View>
-                <Title>개수를 </Title>
+                <Title>개수</Title>
               </View>
               <CustomTextInput
                 onChangeText={text =>
-                  handleUpdateList(props.id, props.listData.name, Number(text))
+                  onUpdateMenu(props.id, props.listData.name, Number(text))
                 }
                 value={String(props.listData.menuCount)}
                 placeholder="음식 개수를 입력해주세요."
@@ -229,7 +175,7 @@ export const SetMenu = ({
               </View>
               <CustomTextInput
                 onChangeText={text =>
-                  handleUpdateList(
+                  onUpdateMenu(
                     props.id,
                     props.listData.name,
                     props.listData.menuCount,
@@ -278,7 +224,7 @@ export const SetMenu = ({
                   <Text>비어있음</Text>
                 </View>
               )}
-              <TouchableOpacity onPress={() => onRemoveList(props.id)}>
+              <TouchableOpacity onPress={() => onRemoveMenu(props.id)}>
                 <Text style={{ color: 'red' }}>삭제</Text>
               </TouchableOpacity>
             </View>

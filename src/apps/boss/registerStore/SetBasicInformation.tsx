@@ -6,7 +6,7 @@ import { StoreCategoryType } from '@/types/store.type'
 import { goAlert } from '@/utils/goAlert'
 import CheckBox from '@react-native-community/checkbox'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
@@ -14,6 +14,7 @@ import {
   Text,
   View,
 } from 'react-native'
+import { useInformation } from './SetBasicInformation.hook'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -38,24 +39,12 @@ export const SetBasicInformation = ({
   data,
   handle,
 }: Props) => {
-  const [isCheckCASH, setIsCheckCASH] = useState<boolean>(
-    data.paymentMethods.indexOf('CASH') === -1 ? false : true,
-  )
-  const [
+  const {
+    isCheckCASH,
     isCheckACCOUNT_TRANSFER,
-    setIsCheckACCOUNT_TRANSFER,
-  ] = useState<boolean>(
-    data.paymentMethods.indexOf('ACCOUNT_TRANSFER') === -1 ? false : true,
-  )
-
-  const handleCheckCASH = useCallback(
-    (props: boolean) => setIsCheckCASH(props),
-    [],
-  )
-  const handleCheckACCOUNT_TRANSFER = useCallback(
-    (props: boolean) => setIsCheckACCOUNT_TRANSFER(props),
-    [],
-  )
+    handleCheckCASH,
+    handleCheckACCOUNT_TRANSFER,
+  } = useInformation(data.paymentMethods)
 
   const handleNextRouter = useCallback(() => {
     if (isCheckCASH && isCheckACCOUNT_TRANSFER) {
@@ -78,16 +67,7 @@ export const SetBasicInformation = ({
     } else {
       navigate('SetLocation')
     }
-  }, [
-    data.category,
-    data.storeDescription,
-    data.locationDescription,
-    data.name,
-    handle,
-    isCheckACCOUNT_TRANSFER,
-    isCheckCASH,
-    navigate,
-  ])
+  }, [data, handle, isCheckACCOUNT_TRANSFER, isCheckCASH, navigate])
 
   return (
     <KeyboardAvoidingView

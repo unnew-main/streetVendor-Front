@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Geolocation from '@react-native-community/geolocation'
 import { goAlert } from '@/utils/goAlert'
 import { StackRegisterStoreList } from '@/types/route.type'
@@ -10,6 +10,7 @@ import styled from 'styled-components/native'
 import NaverMapView, { Marker } from 'react-native-nmap'
 import { Text } from 'react-native'
 import { RegisterStoreLayout } from '@/components/boss/registerStore/RegisterStoreLayout'
+import { useLocation } from './SetLocation.hook'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetCND'>
@@ -22,26 +23,28 @@ export const SetLocation = ({
   location,
   handleLocation,
 }: Props) => {
-  const [userLocation, setUserLocation] = useState<LocationType>({
-    latitude: 0,
-    longitude: 0,
-  })
-  const [isPin, setIsPin] = useState(false)
   const navigator = React.useContext(NavigationContext)
+  const {
+    userLocation,
+    handleUserLocation,
+    isPin,
+    pinOn,
+    pinOff,
+  } = useLocation()
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
         if (location.latitude === 0 && location.longitude === 0) {
-          setIsPin(false)
-          setUserLocation({
+          pinOff()
+          handleUserLocation({
             latitude: Number(position.coords.latitude),
             longitude: Number(position.coords.longitude),
           })
         } else {
-          setIsPin(true)
+          pinOn()
 
-          setUserLocation({
+          handleUserLocation({
             latitude: location.latitude,
             longitude: location.longitude,
           })
@@ -52,19 +55,15 @@ export const SetLocation = ({
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     )
-  }, [location.latitude, location.longitude])
+  }, [handleUserLocation, location, pinOff, pinOn])
   const handleMapClick = useCallback(
     (e: any) => {
       console.log('handleMapClick', e)
-      setIsPin(true)
+      pinOn()
       handleLocation({ longitude: e.longitude, latitude: e.latitude })
     },
-    [handleLocation],
+    [handleLocation, pinOn],
   )
-
-  const handleMapClickCancel = useCallback(() => {
-    setIsPin(false)
-  }, [])
 
   const beforeBackSave = useCallback(() => {
     if (isPin === false) {
@@ -108,10 +107,7 @@ export const SetLocation = ({
           onCameraChange={e => console.log('cameraChange', e)}
         >
           {isPin !== false && (
-            <Marker
-              coordinate={location}
-              onClick={() => handleMapClickCancel()}
-            />
+            <Marker coordinate={location} onClick={() => pinOff()} />
           )}
         </NaverMapView>
       </NaverMapWrapper>

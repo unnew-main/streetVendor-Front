@@ -9,8 +9,9 @@ import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { useDates } from './SetBusinessHours.hook'
 
 type Props = {
   navigation: StackNavigationProp<StackRegisterStoreList, 'SetBusinessHours'>
@@ -18,25 +19,25 @@ type Props = {
   busniessHours: BusinessHoursType[]
 }
 
-export type ListType = {
-  id: number
-  listData: BusinessHoursType
-}
-
 export const SetBusinessHours = ({
   navigation: { navigate },
   handleBusinessHours,
   busniessHours,
 }: Props) => {
-  const [list, setList] = useState<ListType[]>([])
-
-  const listId = useRef(0)
   const navigator = React.useContext(NavigationContext)
+  const {
+    listId,
+    dateList,
+    setDateList,
+    onAddDate,
+    onRemoveDate,
+    onUpdateDate,
+  } = useDates()
 
   useEffect(() => {
     busniessHours.forEach(data => {
       listId.current += 1
-      setList(prev =>
+      setDateList(prev =>
         prev.concat({
           id: listId.current,
           listData: {
@@ -49,65 +50,27 @@ export const SetBusinessHours = ({
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  const onAddList = useCallback(() => {
-    listId.current += 1
-    setList(prev =>
-      prev.concat({
-        id: listId.current,
-        listData: {
-          days: '',
-          endTime: '12:00',
-          startTime: '12:00',
-        },
-      }),
-    )
-  }, [])
-
-  const onRemoveList = useCallback((id: number) => {
-    setList(prev => prev.filter(data => data.id !== id))
-  }, [])
-
-  const handleUpdateList = useCallback(
-    (id: number, newDay?: any, startTime?: string, endTime?: string) => {
-      setList(prevList =>
-        prevList.map(prevItem => {
-          if (prevItem.id === id) {
-            return {
-              id,
-              listData: {
-                days: newDay ? newDay : prevItem.listData.days,
-                startTime: startTime ? startTime : prevItem.listData.startTime,
-                endTime: endTime ? endTime : prevItem.listData.endTime,
-              },
-            }
-          }
-          return prevItem
-        }),
-      )
-    },
-    [],
-  )
 
   const beforeBackSave = useCallback(() => {
-    list.map(data => {
+    dateList.map(data => {
       if (data.listData.days === '') {
         throw String('날짜를 선택해주세요')
       }
     })
-    handleBusinessHours(list.map(data => data.listData))
-  }, [handleBusinessHours, list])
+    handleBusinessHours(dateList.map(data => data.listData))
+  }, [dateList, handleBusinessHours])
 
   const handleNextRouter = useCallback(() => {
     try {
-      if (list.length === 0) {
+      if (dateList.length === 0) {
         throw String('운영시간를 선택해주세요')
       }
-      list.map(data => {
+      dateList.map(data => {
         if (data.listData.days === '') {
           throw String('날짜를 선택해주세요')
         }
       })
-      handleBusinessHours(list.map(data => data.listData))
+      handleBusinessHours(dateList.map(data => data.listData))
       navigate('SetMenu')
     } catch (error) {
       if (error instanceof Error) {
@@ -116,7 +79,7 @@ export const SetBusinessHours = ({
         goAlert(String(error))
       }
     }
-  }, [handleBusinessHours, list, navigate, navigator])
+  }, [dateList, handleBusinessHours, navigate, navigator])
 
   return (
     <RegisterStoreLayout
@@ -129,17 +92,17 @@ export const SetBusinessHours = ({
           <Text>SetBusinessHoursScreen</Text>
         </View>
         <View>
-          <TouchableOpacity onPress={onAddList}>
+          <TouchableOpacity onPress={onAddDate}>
             <Text style={{ color: 'blue' }}>추가하기</Text>
           </TouchableOpacity>
-          {list.map(props => (
+          {dateList.map(props => (
             <View key={props.id}>
               <View>
                 <Text>-----------------------</Text>
                 <Text>날짜를 선택해주세요</Text>
                 <CustomPicker
                   onValueChange={(value: string) =>
-                    handleUpdateList(props.id, value)
+                    onUpdateDate(props.id, value)
                   }
                   items={days}
                   value={props.listData.days}
@@ -150,7 +113,7 @@ export const SetBusinessHours = ({
               <TimePicker
                 id={props.id}
                 buttonName="영업 시작시간 설정"
-                handleUpdateTime={handleUpdateList}
+                handleUpdateTime={onUpdateDate}
                 type="start"
               />
               <Text>{props.listData.startTime}</Text>
@@ -158,11 +121,11 @@ export const SetBusinessHours = ({
               <TimePicker
                 id={props.id}
                 buttonName="영업 종료시간 설정"
-                handleUpdateTime={handleUpdateList}
+                handleUpdateTime={onUpdateDate}
                 type="end"
               />
               <Text>{props.listData.endTime}</Text>
-              <TouchableOpacity onPress={() => onRemoveList(props.id)}>
+              <TouchableOpacity onPress={() => onRemoveDate(props.id)}>
                 <Text style={{ color: 'red' }}>삭제</Text>
               </TouchableOpacity>
             </View>

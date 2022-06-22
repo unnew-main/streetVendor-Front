@@ -13,11 +13,12 @@ type Props = {
 }
 export const BossStoreInfo = ({ storeData }: Props) => {
   const [isOpen, setIsOpen] = useState<'CLOSED' | 'OPEN'>(storeData.salesStatus)
+  const navigator = React.useContext(NavigationContext)
 
   useEffect(() => {
     setIsOpen(storeData.salesStatus)
   }, [storeData.salesStatus])
-  const navigator = React.useContext(NavigationContext)
+
   const handleBackList = () => {
     navigator?.navigate('BossStoreList')
   }
