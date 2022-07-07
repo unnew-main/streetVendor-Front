@@ -12,13 +12,10 @@ export const LoadingContext = ({ children }: LoadingContextProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const onLoading = useCallback(() => {
-    console.log('loading strat')
     setIsLoading(true)
   }, [])
 
   const offLoading = useCallback(() => {
-    console.log('loading end')
-
     setIsLoading(false)
   }, [])
 

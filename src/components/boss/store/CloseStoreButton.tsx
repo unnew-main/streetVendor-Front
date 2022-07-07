@@ -19,7 +19,6 @@ export const CloseStoreButton = ({ storeId, setIsOpen }: Props) => {
     try {
       onLoading()
       await storeApi.closeStore(storeId)
-      console.log('가게닫기완료')
       setIsOpen('CLOSED')
       goAlert('영업이 종료되었습니다.')
     } catch (error) {

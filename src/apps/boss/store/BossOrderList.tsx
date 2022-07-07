@@ -22,7 +22,6 @@ export const BossOrderList = ({ storeId }: Props) => {
         const {
           data: { data: data },
         } = await orderApi.bossCheckOrder(storeId)
-        console.log(data)
         setOrderList(data)
       } catch (error) {
         console.log('OrderListApp Error: ', error)

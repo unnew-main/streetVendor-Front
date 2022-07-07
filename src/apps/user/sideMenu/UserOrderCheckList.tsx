@@ -16,7 +16,6 @@ export const UserOrderCheckList = () => {
         const {
           data: { data: data },
         } = await orderApi.userCheckOrder()
-        console.log(data)
         setOrderList(data)
       } catch (error) {
         console.log('OrderListApp Error: ', error)

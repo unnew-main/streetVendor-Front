@@ -44,7 +44,6 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
   }, [])
 
   useEffect(() => {
-    console.log('cameraLocation', cameraLocation)
     ;(async () => {
       try {
         const {
@@ -60,7 +59,6 @@ export const NMap = ({ showAllStore, handleClickMapPin }: Props) => {
               cameraLocation.latitude,
               cameraLocation.longitude,
             )
-        console.log('storeList', data)
         setConsoleData(
           '[Success] \n' +
             'CameraLocation: \n' +

@@ -26,7 +26,6 @@ export const useMember = () => {
         const {
           data: { data },
         } = await memberApi.getInfo()
-        console.log(data)
         setMemberInfo(data)
       } catch (error) {
         if (error instanceof Error) {

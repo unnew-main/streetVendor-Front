@@ -20,7 +20,6 @@ export const DetailStore = ({ storeId }: Props) => {
         const {
           data: { data },
         } = await storeApi.getDetailStore(storeId)
-        console.log('[DetailStore]storeDetail Info', data)
         setStoreInfo(data)
       } catch (error) {
         console.log('DetailStore Error: ', error)
@@ -32,7 +31,6 @@ export const DetailStore = ({ storeId }: Props) => {
   }, [navigator, storeId])
 
   const handleOrderClick = () => {
-    console.log(storeInfo?.storeName)
     navigator?.navigate('UserOrder', {
       storeName: storeInfo?.storeName,
       menuList: storeInfo?.menuList,

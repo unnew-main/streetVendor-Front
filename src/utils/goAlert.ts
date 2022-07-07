@@ -15,21 +15,11 @@ export const goAlert = (
         [
           {
             text: '확인',
-            onPress:
-              handleComfirm !== undefined
-                ? handleComfirm
-                : () => {
-                    console.log('확인')
-                  },
+            onPress: handleComfirm !== undefined ? handleComfirm : () => {},
           },
           {
             text: '취소',
-            onPress:
-              handleCancel !== undefined
-                ? handleCancel
-                : () => {
-                    console.log('취소')
-                  },
+            onPress: handleCancel !== undefined ? handleCancel : () => {},
           },
         ],
         { cancelable: true },
@@ -41,12 +31,7 @@ export const goAlert = (
         [
           {
             text: '확인',
-            onPress:
-              handleComfirm !== undefined
-                ? handleComfirm
-                : () => {
-                    console.log('확인')
-                  },
+            onPress: handleComfirm !== undefined ? handleComfirm : () => {},
           },
         ],
         { cancelable: false },

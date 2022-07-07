@@ -36,7 +36,6 @@ export const SetStorePicture = ({
   }, [handlePictureUrl, navigator])
 
   const handleOpenCamera = useCallback(async () => {
-    console.log('Camera Click!')
     try {
       const imageUrl = await openCamera()
       imageUrl && handlePictureUrl(imageUrl)

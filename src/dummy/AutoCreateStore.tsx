@@ -14,7 +14,6 @@ export const AutoCreateStore = () => {
     try {
       await storeApi.createStore(dummyRegisterStore1)
       await storeApi.createStore(dummyRegisterStore2)
-      console.log('자동 가게 생성 완료!')
       navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (e) {
       goAlert('자동 가게 생성 실패!', String(e))

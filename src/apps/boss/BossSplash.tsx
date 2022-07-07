@@ -18,7 +18,6 @@ export const BossSplash = () => {
       try {
         onLoading()
         const { data } = await memberApi.getBossInfo()
-        console.log('getBossInfo: ', data)
         setNowState('사장님 정보확인 완료')
         offLoading()
         navigator?.reset({ routes: [{ name: 'BossStoreList' }] })

@@ -15,7 +15,6 @@ export const Outtro = ({ data }: OuttroAppProps) => {
   const handleNextRouter = useCallback(async () => {
     try {
       //여기에 가게정보 저장하는 APi 호출
-      console.log('생성할 데이터', data)
       await storeApi.createStore(data)
       navigator?.reset({ routes: [{ name: 'BossStoreList' }] })
     } catch (error) {
