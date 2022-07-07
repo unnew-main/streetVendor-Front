@@ -3,7 +3,6 @@ import api from './common'
 
 export const orderApi = {
   userOrder: async (props: OrderType) => {
-    console.log(props)
     return api.postAuth('/api/v1/order', props)
   },
   userCheckOrder: async () => {
