@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
-import { memberApi } from '@/apis'
 import { ReportError } from '@/utils/reportError'
 import { SplashScreen } from '@/components/common/SplashScreen'
+import { memberApi } from '@/apis/memberApi'
 
 export function Splash() {
   const navigator = React.useContext(NavigationContext)

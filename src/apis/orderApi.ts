@@ -3,19 +3,30 @@ import api from './common'
 
 export const orderApi = {
   userOrder: async (props: OrderType) => {
-    return api.postAuth('/api/v1/order', props)
+    const response = await api.postAuth('/api/v1/order', props)
+    return response
   },
   userCheckOrder: async () => {
-    return api.getAuth('/api/v1/orders', {})
+    const response = await api.getAuth('/api/v1/orders', {})
+    return response
   },
 
   bossCancelOrder: async (storeId: number, orderId: number) => {
-    return api.deleteAuth(`/api/v1/${storeId}/orders/${orderId}/cancel`, {})
+    const response = await api.deleteAuth(
+      `/api/v1/${storeId}/orders/${orderId}/cancel`,
+      {},
+    )
+    return response
   },
   userCancelOrder: async (orderId: number) => {
-    return api.deleteAuth(`/api/v1/orders/${orderId}/cancel`, {})
+    const response = await api.deleteAuth(
+      `/api/v1/orders/${orderId}/cancel`,
+      {},
+    )
+    return response
   },
   bossCheckOrder: async (storeId: number) => {
-    return api.getAuth(`/api/v1/orders/${storeId}`, {})
+    const response = await api.getAuth(`/api/v1/orders/${storeId}`, {})
+    return response
   },
 }

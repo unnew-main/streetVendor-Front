@@ -3,10 +3,10 @@ import { Text, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { GoogleSignin } from '@react-native-community/google-signin'
 import { sessionHelper } from '@/utils/sessionHelper'
-import { memberApi } from '@/apis'
-import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'
+import { memberApi } from '@/apis/memberApi'
+import { useLoading } from '@/hooks/useLoading.hook'
 
 export const SignoutButton = () => {
   const navigator = React.useContext(NavigationContext)

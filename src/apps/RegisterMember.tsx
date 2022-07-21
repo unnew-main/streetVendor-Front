@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { authApi, memberApi } from '@/apis'
 import { NavigationContext } from '@react-navigation/native'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { goAlert } from '@/utils/goAlert'
@@ -9,6 +8,8 @@ import styled from 'styled-components/native'
 import { KeyboardAvoidingView, Platform, Text, View } from 'react-native'
 import { GoogleLogoutbutton } from '@/components/auth'
 import { CustomTextInput } from '@/components/common'
+import { memberApi } from '@/apis/memberApi'
+import { authApi } from '@/apis/authApi'
 
 type RegisterMemberProps = {
   route: {

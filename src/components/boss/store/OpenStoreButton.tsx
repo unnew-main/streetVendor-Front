@@ -1,4 +1,4 @@
-import { storeApi } from '@/apis'
+import { storeApi } from '@/apis/storeApi'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { goAlert } from '@/utils/goAlert'
 import { ReportError } from '@/utils/reportError'

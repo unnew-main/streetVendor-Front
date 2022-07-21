@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { NavigationContext, RouteProp } from '@react-navigation/native'
-import { storeApi } from '@/apis'
 import { ReportError } from '@/utils/reportError'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BossOrderList } from './BossOrderList'
 import { BossStoreInfo } from './BossStoreInfo'
 import { useStore } from './BossStoreTab.hook'
+import { storeApi } from '@/apis/storeApi'
 type Props = {
   route: RouteProp<{
     params: {

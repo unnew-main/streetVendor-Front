@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { storeApi } from '@/apis'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { StoreListType } from '@/types/store.type'
 import { NavigationContext, useIsFocused } from '@react-navigation/native'
@@ -11,6 +10,7 @@ import { ChangeUserButton } from '@/components/common'
 import { RegisterStoreButton } from '@/components/boss'
 import { FlatList, Text, View } from 'react-native'
 import { AutoCreateStore } from '@/dummy/AutoCreateStore'
+import { storeApi } from '@/apis/storeApi'
 
 export const BossStoreList = () => {
   const navigator = React.useContext(NavigationContext)

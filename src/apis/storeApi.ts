@@ -2,19 +2,35 @@ import { RegisterStorePropsType } from '@/types/store.type'
 import api from './common'
 
 export const storeApi = {
-  getListStore: async () => api.getAuth('/api/v1/my-stores', {}),
+  getListStore: async () => {
+    const response = await api.getAuth('/api/v1/my-stores', {})
+    return response
+  },
 
-  getDetailStore: async (storeId: number) =>
-    api.getAuth(`/api/v1/store/detail/${storeId}`, {}),
+  getDetailStore: async (storeId: number) => {
+    const response = await api.getAuth(`/api/v1/store/detail/${storeId}`, {})
+    return response
+  },
 
-  createStore: async (props: RegisterStorePropsType) =>
-    api.postAuth('/api/v1/store', props),
+  createStore: async (props: RegisterStorePropsType) => {
+    const response = await api.postAuth('/api/v1/store', props)
+    return response
+  },
 
-  openStore: async (storeId: number) =>
-    api.putAuth(`/api/v1/store/sales-status/open/${storeId}`, {}),
-
-  closeStore: async (storeId: number) =>
-    api.putAuth(`/api/v1/store/sales-status/closed/${storeId}`, {}),
+  openStore: async (storeId: number) => {
+    const response = await api.putAuth(
+      `/api/v1/store/sales-status/open/${storeId}`,
+      {},
+    )
+    return response
+  },
+  closeStore: async (storeId: number) => {
+    const response = await api.putAuth(
+      `/api/v1/store/sales-status/closed/${storeId}`,
+      {},
+    )
+    return response
+  },
 
   /**
    * @param distance N키로미터(MAX: 2)
@@ -26,23 +42,35 @@ export const storeApi = {
     distance: number,
     latitude: number,
     longitude: number,
-  ) =>
-    api.get('/api/v1/stores/location/open', { distance, latitude, longitude }),
+  ) => {
+    const response = await api.get('/api/v1/stores/location/open', {
+      distance,
+      latitude,
+      longitude,
+    })
+    return response
+  },
 
   getLocationAllStore: async (
     distance: number,
     latitude: number,
     longitude: number,
-  ) =>
-    api.get('/api/v1/stores/location', {
+  ) => {
+    const response = await api.get('/api/v1/stores/location', {
       distance,
       latitude,
       longitude,
-    }),
+    })
+    return response
+  },
 
-  getAllLocationStore: async (lastId: number, size: number) =>
-    api.get('/api/v1/stores', { lastId, size }),
+  getAllLocationStore: async (lastId: number, size: number) => {
+    const response = await api.get('/api/v1/stores', { lastId, size })
 
-  removeStore: async (storeId: number) =>
-    api.deleteAuth(`/api/v1/store/${storeId}`, {}),
+    return response
+  },
+  removeStore: async (storeId: number) => {
+    const response = await api.deleteAuth(`/api/v1/store/${storeId}`, {})
+    return response
+  },
 }

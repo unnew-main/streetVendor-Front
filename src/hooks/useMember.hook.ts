@@ -1,8 +1,8 @@
-import { memberApi } from '@/apis'
 import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'
 import { useEffect, useState } from 'react'
 import React from 'react'
+import { memberApi } from '@/apis/memberApi'
 export type UserInfoType = {
   email: string
   memberId: number

@@ -1,4 +1,4 @@
-import { storeApi } from '@/apis'
+import { storeApi } from '@/apis/storeApi'
 import { goAlert } from '@/utils/goAlert'
 import { NavigationContext } from '@react-navigation/native'
 import React, { useCallback } from 'react'

@@ -5,10 +5,10 @@ import {
   GoogleSigninButton,
 } from '@react-native-community/google-signin'
 import { NavigationContext } from '@react-navigation/native'
-import { authApi } from '@/apis'
 import { sessionHelper } from '@/utils/sessionHelper'
 import { useLoading } from '@/hooks/useLoading.hook'
 import { ReportError } from '@/utils/reportError'
+import { authApi } from '@/apis/authApi'
 
 export const GoogleLoginbutton = () => {
   const navigator = React.useContext(NavigationContext)

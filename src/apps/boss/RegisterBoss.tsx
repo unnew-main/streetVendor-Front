@@ -1,4 +1,3 @@
-import { memberApi } from '@/apis'
 import { goAlert } from '@/utils/goAlert'
 import React, { useCallback, useState } from 'react'
 import { NavigationContext } from '@react-navigation/native'
@@ -11,6 +10,7 @@ import {
   View,
 } from 'react-native'
 import { CustomTextInput } from '@/components/common'
+import { memberApi } from '@/apis/memberApi'
 
 export type RegisterBossType = {
   bossName: string

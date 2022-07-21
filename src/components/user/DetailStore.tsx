@@ -1,4 +1,4 @@
-import { storeApi } from '@/apis'
+import { storeApi } from '@/apis/storeApi'
 import { StoreDetailType } from '@/types/store.type'
 import { ReportError } from '@/utils/reportError'
 import { NavigationContext } from '@react-navigation/native'

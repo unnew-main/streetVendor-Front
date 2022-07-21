@@ -4,18 +4,23 @@ import api from './common'
 
 export const memberApi = {
   signUp: async (props: UserSignUpDataProps) => {
-    return api.post('/api/v1/sign-up', props)
+    const response = await api.post('/api/v1/sign-up', props)
+    return response
   },
   signOut: async () => {
-    return api.putAuth('/api/v1/sign-out', {})
+    const response = await api.putAuth('/api/v1/sign-out', {})
+    return response
   },
   getInfo: async () => {
-    return api.getAuth('/api/v1/my-page', {})
+    const response = await api.getAuth('/api/v1/my-page', {})
+    return response
   },
   setBossInfo: async (props: RegisterBossType) => {
-    return api.postAuth('/api/v1/bossInfo', props)
+    const response = await api.postAuth('/api/v1/bossInfo', props)
+    return response
   },
   getBossInfo: async () => {
-    return api.getAuth('/api/v1/boss/check', {})
+    const response = await api.getAuth('/api/v1/boss/check', {})
+    return response
   },
 }

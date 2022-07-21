@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import { LocationType, StorePinType } from '@/types/store.type'
 import Geolocation from '@react-native-community/geolocation'
-import { storeApi } from '@/apis'
 import NaverMapView, { Marker } from 'react-native-nmap'
 import { goAlert } from '@/utils/goAlert'
 import { Text, View } from 'react-native'
+import { storeApi } from '@/apis/storeApi'
 
 type Props = {
   showAllStore: boolean
